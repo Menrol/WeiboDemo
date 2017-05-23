@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		180C328E1ED31D48009AE1D9 /* VisitorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180C328D1ED31D48009AE1D9 /* VisitorTableViewController.swift */; };
+		180C32901ED3324A009AE1D9 /* VisitorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180C328F1ED3324A009AE1D9 /* VisitorView.swift */; };
 		18D2DEE61ED07BB300B446CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D2DEE51ED07BB300B446CC /* AppDelegate.swift */; };
 		18D2DEED1ED07BB300B446CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18D2DEEC1ED07BB300B446CC /* Assets.xcassets */; };
 		18D2DEFB1ED07BB400B446CC /* ______Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D2DEFA1ED07BB400B446CC /* ______Tests.swift */; };
@@ -37,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		180C328D1ED31D48009AE1D9 /* VisitorTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisitorTableViewController.swift; sourceTree = "<group>"; };
+		180C328F1ED3324A009AE1D9 /* VisitorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisitorView.swift; sourceTree = "<group>"; };
 		18D2DEE21ED07BB300B446CC /* 仿写新浪微博.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "仿写新浪微博.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18D2DEE51ED07BB300B446CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18D2DEEC1ED07BB300B446CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -80,6 +84,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		180C328C1ED31D1F009AE1D9 /* Visitor */ = {
+			isa = PBXGroup;
+			children = (
+				180C328D1ED31D48009AE1D9 /* VisitorTableViewController.swift */,
+				180C328F1ED3324A009AE1D9 /* VisitorView.swift */,
+			);
+			path = Visitor;
+			sourceTree = "<group>";
+		};
 		18D2DED91ED07BB300B446CC = {
 			isa = PBXGroup;
 			children = (
@@ -186,6 +199,7 @@
 		18D2DF191ED0837000B446CC /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				180C328C1ED31D1F009AE1D9 /* Visitor */,
 				18D2DF1D1ED0874D00B446CC /* MainViewController.swift */,
 			);
 			path = Main;
@@ -361,7 +375,9 @@
 				18D2DF201ED0876D00B446CC /* HomeTableViewController.swift in Sources */,
 				18D2DEE61ED07BB300B446CC /* AppDelegate.swift in Sources */,
 				18D2DF221ED0878300B446CC /* MessageTableViewController.swift in Sources */,
+				180C328E1ED31D48009AE1D9 /* VisitorTableViewController.swift in Sources */,
 				18D2DF241ED0879500B446CC /* DiscoverTableViewController.swift in Sources */,
+				180C32901ED3324A009AE1D9 /* VisitorView.swift in Sources */,
 				18D2DF1E1ED0874D00B446CC /* MainViewController.swift in Sources */,
 				18EFF5AB1ED2B7D00084F4CE /* UIButton+Extension.swift in Sources */,
 			);

@@ -10,8 +10,13 @@ import UIKit
 
 class MainViewController: UITabBarController {
     
-    fileprivate lazy var composeButton: UIButton = UIButton(imageName: "tabbar_compose_icon_add", backgroundImageName: "tabbar_compose_button")
-
+    //MARK: - 监听方法
+    @objc fileprivate func pressComposeButton(){
+        print("点我了")
+    }
+    
+    
+    //MARK: - 视图声明周期
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,17 +31,16 @@ class MainViewController: UITabBarController {
         tabBar.bringSubview(toFront: composeButton)
         
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    
+    //MARK: - 懒加载控件
+    fileprivate lazy var composeButton: UIButton = UIButton(imageName: "tabbar_compose_icon_add", backgroundImageName: "tabbar_compose_button")
 
 }
 
 //MARK: - 设置界面
 extension MainViewController{
     
+    /// 设置添加按钮
     fileprivate func setComposeButton(){
         
         tabBar.addSubview(composeButton)
@@ -46,6 +50,9 @@ extension MainViewController{
         let w = tabBar.bounds.width / CGFloat(count) - 1
         let tabbarFrame = tabBar.bounds
         composeButton.frame = tabbarFrame.insetBy(dx: 2 * w, dy: 0)
+        
+        //添加监听方法
+        composeButton.addTarget(self, action: #selector(MainViewController.pressComposeButton), for: UIControlEvents.touchUpInside)
     }
     
     fileprivate func addChildViewControllers() {
@@ -60,7 +67,7 @@ extension MainViewController{
         
     }
     
-    //添加控制器
+    /// 添加控制器
     fileprivate func addChildViewController(vc:UIViewController,title:String,imageName:String) {
         
         vc.title = title
