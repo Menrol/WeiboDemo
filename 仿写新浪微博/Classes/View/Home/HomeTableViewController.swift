@@ -14,7 +14,5 @@ class HomeTableViewController: VisitorTableViewController {
         super.viewDidLoad()
         
         visitorView?.setvisitorView(imageName: nil, message: "登录后，你所关注的人的微博会显示在这里")
-       
     }
-
 }

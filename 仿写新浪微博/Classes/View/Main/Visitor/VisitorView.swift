@@ -12,7 +12,6 @@ class VisitorView: UIView {
     
     //MARK: - 设置视图信息
     func setvisitorView(imageName: String?, message:String){
-        
         messageLabel.text = message
         guard let imgName = imageName else {
             setAnimation()
@@ -21,12 +20,10 @@ class VisitorView: UIView {
         iconImageView.image = UIImage(named: imgName)
         homeiconImageView.isHidden = true
         sendSubview(toBack: maskImageView)
-        
     }
     
     //MARK: - 设置动画
     private func setAnimation(){
-        
         let animation = CABasicAnimation(keyPath: "transform.rotation")
         animation.toValue = 2 * Double.pi
         animation.duration = 20
@@ -38,7 +35,6 @@ class VisitorView: UIView {
 
     //MARK: - 构造函数
     override init(frame: CGRect) {
-        
         super.init(frame: frame)
         
         setUI()
@@ -53,48 +49,21 @@ class VisitorView: UIView {
     }
     
     //MARK: - 懒加载控件
-    fileprivate lazy var iconImageView: UIImageView = UIImageView(image: UIImage(named: "visitordiscover_feed_image_smallicon"))
+    fileprivate lazy var iconImageView: UIImageView = UIImageView(imageName: "visitordiscover_feed_image_smallicon")
     
-    fileprivate lazy var maskImageView: UIImageView = UIImageView(image: UIImage(named: "visitordiscover_feed_mask_smallicon"))
+    fileprivate lazy var maskImageView: UIImageView = UIImageView(imageName: "visitordiscover_feed_mask_smallicon")
     
-    fileprivate lazy var homeiconImageView: UIImageView = UIImageView(image: UIImage(named: "visitordiscover_feed_image_house"))
+    fileprivate lazy var homeiconImageView: UIImageView = UIImageView(imageName: "visitordiscover_feed_image_house")
     
-    fileprivate lazy var messageLabel: UILabel = {
-        let label = UILabel()
-        
-        label.font = UIFont.systemFont(ofSize: 14)
-        label.numberOfLines = 0
-        label.textColor = UIColor.darkGray
-        label.textAlignment = NSTextAlignment.center
-        
-        return label
-    }()
+    fileprivate lazy var messageLabel: UILabel = UILabel(text: nil)
     
-    fileprivate lazy var resignButton: UIButton = {
-        
-        let button = UIButton()
-        
-        button.setTitle("注册", for: UIControlState.normal)
-        button.setTitleColor(UIColor.orange, for: UIControlState.normal)
-        button.setBackgroundImage(UIImage(named: "common_button_white_disable"), for: UIControlState.normal)
-        
-        return button
-        
-    }()
+    lazy var registerButton: UIButton = UIButton(title: "注册", imageName: "common_button_white_disable",color: UIColor.orange)
     
-    fileprivate lazy var loginButton: UIButton = {
-        
-        let button = UIButton()
-        
-        button.setTitle("登录", for: UIControlState.normal)
-        button.setTitleColor(UIColor.darkGray, for: UIControlState.normal)
-        button.setBackgroundImage(UIImage(named: "common_button_white_disable"), for: UIControlState.normal)
-        
-        return button
-        
-    }()
+    lazy var loginButton: UIButton = UIButton(title: "登录", imageName: "common_button_white_disable")
+    
 }
 
+//MARK: - 设置界面
 extension VisitorView{
     
     //设置UI
@@ -105,9 +74,8 @@ extension VisitorView{
         addSubview(maskImageView)
         addSubview(homeiconImageView)
         addSubview(messageLabel)
-        addSubview(resignButton)
+        addSubview(registerButton)
         addSubview(loginButton)
-        
         
         for v in subviews{
             v.translatesAutoresizingMaskIntoConstraints = false
@@ -128,10 +96,10 @@ extension VisitorView{
         addConstraint(NSLayoutConstraint(item: messageLabel, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 224))
         
         //注册按钮
-        addConstraint(NSLayoutConstraint(item: resignButton, attribute: .left, relatedBy: .equal, toItem: messageLabel, attribute: .left, multiplier: 1.0, constant: 0))
-        addConstraint(NSLayoutConstraint(item: resignButton, attribute: .top, relatedBy: .equal, toItem: messageLabel, attribute: .bottom, multiplier: 1.0, constant: 16))
-        addConstraint(NSLayoutConstraint(item: resignButton, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 100))
-        addConstraint(NSLayoutConstraint(item: resignButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 36))
+        addConstraint(NSLayoutConstraint(item: registerButton, attribute: .left, relatedBy: .equal, toItem: messageLabel, attribute: .left, multiplier: 1.0, constant: 0))
+        addConstraint(NSLayoutConstraint(item: registerButton, attribute: .top, relatedBy: .equal, toItem: messageLabel, attribute: .bottom, multiplier: 1.0, constant: 16))
+        addConstraint(NSLayoutConstraint(item: registerButton, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 100))
+        addConstraint(NSLayoutConstraint(item: registerButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 36))
         
         //登录按钮
         addConstraint(NSLayoutConstraint(item: loginButton, attribute: .right, relatedBy: .equal, toItem: messageLabel, attribute: .right, multiplier: 1.0, constant: 0))
@@ -149,7 +117,7 @@ extension VisitorView{
            views: 是一个字典 [名字:控件名]
         */
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[mask]-0-|", options: [], metrics: nil, views: ["mask":maskImageView]))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[mask]-(H)-[regnbtn]", options: [], metrics: ["H":-36], views: ["mask":maskImageView,"regnbtn":resignButton]))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[mask]-(H)-[regnbtn]", options: [], metrics: ["H":-36], views: ["mask":maskImageView,"regnbtn":registerButton]))
         
         backgroundColor = UIColor(white: 237/255.0, alpha: 1.0)
     }

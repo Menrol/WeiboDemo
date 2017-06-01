@@ -15,8 +15,7 @@ class MainViewController: UITabBarController {
         print("点我了")
     }
     
-    
-    //MARK: - 视图声明周期
+    //MARK: - 视图生命周期
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -56,25 +55,19 @@ extension MainViewController{
     }
     
     fileprivate func addChildViewControllers() {
-        
-        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName : UIColor.orange], for: UIControlState.selected)
-        
         addChildViewController(vc: HomeTableViewController(), title: "首页", imageName: "tabbar_home")
         addChildViewController(vc: MessageTableViewController(), title: "信息", imageName: "tabbar_message_center")
         addChildViewController(UIViewController())
         addChildViewController(vc: DiscoverTableViewController(), title: "发现", imageName: "tabbar_discover")
         addChildViewController(vc: ProfileTableViewController(), title: "我", imageName: "tabbar_profile")
-        
     }
     
     /// 添加控制器
     fileprivate func addChildViewController(vc:UIViewController,title:String,imageName:String) {
-        
         vc.title = title
         vc.tabBarItem.image = UIImage(named: "\(imageName)")
         vc.tabBarItem.selectedImage = UIImage(named: "\(imageName)_highlighted")!.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
         let navi = UINavigationController(rootViewController: vc)
         addChildViewController(navi)
-        
     }
 }

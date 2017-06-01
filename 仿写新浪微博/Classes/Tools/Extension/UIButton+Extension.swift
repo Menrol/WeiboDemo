@@ -11,7 +11,6 @@ import UIKit
 extension UIButton{
     
     convenience init(imageName: String, backgroundImageName: String) {
-        
         self.init()
         
         setImage(UIImage(named: imageName), for: UIControlState.normal)
@@ -19,6 +18,13 @@ extension UIButton{
         setBackgroundImage(UIImage(named: backgroundImageName), for: UIControlState.normal)
         setBackgroundImage(UIImage(named: backgroundImageName + "_highlighted"), for: UIControlState.highlighted)
         sizeToFit()
+    }
+    
+    convenience init(title: String, imageName: String, color: UIColor = UIColor.darkGray){
+        self.init()
         
+        setTitle(title, for: UIControlState.normal)
+        setTitleColor(color, for: UIControlState.normal)
+        setBackgroundImage(UIImage(named: imageName), for: UIControlState.normal)
     }
 }
