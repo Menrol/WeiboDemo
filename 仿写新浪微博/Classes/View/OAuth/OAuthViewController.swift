@@ -12,12 +12,12 @@ class OAuthViewController: UIViewController {
     
     fileprivate lazy var webView: UIWebView = UIWebView()
     
-    //MARK: - 监听方法
+    // MARK: - 监听方法
     @objc fileprivate func close(){
         dismiss(animated: true, completion: nil)
     }
     
-    //MARK: - 自动填充用户名和密码
+    // MARK: - 自动填充用户名和密码
     @objc fileprivate func autoFill(){
         let jsString = "document.getElementById('userId').value='15029263785';" + "document.getElementById('passwd').value='goalone2O13~';"
         
@@ -29,7 +29,7 @@ class OAuthViewController: UIViewController {
         webView.delegate = self
         
         title = "登录新浪微博"
-        //设置按钮
+        // 设置按钮
         let returnButton = UIBarButtonItem(title: "关闭", style: .plain, target: self, action: #selector(OAuthViewController.close))
         navigationItem.leftBarButtonItem = returnButton
         let autofillButton = UIBarButtonItem(title: "自动填充", style: .plain, target: self, action: #selector(OAuthViewController.autoFill))
@@ -39,13 +39,13 @@ class OAuthViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //加载页面
+        // 加载页面
         webView.loadRequest(URLRequest(url: NetworkTool.sharedTool.oauthURL))
     }
     
 }
 
-//MARK: - UIWebViewDelegate
+// MARK: - UIWebViewDelegate
 extension OAuthViewController: UIWebViewDelegate{
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         
@@ -60,13 +60,16 @@ extension OAuthViewController: UIWebViewDelegate{
         }
         
         let code = query.substring(from: "code=".endIndex)
-        print(code)
         
-        NetworkTool.sharedTool.getloadAccessToken(code: code) { (result, error) in
-            print(result!)
+        UserAccountViewModel.sharedUersAccount.loadAccessToken(code: code) { (isSuccess) in
+            if isSuccess{
+                print("成功了")
+            }
+            else{
+                print("失败了")
+            }
         }
         
-        dismiss(animated: true, completion: nil)
         return false
     }
 }

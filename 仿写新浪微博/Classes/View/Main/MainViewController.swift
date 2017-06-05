@@ -10,12 +10,12 @@ import UIKit
 
 class MainViewController: UITabBarController {
     
-    //MARK: - 监听方法
+    // MARK: - 监听方法
     @objc fileprivate func pressComposeButton(){
         print("点我了")
     }
     
-    //MARK: - 视图生命周期
+    // MARK: - 视图生命周期
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,12 +31,12 @@ class MainViewController: UITabBarController {
         
     }
     
-    //MARK: - 懒加载控件
+    // MARK: - 懒加载控件
     fileprivate lazy var composeButton: UIButton = UIButton(imageName: "tabbar_compose_icon_add", backgroundImageName: "tabbar_compose_button")
 
 }
 
-//MARK: - 设置界面
+// MARK: - 设置界面
 extension MainViewController{
     
     /// 设置添加按钮
@@ -44,13 +44,13 @@ extension MainViewController{
         
         tabBar.addSubview(composeButton)
         
-        //调整按钮
+        // 调整按钮
         let count = childViewControllers.count
         let w = tabBar.bounds.width / CGFloat(count) - 1
         let tabbarFrame = tabBar.bounds
         composeButton.frame = tabbarFrame.insetBy(dx: 2 * w, dy: 0)
         
-        //添加监听方法
+        // 添加监听方法
         composeButton.addTarget(self, action: #selector(MainViewController.pressComposeButton), for: UIControlEvents.touchUpInside)
     }
     

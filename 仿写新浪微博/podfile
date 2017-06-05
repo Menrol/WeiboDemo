@@ -6,6 +6,7 @@ target '仿写新浪微博' do
   use_frameworks!
 
   pod 'AFNetworking'
+  pod 'SnapKit'
 
   target '仿写新浪微博Tests' do
     inherit! :search_paths

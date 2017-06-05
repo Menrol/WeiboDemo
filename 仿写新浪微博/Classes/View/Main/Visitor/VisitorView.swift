@@ -10,7 +10,7 @@ import UIKit
 
 class VisitorView: UIView {
     
-    //MARK: - 设置视图信息
+    // MARK: - 设置视图信息
     func setvisitorView(imageName: String?, message:String){
         messageLabel.text = message
         guard let imgName = imageName else {
@@ -22,7 +22,7 @@ class VisitorView: UIView {
         sendSubview(toBack: maskImageView)
     }
     
-    //MARK: - 设置动画
+    // MARK: - 设置动画
     private func setAnimation(){
         let animation = CABasicAnimation(keyPath: "transform.rotation")
         animation.toValue = 2 * Double.pi
@@ -33,22 +33,22 @@ class VisitorView: UIView {
         iconImageView.layer.add(animation, forKey: nil)
     }
 
-    //MARK: - 构造函数
+    // MARK: - 构造函数
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         setUI()
     }
     
-    //storyboard构造函数
+    // storyboard构造函数
     required init?(coder aDecoder: NSCoder) {
         
-        //使用storyboard会崩溃
+        // 使用storyboard会崩溃
         fatalError("init(coder:) has not been implemented")
         
     }
     
-    //MARK: - 懒加载控件
+    // MARK: - 懒加载控件
     fileprivate lazy var iconImageView: UIImageView = UIImageView(imageName: "visitordiscover_feed_image_smallicon")
     
     fileprivate lazy var maskImageView: UIImageView = UIImageView(imageName: "visitordiscover_feed_mask_smallicon")
@@ -63,13 +63,13 @@ class VisitorView: UIView {
     
 }
 
-//MARK: - 设置界面
+// MARK: - 设置界面
 extension VisitorView{
     
-    //设置UI
+    // 设置UI
     fileprivate func setUI(){
         
-        //添加控件
+        // 添加控件
         addSubview(iconImageView)
         addSubview(maskImageView)
         addSubview(homeiconImageView)
@@ -81,33 +81,33 @@ extension VisitorView{
             v.translatesAutoresizingMaskIntoConstraints = false
         }
         
-        //设置自动布局
-        //转轮
+        // 设置自动布局
+        // 转轮
         addConstraint(NSLayoutConstraint(item: iconImageView, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1.0, constant: 0))
         addConstraint(NSLayoutConstraint(item: iconImageView, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1.0, constant: -60))
         
-        //房子
+        // 房子
         addConstraint(NSLayoutConstraint(item: homeiconImageView, attribute: .centerX, relatedBy: .equal, toItem: iconImageView, attribute: .centerX, multiplier: 1.0, constant: 0))
         addConstraint(NSLayoutConstraint(item: homeiconImageView, attribute: .centerY, relatedBy: .equal, toItem: iconImageView, attribute: .centerY, multiplier: 1.0, constant: 0))
         
-        //提示文字
+        // 提示文字
         addConstraint(NSLayoutConstraint(item: messageLabel, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1.0, constant: 0))
         addConstraint(NSLayoutConstraint(item: messageLabel, attribute: .top, relatedBy: .equal, toItem: iconImageView, attribute: .bottom, multiplier: 1.0, constant: 16))
         addConstraint(NSLayoutConstraint(item: messageLabel, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 224))
         
-        //注册按钮
+        // 注册按钮
         addConstraint(NSLayoutConstraint(item: registerButton, attribute: .left, relatedBy: .equal, toItem: messageLabel, attribute: .left, multiplier: 1.0, constant: 0))
         addConstraint(NSLayoutConstraint(item: registerButton, attribute: .top, relatedBy: .equal, toItem: messageLabel, attribute: .bottom, multiplier: 1.0, constant: 16))
         addConstraint(NSLayoutConstraint(item: registerButton, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 100))
         addConstraint(NSLayoutConstraint(item: registerButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 36))
         
-        //登录按钮
+        // 登录按钮
         addConstraint(NSLayoutConstraint(item: loginButton, attribute: .right, relatedBy: .equal, toItem: messageLabel, attribute: .right, multiplier: 1.0, constant: 0))
         addConstraint(NSLayoutConstraint(item: loginButton, attribute: .top, relatedBy: .equal, toItem: messageLabel, attribute: .bottom, multiplier: 1.0, constant: 16))
         addConstraint(NSLayoutConstraint(item: loginButton, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 100))
         addConstraint(NSLayoutConstraint(item: loginButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 36))
         
-        //遮盖图
+        // 遮盖图
         /**
            VFL : 可视化格式语言
            H 水平方向

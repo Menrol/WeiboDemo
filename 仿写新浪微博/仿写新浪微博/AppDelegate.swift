@@ -16,15 +16,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         setupApperence()
         
+        // 测试解档
+        print(UserAccountViewModel.sharedUersAccount.userAccount)
+        
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.backgroundColor = UIColor.white
-        window?.rootViewController = MainViewController()
+        window?.rootViewController = NewfeatureCollectionViewController()
         window?.makeKeyAndVisible()
         
         return true
     }
     
-    //设置全局外观
+    // 设置全局外观
     private func setupApperence(){
         UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName : UIColor.orange], for: UIControlState.selected)
         UINavigationBar.appearance().tintColor = UIColor.orange
