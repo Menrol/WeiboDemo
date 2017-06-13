@@ -14,6 +14,8 @@
 		185768391EE2F22400629BF6 /* UserAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185768381EE2F22400629BF6 /* UserAccountViewModel.swift */; };
 		189865F81EDAC1A100E85860 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189865F71EDAC1A100E85860 /* UILabel+Extension.swift */; };
 		189865FA1EDAC5F700E85860 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189865F91EDAC5F700E85860 /* UIImageView+Extension.swift */; };
+		189EEE4C1EEBF3CA00F8CBA5 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189EEE4B1EEBF3CA00F8CBA5 /* Common.swift */; };
+		189EEE4E1EEBF41500F8CBA5 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189EEE4D1EEBF41500F8CBA5 /* WelcomeViewController.swift */; };
 		18D2DEE61ED07BB300B446CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D2DEE51ED07BB300B446CC /* AppDelegate.swift */; };
 		18D2DEED1ED07BB300B446CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18D2DEEC1ED07BB300B446CC /* Assets.xcassets */; };
 		18D2DEFB1ED07BB400B446CC /* ______Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D2DEFA1ED07BB400B446CC /* ______Tests.swift */; };
@@ -56,6 +58,8 @@
 		185768381EE2F22400629BF6 /* UserAccountViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccountViewModel.swift; sourceTree = "<group>"; };
 		189865F71EDAC1A100E85860 /* UILabel+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		189865F91EDAC5F700E85860 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		189EEE4B1EEBF3CA00F8CBA5 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Common.swift; path = Extension/Common.swift; sourceTree = "<group>"; };
+		189EEE4D1EEBF41500F8CBA5 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		18D2DEE21ED07BB300B446CC /* 仿写新浪微博.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "仿写新浪微博.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18D2DEE51ED07BB300B446CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18D2DEEC1ED07BB300B446CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -155,10 +159,10 @@
 		18D2DEE41ED07BB300B446CC /* 仿写新浪微博 */ = {
 			isa = PBXGroup;
 			children = (
-				18D2DF131ED0837000B446CC /* Classes */,
 				18D2DEE51ED07BB300B446CC /* AppDelegate.swift */,
 				18D2DEEC1ED07BB300B446CC /* Assets.xcassets */,
 				18D2DEF11ED07BB300B446CC /* Info.plist */,
+				18D2DF131ED0837000B446CC /* Classes */,
 			);
 			path = "仿写新浪微博";
 			sourceTree = "<group>";
@@ -170,7 +174,7 @@
 				18D2DEFC1ED07BB400B446CC /* Info.plist */,
 			);
 			path = "仿写新浪微博Tests";
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
 		18D2DF041ED07BB400B446CC /* 仿写新浪微博UITests */ = {
 			isa = PBXGroup;
@@ -205,6 +209,7 @@
 			children = (
 				18EFF5A91ED2B6CE0084F4CE /* Extension */,
 				18EA2A381EDC83B0005D4F83 /* NetworkTool.swift */,
+				189EEE4B1EEBF3CA00F8CBA5 /* Common.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -276,6 +281,7 @@
 			isa = PBXGroup;
 			children = (
 				18E9D8E91EE52D9000595D44 /* NewfeatureCollectionViewController.swift */,
+				189EEE4D1EEBF41500F8CBA5 /* WelcomeViewController.swift */,
 			);
 			path = Newfeature;
 			sourceTree = "<group>";
@@ -595,6 +601,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				189EEE4C1EEBF3CA00F8CBA5 /* Common.swift in Sources */,
 				18D2DF261ED087B000B446CC /* ProfileTableViewController.swift in Sources */,
 				18D2DF201ED0876D00B446CC /* HomeTableViewController.swift in Sources */,
 				189865F81EDAC1A100E85860 /* UILabel+Extension.swift in Sources */,
@@ -603,6 +610,7 @@
 				18EA2A391EDC83B0005D4F83 /* NetworkTool.swift in Sources */,
 				18D2DF221ED0878300B446CC /* MessageTableViewController.swift in Sources */,
 				185768371EE2ED2C00629BF6 /* UserAccount.swift in Sources */,
+				189EEE4E1EEBF41500F8CBA5 /* WelcomeViewController.swift in Sources */,
 				180C328E1ED31D48009AE1D9 /* VisitorTableViewController.swift in Sources */,
 				18D2DF241ED0879500B446CC /* DiscoverTableViewController.swift in Sources */,
 				189865FA1EDAC5F700E85860 /* UIImageView+Extension.swift in Sources */,

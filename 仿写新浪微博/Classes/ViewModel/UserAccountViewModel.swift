@@ -10,15 +10,11 @@ import Foundation
 
 class UserAccountViewModel {
     
+    /// 单例
+    static let sharedUersAccount:UserAccountViewModel = UserAccountViewModel()
+    
     /// 模型
     var userAccount:UserAccount?
-    
-    /// 路径
-    fileprivate var accountpath: String{
-        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last!
-        
-        return (path as NSString).appendingPathComponent("useraccount.plist")
-    }
     
     /// 是否过期
     private var isExpired:Bool{
@@ -34,7 +30,7 @@ class UserAccountViewModel {
         return userAccount?.access_token != nil && !isExpired ? true:false
     }
     
-    /// access_token
+    /// 授权的唯一票据
     var access_token:String?{
         if !isExpired {
             return userAccount?.access_token
@@ -43,8 +39,18 @@ class UserAccountViewModel {
         return nil
     }
     
-    /// 单例
-    static let sharedUersAccount:UserAccountViewModel = UserAccountViewModel()
+    /// 用户头像URL（大图），180×180像素
+    var avatar_largeURL: URL{
+        return URL(string: userAccount?.avatar_large ?? "")!
+    }
+    
+    /// 路径
+    fileprivate var accountpath: String{
+        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last!
+        
+        return (path as NSString).appendingPathComponent("useraccount.plist")
+    }
+    
     
     /// 构造函数
     private init() {

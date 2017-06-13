@@ -73,7 +73,7 @@ private class NewFeatureCell: UICollectionViewCell {
     
     /// 监听方法
     @objc private func pressstartButton(){
-        print("开始体验")
+        NotificationCenter.default.post(name: NSNotification.Name.init(WBSwitchRootViewControllerNotification), object: nil)
     }
     
     /// 图片属性
@@ -114,6 +114,12 @@ private class NewFeatureCell: UICollectionViewCell {
         }
     }
     
+    // MARK: - 懒加载控件
+    /// 图片
+    fileprivate lazy var iconImageView: UIImageView = UIImageView()
+    /// 按钮
+    fileprivate lazy var startButton: UIButton = UIButton(title: "开始体验", imageName: "new_feature_finish_button", color: UIColor.white)
+    
     /// 设置界面
     fileprivate func setupUI(){
         // 添加控件
@@ -131,11 +137,4 @@ private class NewFeatureCell: UICollectionViewCell {
         // 添加监听方法
         startButton.addTarget(self, action: #selector(NewFeatureCell.pressstartButton), for: .touchUpInside)
     }
-    
-    // MARK: - 懒加载控件
-    /// 图片
-    fileprivate lazy var iconImageView = UIImageView()
-    /// 按钮
-    fileprivate lazy var startButton = UIButton(title: "开始体验", imageName: "new_feature_finish_button", color: UIColor.white)
-    
 }

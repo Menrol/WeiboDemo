@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class OAuthViewController: UIViewController {
     
@@ -14,6 +15,7 @@ class OAuthViewController: UIViewController {
     
     // MARK: - 监听方法
     @objc fileprivate func close(){
+        SVProgressHUD.dismiss()
         dismiss(animated: true, completion: nil)
     }
     
@@ -54,6 +56,7 @@ extension OAuthViewController: UIWebViewDelegate{
         }
         
         guard let query = request.url?.query, query.hasPrefix("code=") else {
+            SVProgressHUD.dismiss()
             dismiss(animated: true, completion: nil)
             
             return false
@@ -62,14 +65,30 @@ extension OAuthViewController: UIWebViewDelegate{
         let code = query.substring(from: "code=".endIndex)
         
         UserAccountViewModel.sharedUersAccount.loadAccessToken(code: code) { (isSuccess) in
-            if isSuccess{
-                print("成功了")
-            }
-            else{
+            if !isSuccess{
                 print("失败了")
+                SVProgressHUD.showInfo(withStatus: "网络不给力")
+                
+                delay(time: 1, execute: {
+                    self.close()
+                })
+                return
             }
+            
+            self.dismiss(animated: false, completion: {
+                SVProgressHUD.dismiss()
+                NotificationCenter.default.post(name: .init(WBSwitchRootViewControllerNotification), object: "welcome")
+            })
         }
         
         return false
+    }
+    
+    func webViewDidStartLoad(_ webView: UIWebView) {
+        SVProgressHUD.show()
+    }
+    
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        SVProgressHUD.dismiss()
     }
 }
