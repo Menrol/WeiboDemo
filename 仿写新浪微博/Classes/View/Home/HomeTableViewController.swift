@@ -7,12 +7,109 @@
 //
 
 import UIKit
+import SVProgressHUD
+
+/// 原创微博可重用Cell
+let StatusNormalCellId = "StatusNormalCellId"
+/// 转发微博可重用Cell
+let StatusRetweetCellId = "StatusRetweetCellId"
 
 class HomeTableViewController: VisitorTableViewController {
+    
+    fileprivate lazy var statusListViewModel: StatusListViewModel = StatusListViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        visitorView?.setvisitorView(imageName: nil, message: "登录后，你所关注的人的微博会显示在这里")
+        if !UserAccountViewModel.sharedUersAccount.isLogin {
+            visitorView?.setvisitorView(imageName: nil, message: "登录后，你所关注的人的微博会显示在这里")
+            
+            return
+        }
+        
+        setupTableView()
+        
+        loadData()
+        
+    }
+    
+    // MARK: - 设置tableview
+    private func setupTableView(){
+        tableView.register(StatusRetweetCell.self, forCellReuseIdentifier: StatusRetweetCellId)
+        tableView.register(StatusNormalCell.self, forCellReuseIdentifier: StatusNormalCellId)
+        tableView.separatorStyle = .none
+        
+        // 自动计算行高 - 需要一个自上而下的自动布局的控件，指定一个向下的约束
+        tableView.estimatedRowHeight = 400
+        
+        // 设置下拉刷新控件
+        refreshControl = WBRefreshControl()
+        // 添加事件
+        refreshControl?.addTarget(self, action: #selector(HomeTableViewController.loadData), for: .valueChanged)
+        
+        // 设置上拉刷新控件
+        tableView.tableFooterView = pullUpView
+    }
+    
+    // MARK: - 加载数据
+    @objc fileprivate func loadData(){
+        
+        // 开始下拉刷新
+        refreshControl?.beginRefreshing()
+        
+        statusListViewModel.loadData(ispullUp: pullUpView.isAnimating) { (isSuccess) in
+            
+            // 结束下拉刷新
+            self.refreshControl?.endRefreshing()
+            
+            // 结束上拉刷新
+            self.pullUpView.stopAnimating()
+            
+            if !isSuccess {
+                SVProgressHUD.showInfo(withStatus: "网络不给力")
+                
+                return 
+            }
+            
+            self.tableView.reloadData()
+        }
+    }
+    
+    // MARK: - 懒加载控件
+    fileprivate lazy var pullUpView: UIActivityIndicatorView = {
+        let indicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.white)
+        indicatorView.color = UIColor.lightGray
+        
+        return indicatorView
+    }()
+}
+
+
+// MARK: - TableViewDataSource
+extension HomeTableViewController {
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return statusListViewModel.statusList.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let viewModel = statusListViewModel.statusList[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: viewModel.cellID, for: indexPath) as! StatusCell
+        
+        cell.viewModel = viewModel
+        
+        if indexPath.row == statusListViewModel.statusList.count - 1 && !pullUpView.isAnimating{
+            // 开启动画
+            pullUpView.startAnimating()
+            
+            // 刷新数据
+            loadData()
+        }
+        
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return statusListViewModel.statusList[indexPath.row].rowHeight
     }
 }

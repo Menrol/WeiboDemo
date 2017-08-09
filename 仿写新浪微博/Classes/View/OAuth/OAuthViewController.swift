@@ -15,7 +15,7 @@ class OAuthViewController: UIViewController {
     
     // MARK: - 监听方法
     @objc fileprivate func close(){
-        SVProgressHUD.dismiss()
+        SVProgressHUD.dismiss();
         dismiss(animated: true, completion: nil)
     }
     
@@ -56,8 +56,7 @@ extension OAuthViewController: UIWebViewDelegate{
         }
         
         guard let query = request.url?.query, query.hasPrefix("code=") else {
-            SVProgressHUD.dismiss()
-            dismiss(animated: true, completion: nil)
+            self.close()
             
             return false
         }

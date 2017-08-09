@@ -10,7 +10,7 @@ import UIKit
 
 extension UIButton{
     
-    ///便利构造函数
+    /// 便利构造函数
     convenience init(imageName: String, backgroundImageName: String) {
         self.init()
         
@@ -21,13 +21,25 @@ extension UIButton{
         sizeToFit()
     }
     
-    ///便利构造函数
-    convenience init(title: String, imageName: String, color: UIColor = UIColor.darkGray){
+    /// 便利构造函数
+    convenience init(title: String, backImageName: String, color: UIColor = UIColor.darkGray){
         self.init()
         
         setTitle(title, for: UIControlState.normal)
         setTitleColor(color, for: UIControlState.normal)
-        setBackgroundImage(UIImage(named: imageName), for: UIControlState.normal)
+        setBackgroundImage(UIImage(named: backImageName), for: UIControlState.normal)
+        
+        sizeToFit()
+    }
+    
+    /// 便利构造函数
+    convenience init(title: String, imageName: String, fontSize: CGFloat, color: UIColor = UIColor.darkGray){
+        self.init()
+        
+        setTitle(title, for: UIControlState.normal)
+        titleLabel?.font = UIFont.systemFont(ofSize: fontSize)
+        setTitleColor(color, for: UIControlState.normal)
+        setImage((UIImage(named: imageName)), for: UIControlState.normal)
         
         sizeToFit()
     }

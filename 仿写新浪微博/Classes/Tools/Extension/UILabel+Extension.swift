@@ -10,14 +10,19 @@ import UIKit
 
 extension UILabel{
     
-    ///便利构造函数
-    convenience init(text: String?, font: CGFloat = 14, textColor: UIColor = UIColor.darkGray){
+    /// 便利构造函数
+    convenience init(text: String?, font: CGFloat = 14, textColor: UIColor = UIColor.darkGray,screenInset: CGFloat = 0){
         self.init()
         
         self.text = text;
         self.font = UIFont.systemFont(ofSize: font)
         numberOfLines = 0
         self.textColor = textColor
-        textAlignment = NSTextAlignment.center
+        if screenInset == 0 {
+            textAlignment = NSTextAlignment.center
+        }else{
+            preferredMaxLayoutWidth = UIScreen.main.bounds.width - 2 * screenInset
+            textAlignment = .left
+        }
     }
 }

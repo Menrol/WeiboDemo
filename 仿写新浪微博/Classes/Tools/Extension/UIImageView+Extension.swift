@@ -10,7 +10,7 @@ import UIKit
 
 extension UIImageView{
     
-    ///便利构造函数
+    /// 便利构造函数
     convenience init(imageName: String){
         self.init(image: UIImage(named: imageName))
     }

@@ -11,13 +11,13 @@ import Foundation
 class UserAccountViewModel {
     
     /// 单例
-    static let sharedUersAccount:UserAccountViewModel = UserAccountViewModel()
+    static let sharedUersAccount: UserAccountViewModel = UserAccountViewModel()
     
     /// 模型
-    var userAccount:UserAccount?
+    var userAccount: UserAccount?
     
     /// 是否过期
-    private var isExpired:Bool{
+    private var isExpired: Bool{
         if userAccount?.expires_date?.compare(Date()) == .orderedDescending {
             return false
         }
@@ -26,12 +26,12 @@ class UserAccountViewModel {
     }
     
     /// 是否登录
-    var isLogin:Bool{
+    var isLogin: Bool{
         return userAccount?.access_token != nil && !isExpired ? true:false
     }
     
     /// 授权的唯一票据
-    var access_token:String?{
+    var access_token: String?{
         if !isExpired {
             return userAccount?.access_token
         }

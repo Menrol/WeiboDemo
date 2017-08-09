@@ -11,23 +11,23 @@ import UIKit
 class UserAccount: NSObject, NSCoding{
     
     /// 授权的唯一票据
-    var access_token:String?
+    var access_token: String?
     
     /// 生命周期,单位秒
-    var expires_in:TimeInterval = 0{
+    var expires_in: TimeInterval = 0{
         didSet{
             expires_date = NSDate(timeIntervalSinceNow: expires_in)
         }
     }
     
     /// 生命周期，时间
-    var expires_date:NSDate?
+    var expires_date: NSDate?
     
     /// 授权用户的UID
-    var uid:String?
+    var uid: String?
     
     /// 用户昵称
-    var screen_name:String?
+    var screen_name: String?
     
     /// 用户头像地址（大图），180×180像素
     var avatar_large:String?

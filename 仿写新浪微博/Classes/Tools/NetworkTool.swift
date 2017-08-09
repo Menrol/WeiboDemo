@@ -43,6 +43,29 @@ class NetworkTool: AFHTTPSessionManager {
     }()
 }
 
+// MARK: - 微博数据
+extension NetworkTool{
+    
+    /// 获取微博数据
+    func loadStatuses(since_id: Int, max_id: Int, finished: @escaping FinishedCallback){
+        
+        // 获取token字典
+        guard var parameters = tokenDic else {
+            finished(nil, NSError(domain: "com.xyou3g.error", code: -1001, userInfo: ["message":"token为空"]))
+            
+            return
+        }
+        
+        let urlString = "https://api.weibo.com/2/statuses/home_timeline.json"
+        if since_id > 0 {
+            parameters["since_id"] = since_id
+        }else if max_id > 0 {
+            parameters["max_id"] = max_id - 1
+        }
+        self.request(method: .GET, urlString: urlString, parameters: parameters, finished: finished)
+    }
+}
+
 // MARK: - 用户相关方法
 extension NetworkTool{
     

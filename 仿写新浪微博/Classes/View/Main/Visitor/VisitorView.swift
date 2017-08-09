@@ -57,9 +57,9 @@ class VisitorView: UIView {
     
     fileprivate lazy var messageLabel: UILabel = UILabel(text: nil)
     
-    lazy var registerButton: UIButton = UIButton(title: "注册", imageName: "common_button_white_disable",color: UIColor.orange)
+    lazy var registerButton: UIButton = UIButton(title: "注册", backImageName: "common_button_white_disable",color: UIColor.orange)
     
-    lazy var loginButton: UIButton = UIButton(title: "登录", imageName: "common_button_white_disable")
+    lazy var loginButton: UIButton = UIButton(title: "登录", backImageName: "common_button_white_disable")
     
 }
 
