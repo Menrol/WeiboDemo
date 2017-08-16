@@ -24,6 +24,13 @@ class StatusCellPictureView: UICollectionView {
             
             // 刷新数据
             reloadData()
+            
+            // 设置颜色
+            if viewModel?.status.retweeted_status != nil {
+                backgroundColor = UIColor(white: 0.95, alpha: 1)
+            }else {
+                backgroundColor = UIColor.white
+            }
         }
     }
 
@@ -35,7 +42,6 @@ class StatusCellPictureView: UICollectionView {
         
         super.init(frame: CGRect.zero, collectionViewLayout: layout)
         
-        backgroundColor = UIColor.white
         dataSource = self
         register(PictureViewCell.self, forCellWithReuseIdentifier: PictureViewCellId)
         

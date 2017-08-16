@@ -11,8 +11,16 @@ import UIKit
 class MainViewController: UITabBarController {
     
     // MARK: - 监听方法
-    @objc fileprivate func pressComposeButton(){
-        print("点我了")
+    @objc fileprivate func pressComposeButton() {
+        var viewController: UIViewController
+        if UserAccountViewModel.sharedUersAccount.isLogin {
+            viewController = ComposeViewController()
+        }else {
+            viewController = OAuthViewController()
+        }
+        let nav = UINavigationController(rootViewController: viewController)
+        
+        present(nav, animated: true, completion: nil)
     }
     
     // MARK: - 视图生命周期

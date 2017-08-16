@@ -22,6 +22,8 @@
 		18B2B3A81EF29FDF00792F60 /* StatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B2B3A71EF29FDF00792F60 /* StatusCell.swift */; };
 		18B2B3AA1EF2A00100792F60 /* StatusCellTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B2B3A91EF2A00100792F60 /* StatusCellTopView.swift */; };
 		18B2B3AC1EF2A04200792F60 /* StatusCellBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B2B3AB1EF2A04200792F60 /* StatusCellBottomView.swift */; };
+		18B2B7871F44573200E4DDD3 /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B2B7861F44573200E4DDD3 /* ComposeViewController.swift */; };
+		18B2B78B1F4478EF00E4DDD3 /* UIBarButtonItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B2B78A1F4478EF00E4DDD3 /* UIBarButtonItem+Extension.swift */; };
 		18BCA3C31F2CAFD700EF57FC /* StatusCellPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BCA3C21F2CAFD700EF57FC /* StatusCellPictureView.swift */; };
 		18C7400E1F31D6510038B2D1 /* StatusRetweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7400D1F31D6510038B2D1 /* StatusRetweetCell.swift */; };
 		18C740101F31D6E60038B2D1 /* StatusNormalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7400F1F31D6E60038B2D1 /* StatusNormalCell.swift */; };
@@ -78,6 +80,8 @@
 		18B2B3A71EF29FDF00792F60 /* StatusCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusCell.swift; sourceTree = "<group>"; };
 		18B2B3A91EF2A00100792F60 /* StatusCellTopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusCellTopView.swift; sourceTree = "<group>"; };
 		18B2B3AB1EF2A04200792F60 /* StatusCellBottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusCellBottomView.swift; sourceTree = "<group>"; };
+		18B2B7861F44573200E4DDD3 /* ComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
+		18B2B78A1F4478EF00E4DDD3 /* UIBarButtonItem+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Extension.swift"; sourceTree = "<group>"; };
 		18BCA3C21F2CAFD700EF57FC /* StatusCellPictureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusCellPictureView.swift; sourceTree = "<group>"; };
 		18C7400D1F31D6510038B2D1 /* StatusRetweetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusRetweetCell.swift; sourceTree = "<group>"; };
 		18C7400F1F31D6E60038B2D1 /* StatusNormalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusNormalCell.swift; sourceTree = "<group>"; };
@@ -172,6 +176,14 @@
 			path = StatusesCell;
 			sourceTree = "<group>";
 		};
+		18B2B7851F4456EE00E4DDD3 /* Compose */ = {
+			isa = PBXGroup;
+			children = (
+				18B2B7861F44573200E4DDD3 /* ComposeViewController.swift */,
+			);
+			path = Compose;
+			sourceTree = "<group>";
+		};
 		18D2DED91ED07BB300B446CC = {
 			isa = PBXGroup;
 			children = (
@@ -257,6 +269,7 @@
 		18D2DF161ED0837000B446CC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				18B2B7851F4456EE00E4DDD3 /* Compose */,
 				182913B31EDEB404000AAF4D /* OAuth */,
 				18D2DF191ED0837000B446CC /* Main */,
 				18D2DF181ED0837000B446CC /* Home */,
@@ -336,6 +349,7 @@
 				18EFF5AA1ED2B7D00084F4CE /* UIButton+Extension.swift */,
 				189865F71EDAC1A100E85860 /* UILabel+Extension.swift */,
 				189865F91EDAC5F700E85860 /* UIImageView+Extension.swift */,
+				18B2B78A1F4478EF00E4DDD3 /* UIBarButtonItem+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -670,8 +684,10 @@
 				189EEE4E1EEBF41500F8CBA5 /* WelcomeViewController.swift in Sources */,
 				18C7400E1F31D6510038B2D1 /* StatusRetweetCell.swift in Sources */,
 				180C328E1ED31D48009AE1D9 /* VisitorTableViewController.swift in Sources */,
+				18B2B7871F44573200E4DDD3 /* ComposeViewController.swift in Sources */,
 				18D2DF241ED0879500B446CC /* DiscoverTableViewController.swift in Sources */,
 				189865FA1EDAC5F700E85860 /* UIImageView+Extension.swift in Sources */,
+				18B2B78B1F4478EF00E4DDD3 /* UIBarButtonItem+Extension.swift in Sources */,
 				181BCA191EF16698009A82CC /* StatusListViewModel.swift in Sources */,
 				18FBBF301EF2D8E3009A4266 /* StatusViewModel.swift in Sources */,
 				185768391EE2F22400629BF6 /* UserAccountViewModel.swift in Sources */,

@@ -24,5 +24,7 @@ extension UILabel{
             preferredMaxLayoutWidth = UIScreen.main.bounds.width - 2 * screenInset
             textAlignment = .left
         }
+        
+        sizeToFit()
     }
 }
