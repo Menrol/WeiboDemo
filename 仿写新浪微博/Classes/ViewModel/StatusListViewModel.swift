@@ -76,7 +76,7 @@ extension StatusListViewModel {
             print(url)
             
             // SDWebImage核心下载图片函数
-            SDWebImageManager.shared().loadImage(with:url,options: [.refreshCached,.retryFailed],progress: nil,completed: { (image, _, _, _, _, url) in
+            SDWebImageManager.shared().loadImage(with:url,options: [/*.refreshCached,*/.retryFailed],progress: nil,completed: { (image, _, _, _, _, url) in
                 
                 if let img = image,let data = UIImagePNGRepresentation(img) {
                     dataLength += data.count

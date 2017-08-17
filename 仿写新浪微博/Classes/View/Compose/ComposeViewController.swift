@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class ComposeViewController: UIViewController {
     
@@ -20,10 +21,24 @@ class ComposeViewController: UIViewController {
     
     @objc fileprivate func sendStatus() {
         print("发送微博")
+        // 获取文本内容
+        let text = textView.emoticonText!
+        let image = UIImage(named: "download.jpg")
+        // 发布微博
+        NetworkTool.sharedTool.sendStatus(status: text, image: image) { (result, error) in
+            if error != nil {
+                SVProgressHUD.showInfo(withStatus: "网络不给力")
+                print("出错了")
+                return
+            }
+            
+            // 关闭控制器
+            self.close()
+        }
+        
     }
     
     @objc fileprivate func selectEmoticon() {
-        print("选择表情")
         // 收回键盘
         textView.resignFirstResponder()
         // 替换键盘
@@ -33,11 +48,12 @@ class ComposeViewController: UIViewController {
     }
     
     @objc fileprivate func keyboardChange(notification: Notification) {
+        // 动画时间
         let duration = notification.userInfo!["UIKeyboardAnimationDurationUserInfoKey"] as! TimeInterval
         let rect = (notification.userInfo!["UIKeyboardFrameEndUserInfoKey"] as! NSValue).cgRectValue
         let offset = -UIScreen.main.bounds.height + rect.origin.y
-        // 设置动画曲线
-//        let curve = notification.userInfo!["UIKeyboardAnimationCurveUserInfoKey"] as! Double
+        // 动画曲线数值
+        let curve = (notification.userInfo!["UIKeyboardAnimationCurveUserInfoKey"] as! NSNumber).intValue
         
         // 更新约束
         toolBar.snp.updateConstraints { (make) in
@@ -45,7 +61,10 @@ class ComposeViewController: UIViewController {
         }
         
         // 动画
-        UIView.animate(withDuration: duration) { 
+        UIView.animate(withDuration: duration) {
+            // 设置动画曲线
+            UIView.setAnimationCurve(UIViewAnimationCurve(rawValue: curve)!)
+            
             self.view.layoutIfNeeded()
         }
     }
@@ -80,12 +99,22 @@ class ComposeViewController: UIViewController {
         textView.alwaysBounceVertical = true
         // 滚动关闭键盘
         textView.keyboardDismissMode = .onDrag
+        // 设置代理
+        textView.delegate = self
         
         return textView
     }()
     fileprivate lazy var placeHolderLabel: UILabel = UILabel(text: "分享新鲜事...", font: 18, textColor: UIColor.lightGray)
-    fileprivate lazy var emoticonView: EmoticonView = EmoticonView { (emoticon) in
-        
+    private lazy var emoticonView: EmoticonView = EmoticonView { [weak self] (emoticon) in
+        self?.textView.insertEmoticon(emoticon: emoticon)
+    }
+}
+
+// MARK: - UITextViewDelegate
+extension ComposeViewController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        navigationItem.rightBarButtonItem?.isEnabled = textView.hasText
+        placeHolderLabel.isHidden = textView.hasText
     }
 }
 
@@ -106,6 +135,9 @@ private extension ComposeViewController {
     func prepareNavigationBar() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "取消", style: .plain, target: self, action: #selector(ComposeViewController.close))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "发送", style: .plain, target: self, action: #selector(ComposeViewController.sendStatus))
+        
+        // 禁用发送按钮
+        navigationItem.rightBarButtonItem?.isEnabled = false
         
         // 标题视图
         let titleView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 36))
@@ -175,8 +207,6 @@ private extension ComposeViewController {
             make.right.equalTo(view.snp.right)
             make.bottom.equalTo(toolBar.snp.top)
         }
-        
-        textView.text = "分享新鲜事..."
         
         // 添加占位标签
         textView.addSubview(placeHolderLabel)

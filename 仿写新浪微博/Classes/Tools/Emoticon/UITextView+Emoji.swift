@@ -9,6 +9,7 @@
 import UIKit
 
 extension UITextView {
+    
     /// 表情文本
     var emoticonText: String? {
         let attributedText = self.attributedText!
@@ -50,6 +51,8 @@ extension UITextView {
         // 图片表情
         insertImageEmoticon(emoticon: emoticon)
         
+        // 通知代理文本变化了
+        delegate?.textViewDidChange!(self)
     }
     
     /// 显示图片表情

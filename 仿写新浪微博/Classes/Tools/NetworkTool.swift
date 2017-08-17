@@ -25,14 +25,14 @@ class NetworkTool: AFHTTPSessionManager {
     /// 网络请求回调
     typealias FinishedCallback = (_ result:Any?, _ error: Error?) -> Void
     
-    /// token字典
-    fileprivate var tokenDic: [String: Any]?{
-        if let token = UserAccountViewModel.sharedUersAccount.access_token{
-            
-            return ["access_token": token]
-        }
-        return nil
-    }
+//    /// token字典
+//    fileprivate var tokenDic: [String: Any]?{
+//        if let token = UserAccountViewModel.sharedUersAccount.access_token{
+//            
+//            return ["access_token": token]
+//        }
+//        return nil
+//    }
     
     // 单例
     static let sharedTool:NetworkTool = {
@@ -49,12 +49,7 @@ extension NetworkTool{
     /// 获取微博数据
     func loadStatuses(since_id: Int, max_id: Int, finished: @escaping FinishedCallback){
         
-        // 获取token字典
-        guard var parameters = tokenDic else {
-            finished(nil, NSError(domain: "com.xyou3g.error", code: -1001, userInfo: ["message":"token为空"]))
-            
-            return
-        }
+        var parameters = [String: Any]()
         
         let urlString = "https://api.weibo.com/2/statuses/home_timeline.json"
         if since_id > 0 {
@@ -62,7 +57,26 @@ extension NetworkTool{
         }else if max_id > 0 {
             parameters["max_id"] = max_id - 1
         }
-        self.request(method: .GET, urlString: urlString, parameters: parameters, finished: finished)
+        tokenRequest(method: .GET, urlString: urlString, parameters: parameters, finished: finished)
+    }
+}
+
+// MARK: - 发布微博
+extension NetworkTool {
+    /// 发布微博
+    func sendStatus(status: String, image: UIImage?, finished: @escaping FinishedCallback) {
+        var parameters = [String: Any]()
+        parameters["status"] = status
+        
+        if image == nil {
+            let urlString = "https://api.weibo.com/2/statuses/update.json"
+            tokenRequest(method: .POST, urlString: urlString, parameters: parameters, finished: finished)
+        }else {
+            let urlString = "https://api.weibo.com/2/statuses/upload.json"
+            let data = UIImagePNGRepresentation(image!)
+            upLoad(urlString: urlString, data: data!, name: "pic", parameters: parameters, finished: finished)
+        }
+        
     }
 }
 
@@ -71,16 +85,10 @@ extension NetworkTool{
     
     /// 获取用户信息
     func loadUserInfo(uid: String, finished: @escaping FinishedCallback){
-        
-        // 获取token字典
-        guard var parameters = tokenDic else {
-            finished(nil, NSError(domain: "com.xyou3g.error", code: -1001, userInfo: ["message":"token为空"]))
-            
-            return
-        }
+        var parameters = [String: Any]()
         let urlString = "https://api.weibo.com/2/users/show.json"
         parameters["uid"] = uid
-        request(method: .GET, urlString: urlString, parameters: parameters, finished: finished)
+        tokenRequest(method: .GET, urlString: urlString, parameters: parameters, finished: finished)
     }
 }
 
@@ -116,7 +124,18 @@ extension NetworkTool{
 // MARK: - 封装AFN
 extension NetworkTool{
     
-    fileprivate func request(method: HTTPMethod, urlString: String, parameters:Any?, finished:@escaping FinishedCallback){
+    fileprivate func tokenRequest(method: HTTPMethod, urlString: String, parameters:[String: Any]?, finished:@escaping FinishedCallback) {
+        var parameters = parameters
+        if !addtoken(parameters: &parameters) {
+            finished(nil, NSError(domain: "com.xyou3g.error", code: -1001, userInfo: ["message":"token为空"]))
+            
+            return
+        }
+        
+        request(method: method, urlString: urlString, parameters: parameters, finished: finished)
+    }
+    
+    fileprivate func request(method: HTTPMethod, urlString: String, parameters: [String: Any]?, finished:@escaping FinishedCallback){
         let success = { (task: URLSessionDataTask?, result: Any?) -> Void in
             finished(result,nil)
         }
@@ -132,5 +151,38 @@ extension NetworkTool{
         else{
             post(urlString, parameters: parameters, progress: nil, success: success, failure: failure)
         }
+    }
+    
+    /// 上传文件
+    fileprivate func upLoad(urlString: String, data:Data, name: String, parameters: [String: Any]?, finished:@escaping FinishedCallback) {
+        var parameters = parameters
+        if !addtoken(parameters: &parameters) {
+            finished(nil, NSError(domain: "com.xyou3g.error", code: -1001, userInfo: ["message":"token为空"]))
+            
+            return
+        }
+        
+        post(urlString, parameters: parameters, constructingBodyWith: { (formData) in
+            formData.appendPart(withFileData: data, name: name, fileName: "xxx", mimeType: "application/octet-stream")
+        }, progress: nil, success: { (result, error) in
+            finished(result,nil)
+        }) { (_, error) in
+            print(error)
+            finished(nil,error)
+        }
+    }
+    
+    fileprivate func addtoken(parameters: inout [String: Any]?) -> Bool {
+        guard let token = UserAccountViewModel.sharedUersAccount.access_token else{
+            
+            return false
+        }
+        
+        if parameters == nil {
+            parameters = [String: Any]()
+        }
+        parameters!["access_token"] = token
+        
+        return true
     }
 }

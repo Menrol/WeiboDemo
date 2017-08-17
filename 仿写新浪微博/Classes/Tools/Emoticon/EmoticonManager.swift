@@ -30,8 +30,6 @@ class EmoticonManage {
         for id in array as! [String] {
             loadInfoPlist(id: id)
         }
-        
-        print(packages)
     }
     
     /// 加载每个表情包的info.plist
