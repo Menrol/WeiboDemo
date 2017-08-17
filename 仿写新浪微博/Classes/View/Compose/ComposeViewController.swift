@@ -24,10 +24,15 @@ class ComposeViewController: UIViewController {
     
     @objc fileprivate func selectEmoticon() {
         print("选择表情")
+        // 收回键盘
+        textView.resignFirstResponder()
+        // 替换键盘
+        textView.inputView = textView.inputView == nil ? emoticonView : nil
+        // 打开键盘
+        textView.becomeFirstResponder()
     }
     
     @objc fileprivate func keyboardChange(notification: Notification) {
-        print(notification)
         let duration = notification.userInfo!["UIKeyboardAnimationDurationUserInfoKey"] as! TimeInterval
         let rect = (notification.userInfo!["UIKeyboardFrameEndUserInfoKey"] as! NSValue).cgRectValue
         let offset = -UIScreen.main.bounds.height + rect.origin.y
@@ -79,6 +84,9 @@ class ComposeViewController: UIViewController {
         return textView
     }()
     fileprivate lazy var placeHolderLabel: UILabel = UILabel(text: "分享新鲜事...", font: 18, textColor: UIColor.lightGray)
+    fileprivate lazy var emoticonView: EmoticonView = EmoticonView { (emoticon) in
+        
+    }
 }
 
 // MARK: - 设置界面
