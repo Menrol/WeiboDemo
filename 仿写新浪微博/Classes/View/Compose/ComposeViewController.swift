@@ -20,10 +20,9 @@ class ComposeViewController: UIViewController {
     }
     
     @objc fileprivate func sendStatus() {
-        print("发送微博")
         // 获取文本内容
         let text = textView.emoticonText!
-        let image = UIImage(named: "download.jpg")
+        let image = picturePickerController.pictures.first
         // 发布微博
         NetworkTool.sharedTool.sendStatus(status: text, image: image) { (result, error) in
             if error != nil {
@@ -45,6 +44,34 @@ class ComposeViewController: UIViewController {
         textView.inputView = textView.inputView == nil ? emoticonView : nil
         // 打开键盘
         textView.becomeFirstResponder()
+    }
+    
+    @objc fileprivate func picturePicker() {
+        
+        // 收起键盘
+        textView.resignFirstResponder()
+        
+        // 判断是否已经更新约束
+        if picturePickerController.view.frame.height > 0 {
+            return
+        }
+        
+        // 更新约束
+        picturePickerController.view.snp.updateConstraints { (make) in
+            make.height.equalTo(view.bounds.height * 0.6)
+        }
+        
+        textView.snp.remakeConstraints { (make) in
+            make.top.equalTo(topLayoutGuide.snp.bottom)
+            make.left.equalTo(view.snp.left)
+            make.right.equalTo(view.snp.right)
+            make.bottom.equalTo(picturePickerController.view.snp.top)
+        }
+        
+        // 设置动画
+        UIView.animate(withDuration: 0.5) { 
+            self.view.layoutIfNeeded()
+        }
     }
     
     @objc fileprivate func keyboardChange(notification: Notification) {
@@ -77,7 +104,9 @@ class ComposeViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        textView.becomeFirstResponder()
+        if picturePickerController.view.frame.height == 0 {
+            textView.becomeFirstResponder()
+        }
     }
     
     override func viewDidLoad() {
@@ -108,6 +137,8 @@ class ComposeViewController: UIViewController {
     private lazy var emoticonView: EmoticonView = EmoticonView { [weak self] (emoticon) in
         self?.textView.insertEmoticon(emoticon: emoticon)
     }
+    fileprivate lazy var picturePickerController: PicturePickerController = PicturePickerController()
+    
 }
 
 // MARK: - UITextViewDelegate
@@ -122,6 +153,9 @@ extension ComposeViewController: UITextViewDelegate {
 private extension ComposeViewController {
     /// 设置界面
     func setupUI() {
+        // 取消自动调整间距
+        automaticallyAdjustsScrollViewInsets = false
+        
         // 设置背景颜色
         view.backgroundColor = UIColor.white
         
@@ -129,6 +163,24 @@ private extension ComposeViewController {
         prepareNavigationBar()
         prepareToolBar()
         prepareTextView()
+        preparePicturePicker()
+    }
+    
+    /// 准备照片选择器
+    func preparePicturePicker() {
+        // 添加子控制器
+        addChildViewController(picturePickerController)
+        
+        // 添加子控件
+        view.insertSubview(picturePickerController.view, belowSubview: toolBar)
+        
+        // 设置布局
+        picturePickerController.view.snp.makeConstraints { (make) in
+            make.bottom.equalTo(view.snp.bottom)
+            make.left.equalTo(view.snp.left)
+            make.right.equalTo(view.snp.right)
+            make.height.equalTo(0)
+        }
     }
     
     /// 准备导航栏
@@ -179,7 +231,7 @@ private extension ComposeViewController {
             make.height.equalTo(44)
         }
         
-        let dicArray = [["imageName": "compose_toolbar_picture"],
+        let dicArray = [["imageName": "compose_toolbar_picture", "actionName": "picturePicker"],
                         ["imageName": "compose_mentionbutton_background"],
                         ["imageName": "compose_trendbutton_background"],
                         ["imageName": "compose_emoticonbutton_background","actionName": "selectEmoticon"],

@@ -205,11 +205,12 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		18A5E2471F4EC8EB008E7671 /* PicturePicke */ = {
+		18A5E2471F4EC8EB008E7671 /* PicturePicker */ = {
 			isa = PBXGroup;
 			children = (
 				18A5E2481F4EC8EB008E7671 /* PicturePickerController.swift */,
 			);
+			name = PicturePicker;
 			path = PicturePicke;
 			sourceTree = "<group>";
 		};
@@ -310,7 +311,7 @@
 		18D2DF151ED0837000B446CC /* Tools */ = {
 			isa = PBXGroup;
 			children = (
-				18A5E2471F4EC8EB008E7671 /* PicturePicke */,
+				18A5E2471F4EC8EB008E7671 /* PicturePicker */,
 				182BC1411F459C5E006F7ECB /* Emoticon */,
 				18EFF5A91ED2B6CE0084F4CE /* Extension */,
 				18EA2A381EDC83B0005D4F83 /* NetworkTool.swift */,

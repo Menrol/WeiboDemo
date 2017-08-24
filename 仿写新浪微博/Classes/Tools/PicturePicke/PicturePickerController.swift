@@ -18,7 +18,7 @@ class PicturePickerController: UICollectionViewController {
     fileprivate var selectedIndex = 0
     
     /// 图片数组
-    fileprivate lazy var pictures: [UIImage] = {
+    lazy var pictures: [UIImage] = {
         var images = [UIImage]()
         images.append(self.addImage)
         
@@ -26,7 +26,7 @@ class PicturePickerController: UICollectionViewController {
     }()
     
     /// 加号图片
-    lazy var addImage: UIImage = UIImage(named: "compose_pic_add")!
+    fileprivate lazy var addImage: UIImage = UIImage(named: "compose_pic_add")!
     
     // MARK: - 构造函数
     init() {
