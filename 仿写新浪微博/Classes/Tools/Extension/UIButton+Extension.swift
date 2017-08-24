@@ -8,10 +8,10 @@
 
 import UIKit
 
-extension UIButton{
+extension UIButton {
     
     /// 便利构造函数
-    convenience init(imageName: String, backgroundImageName: String?) {
+    convenience init(imageName: String, backgroundImageName: String?, backColor: UIColor? = nil) {
         self.init()
         
         setImage(UIImage(named: imageName), for: UIControlState.normal)
@@ -20,16 +20,21 @@ extension UIButton{
             setBackgroundImage(UIImage(named: backgroundImageName), for: UIControlState.normal)
             setBackgroundImage(UIImage(named: backgroundImageName + "_highlighted"), for: UIControlState.highlighted)
         }
+        backgroundColor = backColor
+        
         sizeToFit()
     }
     
     /// 便利构造函数
-    convenience init(title: String, backImageName: String, color: UIColor = UIColor.darkGray){
+    convenience init(title: String, backImageName: String?, backColor: UIColor? = nil, color: UIColor = UIColor.darkGray){
         self.init()
         
         setTitle(title, for: UIControlState.normal)
         setTitleColor(color, for: UIControlState.normal)
-        setBackgroundImage(UIImage(named: backImageName), for: UIControlState.normal)
+        if let backImageName = backImageName {
+            setBackgroundImage(UIImage(named: backImageName), for: UIControlState.normal)
+        }
+        backgroundColor = backColor
         
         sizeToFit()
     }

@@ -27,6 +27,8 @@
 		189865FA1EDAC5F700E85860 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189865F91EDAC5F700E85860 /* UIImageView+Extension.swift */; };
 		189EEE4C1EEBF3CA00F8CBA5 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189EEE4B1EEBF3CA00F8CBA5 /* Common.swift */; };
 		189EEE4E1EEBF41500F8CBA5 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189EEE4D1EEBF41500F8CBA5 /* WelcomeViewController.swift */; };
+		18A5E2491F4EC8EB008E7671 /* PicturePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A5E2481F4EC8EB008E7671 /* PicturePickerController.swift */; };
+		18A5E24B1F4EC9E0008E7671 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A5E24A1F4EC9E0008E7671 /* UIImage+Extension.swift */; };
 		18B2B3A81EF29FDF00792F60 /* StatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B2B3A71EF29FDF00792F60 /* StatusCell.swift */; };
 		18B2B3AA1EF2A00100792F60 /* StatusCellTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B2B3A91EF2A00100792F60 /* StatusCellTopView.swift */; };
 		18B2B3AC1EF2A04200792F60 /* StatusCellBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B2B3AB1EF2A04200792F60 /* StatusCellBottomView.swift */; };
@@ -93,6 +95,8 @@
 		189865F91EDAC5F700E85860 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		189EEE4B1EEBF3CA00F8CBA5 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Common.swift; path = Extension/Common.swift; sourceTree = "<group>"; };
 		189EEE4D1EEBF41500F8CBA5 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		18A5E2481F4EC8EB008E7671 /* PicturePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PicturePickerController.swift; sourceTree = "<group>"; };
+		18A5E24A1F4EC9E0008E7671 /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		18B2B3A71EF29FDF00792F60 /* StatusCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusCell.swift; sourceTree = "<group>"; };
 		18B2B3A91EF2A00100792F60 /* StatusCellTopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusCellTopView.swift; sourceTree = "<group>"; };
 		18B2B3AB1EF2A04200792F60 /* StatusCellBottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusCellBottomView.swift; sourceTree = "<group>"; };
@@ -201,6 +205,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		18A5E2471F4EC8EB008E7671 /* PicturePicke */ = {
+			isa = PBXGroup;
+			children = (
+				18A5E2481F4EC8EB008E7671 /* PicturePickerController.swift */,
+			);
+			path = PicturePicke;
+			sourceTree = "<group>";
+		};
 		18B2B3A61EF29FB400792F60 /* StatusCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -298,6 +310,7 @@
 		18D2DF151ED0837000B446CC /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				18A5E2471F4EC8EB008E7671 /* PicturePicke */,
 				182BC1411F459C5E006F7ECB /* Emoticon */,
 				18EFF5A91ED2B6CE0084F4CE /* Extension */,
 				18EA2A381EDC83B0005D4F83 /* NetworkTool.swift */,
@@ -390,6 +403,7 @@
 				189865F71EDAC1A100E85860 /* UILabel+Extension.swift */,
 				189865F91EDAC5F700E85860 /* UIImageView+Extension.swift */,
 				18B2B78A1F4478EF00E4DDD3 /* UIBarButtonItem+Extension.swift */,
+				18A5E24A1F4EC9E0008E7671 /* UIImage+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -733,9 +747,11 @@
 				18B2B7871F44573200E4DDD3 /* ComposeViewController.swift in Sources */,
 				18D2DF241ED0879500B446CC /* DiscoverTableViewController.swift in Sources */,
 				189865FA1EDAC5F700E85860 /* UIImageView+Extension.swift in Sources */,
+				18A5E2491F4EC8EB008E7671 /* PicturePickerController.swift in Sources */,
 				18B2B78B1F4478EF00E4DDD3 /* UIBarButtonItem+Extension.swift in Sources */,
 				181BCA191EF16698009A82CC /* StatusListViewModel.swift in Sources */,
 				18FBBF301EF2D8E3009A4266 /* StatusViewModel.swift in Sources */,
+				18A5E24B1F4EC9E0008E7671 /* UIImage+Extension.swift in Sources */,
 				185768391EE2F22400629BF6 /* UserAccountViewModel.swift in Sources */,
 				18B2B3A81EF29FDF00792F60 /* StatusCell.swift in Sources */,
 				180C32901ED3324A009AE1D9 /* VisitorView.swift in Sources */,

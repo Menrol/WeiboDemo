@@ -60,7 +60,6 @@ extension StatusListViewModel {
     /// 缓存单张图片
     private func cacheSingleImage(dataList: [StatusViewModel],finished: @escaping (_ isSuccess: Bool) -> Void){
         let dispatchGroup = DispatchGroup()
-        var finishedFlag = false
         var dataLength = 0
         
         for viewModel in dataList {
@@ -76,23 +75,20 @@ extension StatusListViewModel {
             print(url)
             
             // SDWebImage核心下载图片函数
-            SDWebImageManager.shared().loadImage(with:url,options: [/*.refreshCached,*/.retryFailed],progress: nil,completed: { (image, _, _, _, _, url) in
+            SDWebImageManager.shared().loadImage(with:url,options: [],progress: nil,completed: { (image, _, _, _, _, url) in
                 
                 if let img = image,let data = UIImagePNGRepresentation(img) {
                     dataLength += data.count
                 }
                 
-                if !finishedFlag {
-                    // 出组
-                    dispatchGroup.leave()
-                }
+                // 出组
+                dispatchGroup.leave()
             })
         }
         
         // 组内任务完成
         dispatchGroup.notify(queue: DispatchQueue.main, execute: {
             print("缓存完成 \(dataLength / 1024)k")
-            finishedFlag = true
             finished(true)
         })
     }
