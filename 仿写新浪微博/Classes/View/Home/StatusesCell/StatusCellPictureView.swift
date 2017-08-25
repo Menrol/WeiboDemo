@@ -9,10 +9,16 @@
 import UIKit
 import SDWebImage
 
-// 图片之间的间距
-fileprivate let StatusCellPictureViewItemMargin: CGFloat = 8
-// 自定义cellid
+/// 图片之间的间距
+fileprivate let StatusCellPictureViewItemMargin: CGFloat = UIScreen.main.scale * 4
+/// 自定义cellid
 fileprivate let PictureViewCellId = "PictureViewCellId"
+/// 选择照片通知
+let WBStatusSelectedPcitureNotification = "WBStatusSelectedPcitureNotification"
+/// 选中照片索引key
+let WBStatusSelectedPictureIndexPathKey = "WBStatusSelectedPictureIndexKey"
+/// 照片数组key
+let WBStatusSelectedPictureUrlsKey = "WBStatusSelectedPictureUrlsKey"
 
 class StatusCellPictureView: UICollectionView {
     
@@ -43,6 +49,7 @@ class StatusCellPictureView: UICollectionView {
         super.init(frame: CGRect.zero, collectionViewLayout: layout)
         
         dataSource = self
+        delegate = self
         register(PictureViewCell.self, forCellWithReuseIdentifier: PictureViewCellId)
         
     }
@@ -53,7 +60,7 @@ class StatusCellPictureView: UICollectionView {
 }
 
 // MARK: - UICollectionViewDataSource
-extension StatusCellPictureView: UICollectionViewDataSource{
+extension StatusCellPictureView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel?.thumbnailUrls?.count ?? 0
     }
@@ -63,6 +70,13 @@ extension StatusCellPictureView: UICollectionViewDataSource{
         cell.imageURL = viewModel?.thumbnailUrls![indexPath.row]
         
         return cell
+    }
+}
+
+// MARK: - UICollectionViewDelegate
+extension StatusCellPictureView: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: WBStatusSelectedPcitureNotification), object: self, userInfo: [WBStatusSelectedPictureIndexPathKey: indexPath, WBStatusSelectedPictureUrlsKey: viewModel!.thumbnailUrls!])
     }
 }
 

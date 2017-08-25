@@ -18,6 +18,7 @@ class HomeTableViewController: VisitorTableViewController {
     
     fileprivate lazy var statusListViewModel: StatusListViewModel = StatusListViewModel()
 
+    // MARK: - 控制器生命周期
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,6 +32,25 @@ class HomeTableViewController: VisitorTableViewController {
         
         loadData()
         
+        // 注册通知
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.init(rawValue: WBStatusSelectedPcitureNotification), object: nil, queue: nil) { [weak self] (n) in
+            print(n)
+            guard let urls = n.userInfo?[WBStatusSelectedPictureUrlsKey] as? [URL] else {
+                return
+            }
+            guard let indexPath = n.userInfo?[WBStatusSelectedPictureIndexPathKey] as? IndexPath else {
+                return
+            }
+            
+            let vc = PictureBrowserViewController(indexPath: indexPath, thumbnailUrls: urls)
+            
+            self?.present(vc, animated: true, completion: nil)
+        }
+    }
+    
+    deinit {
+        // 注销通知
+        NotificationCenter.default.removeObserver(self)
     }
     
     // MARK: - 设置tableview

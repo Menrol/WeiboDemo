@@ -26,7 +26,7 @@ extension UIButton {
     }
     
     /// 便利构造函数
-    convenience init(title: String, backImageName: String?, backColor: UIColor? = nil, color: UIColor = UIColor.darkGray){
+    convenience init(title: String, backImageName: String?, color: UIColor = UIColor.darkGray){
         self.init()
         
         setTitle(title, for: UIControlState.normal)
@@ -34,19 +34,21 @@ extension UIButton {
         if let backImageName = backImageName {
             setBackgroundImage(UIImage(named: backImageName), for: UIControlState.normal)
         }
-        backgroundColor = backColor
         
         sizeToFit()
     }
     
     /// 便利构造函数
-    convenience init(title: String, imageName: String, fontSize: CGFloat, color: UIColor = UIColor.darkGray){
+    convenience init(title: String, imageName: String?, backColor: UIColor? = nil, fontSize: CGFloat, color: UIColor = UIColor.darkGray){
         self.init()
         
         setTitle(title, for: UIControlState.normal)
         titleLabel?.font = UIFont.systemFont(ofSize: fontSize)
         setTitleColor(color, for: UIControlState.normal)
-        setImage((UIImage(named: imageName)), for: UIControlState.normal)
+        if let imageName = imageName {
+            setImage((UIImage(named: imageName)), for: UIControlState.normal)
+        }
+        backgroundColor = backColor
         
         sizeToFit()
     }
