@@ -14,24 +14,30 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - FLAnimatedImage (1.0.12)
   - SDWebImage (4.0.0):
     - SDWebImage/Core (= 4.0.0)
   - SDWebImage/Core (4.0.0)
+  - SDWebImage/GIF (4.0.0):
+    - FLAnimatedImage (~> 1.0)
+    - SDWebImage/Core
   - SnapKit (3.2.0)
   - SVProgressHUD (2.1.2)
 
 DEPENDENCIES:
   - AFNetworking
   - SDWebImage
+  - SDWebImage/GIF
   - SnapKit
   - SVProgressHUD
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
   SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
 
-PODFILE CHECKSUM: ec78b624d3c5f4f3e82fae7b3503f58cdf4df84f
+PODFILE CHECKSUM: 834cff01acd1b3c0307b7214e79d1c0d3e615ba9
 
 COCOAPODS: 1.1.1

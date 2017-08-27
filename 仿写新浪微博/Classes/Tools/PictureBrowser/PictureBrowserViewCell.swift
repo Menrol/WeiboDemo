@@ -9,9 +9,21 @@
 import UIKit
 import SDWebImage
 
+protocol PictureBrowserCellDelegate: NSObjectProtocol {
+    func pictureBrowserViewCellDidTapImage()
+}
+
 class PictureBrowserViewCell: UICollectionViewCell {
     
-    // 图片url
+    // MARK: - 监听方法
+    @objc fileprivate func tapPicture() {
+        pictureDelegate?.pictureBrowserViewCellDidTapImage()
+    }
+    
+    /// 代理
+    weak var pictureDelegate: PictureBrowserCellDelegate?
+    
+    /// MARK: - 设置图片
     var imageUrl: URL? {
         didSet{
             guard let url = imageUrl else {
@@ -21,18 +33,43 @@ class PictureBrowserViewCell: UICollectionViewCell {
             // 初始化ScrollView
             resetScrollView()
             
-            imageView.image = SDWebImageManager.shared().imageCache?.imageFromDiskCache(forKey: url.absoluteString)
-            imageView.sizeToFit()
-            imageView.center = scrollView.center
+            let placeholderImage = SDWebImageManager.shared().imageCache?.imageFromDiskCache(forKey: url.absoluteString)
+            preparePlaceHolder(image: placeholderImage)
             
-            imageView.sd_setImage(with: bmiddleUrl(url: url)) { (image, _, _, _) in
+            imageView.sd_setImage(with: bmiddleUrl(url: url), placeholderImage: placeholderImage, options: [.refreshCached,.retryFailed], progress: { (current, total, _) in
+                DispatchQueue.main.async(execute: { 
+                    self.placeholder.progress = CGFloat(current) / CGFloat(total)
+                })
+            }) { (image, _, _, _) in
+                // 隐藏占位视图
+                self.placeholder.isHidden = true
+                // 设置图片位置
                 self.setPosition(image: image!)
             }
         }
     }
     
+    /// 准备占位视图
+    private func preparePlaceHolder(image: UIImage?) {
+        placeholder.image = image
+        
+        guard let image = image else {
+            return
+        }
+        
+        let w = UIScreen.main.bounds.width
+        let h = image.size.height * w / image.size.width
+        let rect = CGRect(x: 0, y: 0, width: w, height: h)
+        
+        placeholder.bounds = rect
+        placeholder.center = scrollView.center
+    }
+    
     /// 初始化scrollView
     private func resetScrollView() {
+        // 重新设置imageView的属性
+        imageView.transform = CGAffineTransform.identity
+        
         scrollView.contentInset = UIEdgeInsets.zero
         scrollView.contentOffset = CGPoint.zero
         scrollView.contentSize = CGSize.zero
@@ -82,7 +119,8 @@ class PictureBrowserViewCell: UICollectionViewCell {
     
     // MARK: - 懒加载控件
     fileprivate lazy var scrollView: UIScrollView = UIScrollView()
-    fileprivate lazy var imageView: UIImageView = UIImageView()
+    lazy var imageView: FLAnimatedImageView = FLAnimatedImageView()
+    fileprivate lazy var placeholder: ProgressImageView = ProgressImageView()
 }
 
 // MARK: - UIScrollViewDelegate
@@ -106,6 +144,7 @@ fileprivate extension PictureBrowserViewCell {
         // 添加控件
         contentView.addSubview(scrollView)
         scrollView.addSubview(imageView)
+        scrollView.addSubview(placeholder)
         
         // 设置布局
         var rect = bounds
@@ -116,5 +155,11 @@ fileprivate extension PictureBrowserViewCell {
         scrollView.delegate = self;
         scrollView.minimumZoomScale = 0.5
         scrollView.maximumZoomScale = 2
+        
+        // 允许交互
+        imageView.isUserInteractionEnabled = true
+        // 添加点击手势
+        let tap = UITapGestureRecognizer(target: self, action: #selector(PictureBrowserViewCell.tapPicture))
+        imageView.addGestureRecognizer(tap)
     }
 }

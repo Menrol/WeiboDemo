@@ -8,6 +8,7 @@ target '仿写新浪微博' do
   pod 'AFNetworking'
   pod 'SnapKit'
   pod 'SDWebImage'
+  pod 'SDWebImage/GIF'
   pod 'SVProgressHUD'
 
   target '仿写新浪微博Tests' do

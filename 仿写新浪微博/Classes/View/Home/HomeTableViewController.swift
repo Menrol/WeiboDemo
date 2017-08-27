@@ -34,7 +34,6 @@ class HomeTableViewController: VisitorTableViewController {
         
         // 注册通知
         NotificationCenter.default.addObserver(forName: NSNotification.Name.init(rawValue: WBStatusSelectedPcitureNotification), object: nil, queue: nil) { [weak self] (n) in
-            print(n)
             guard let urls = n.userInfo?[WBStatusSelectedPictureUrlsKey] as? [URL] else {
                 return
             }
@@ -43,6 +42,10 @@ class HomeTableViewController: VisitorTableViewController {
             }
             
             let vc = PictureBrowserViewController(indexPath: indexPath, thumbnailUrls: urls)
+            // 设置转场动画模式
+            vc.modalPresentationStyle = .custom
+            // 设置转场动画代理
+            vc.transitioningDelegate = self?.pictureBrowserAnimator
             
             self?.present(vc, animated: true, completion: nil)
         }
@@ -102,6 +105,7 @@ class HomeTableViewController: VisitorTableViewController {
         
         return indicatorView
     }()
+    private lazy var pictureBrowserAnimator: PictureBrowserAnimator = PictureBrowserAnimator()
 }
 
 

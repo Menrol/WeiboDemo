@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 /// 可重用cellId
 let PictureBrowserViewCellId = "PictureBrowserViewCellId"
@@ -23,7 +24,20 @@ class PictureBrowserViewController: UIViewController {
     }
     
     @objc fileprivate func save() {
-        print("保存图片")
+        // 获取图片
+        let cell = collectionView.visibleCells[0] as! PictureBrowserViewCell
+        guard let image = cell.imageView.image else {
+            return
+        }
+        
+        // 保存图片
+        UIImageWriteToSavedPhotosAlbum(image, self, #selector(PictureBrowserViewController.image(image:didFinishSavingWithError:contextInfo:)), nil)
+        
+    }
+    
+    @objc private func image(image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: Any?) {
+        let message = (error == nil) ? "保存成功" : "保存失败"
+        SVProgressHUD.showSuccess(withStatus: message)
     }
 
     // MARK: - 构造函数
@@ -45,6 +59,12 @@ class PictureBrowserViewController: UIViewController {
         view = UIView(frame: rect)
         
         setupUI()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false);
     }
     
     // MARK: - 懒加载控件
@@ -79,8 +99,16 @@ extension PictureBrowserViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PictureBrowserViewCellId, for: indexPath) as! PictureBrowserViewCell
         
         cell.imageUrl = thumbnailUrls[indexPath.item]
+        cell.pictureDelegate = self
         
         return cell
+    }
+}
+
+// MARK: - PictureBrowserCellDelegate
+extension PictureBrowserViewController: PictureBrowserCellDelegate {
+    func pictureBrowserViewCellDidTapImage() {
+        close()
     }
 }
 
