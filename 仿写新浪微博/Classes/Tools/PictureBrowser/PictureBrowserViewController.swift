@@ -112,6 +112,26 @@ extension PictureBrowserViewController: PictureBrowserCellDelegate {
     }
 }
 
+extension PictureBrowserViewController: PictureBrowserDismissDelegate {
+    func imageViewForAnimation() -> UIImageView {
+        let imageView = UIImageView()
+        
+        let cell = collectionView.visibleCells[0] as! PictureBrowserViewCell
+        imageView.image = cell.imageView.image
+        
+        imageView.frame = cell.scrollView.convert(cell.imageView.frame, to: UIApplication.shared.keyWindow)
+        
+//        // 测试
+//        UIApplication.shared.keyWindow?.addSubview(imageView)
+        
+        return imageView
+    }
+    
+    func indexPathForAnimation() -> IndexPath {
+        return collectionView.indexPathsForVisibleItems[0]
+    }
+}
+
 // MARK: - 设置界面
 fileprivate extension PictureBrowserViewController {
     func setupUI() {

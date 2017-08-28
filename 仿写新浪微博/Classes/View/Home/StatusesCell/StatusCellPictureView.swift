@@ -80,6 +80,66 @@ extension StatusCellPictureView: UICollectionViewDelegate {
     }
 }
 
+// MARK: - PictureBrowserPresentDelegate
+extension StatusCellPictureView: PictureBrowserPresentDelegate {
+    func imageViewForAnimation(indexPath: IndexPath) -> UIImageView {
+        let imageView = UIImageView()
+        
+        // 设置填充模式
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        
+        guard let url = viewModel?.thumbnailUrls?[indexPath.item] else {
+            return imageView
+        }
+        
+        imageView.sd_setImage(with: url)
+        
+        return imageView
+    }
+    
+    func startPositionForAnimation(indexPath: IndexPath) -> CGRect {
+        let cell = cellForItem(at: indexPath)!
+        let rect = self.convert(cell.frame, to: UIApplication.shared.keyWindow)
+        
+//        // 测试代码
+//        let iv = imageViewForAnimation(indexPath: indexPath)
+//        iv.frame = rect
+//        UIApplication.shared.keyWindow?.addSubview(iv)
+        
+        return rect
+    }
+    
+    func endPositionForAnimation(indexPath: IndexPath) -> CGRect {
+        guard let key = viewModel?.thumbnailUrls?[indexPath.item].absoluteString else {
+            return CGRect.zero
+        }
+        
+        guard let image = SDWebImageManager.shared().imageCache?.imageFromDiskCache(forKey: key) else {
+            return CGRect.zero
+        }
+        
+        let w = UIScreen.main.bounds.width
+        let h = image.size.height * w / image.size.width
+        
+        let y: CGFloat
+        if h > UIScreen.main.bounds.height {
+            y = 0
+        }else {
+            y = (UIScreen.main.bounds.height - h) * 0.5
+        }
+        
+        let rect = CGRect(x: 0, y: y, width: w, height: h)
+        
+//        // 测试代码
+//        let iv = imageViewForAnimation(indexPath: indexPath)
+//        iv.frame = rect
+//        UIApplication.shared.keyWindow?.addSubview(iv)
+        
+        return rect
+    }
+}
+
 // MARK: - 计算尺寸
 extension StatusCellPictureView {
     override func sizeThatFits(_ size: CGSize) -> CGSize {

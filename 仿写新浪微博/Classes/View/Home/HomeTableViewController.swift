@@ -40,12 +40,17 @@ class HomeTableViewController: VisitorTableViewController {
             guard let indexPath = n.userInfo?[WBStatusSelectedPictureIndexPathKey] as? IndexPath else {
                 return
             }
+            guard let cell = n.object as? PictureBrowserPresentDelegate else {
+                return
+            }
             
             let vc = PictureBrowserViewController(indexPath: indexPath, thumbnailUrls: urls)
             // 设置转场动画模式
             vc.modalPresentationStyle = .custom
             // 设置转场动画代理
             vc.transitioningDelegate = self?.pictureBrowserAnimator
+            // 设置代理参数
+            self?.pictureBrowserAnimator.setParameters(indexPath: indexPath, presentDelegate: cell, dismissDelegate: vc)
             
             self?.present(vc, animated: true, completion: nil)
         }

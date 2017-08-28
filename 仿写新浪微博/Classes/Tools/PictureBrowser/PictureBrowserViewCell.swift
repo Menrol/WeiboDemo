@@ -118,7 +118,7 @@ class PictureBrowserViewCell: UICollectionViewCell {
     }
     
     // MARK: - 懒加载控件
-    fileprivate lazy var scrollView: UIScrollView = UIScrollView()
+    lazy var scrollView: UIScrollView = UIScrollView()
     lazy var imageView: FLAnimatedImageView = FLAnimatedImageView()
     fileprivate lazy var placeholder: ProgressImageView = ProgressImageView()
 }
