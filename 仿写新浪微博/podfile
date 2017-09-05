@@ -10,6 +10,7 @@ target '仿写新浪微博' do
   pod 'SDWebImage'
   pod 'SDWebImage/GIF'
   pod 'SVProgressHUD'
+  pod 'FMDB'
 
   target '仿写新浪微博Tests' do
     inherit! :search_paths

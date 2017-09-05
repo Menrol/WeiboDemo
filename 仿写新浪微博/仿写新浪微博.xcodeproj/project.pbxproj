@@ -51,6 +51,8 @@
 		18D2DF261ED087B000B446CC /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D2DF251ED087B000B446CC /* ProfileTableViewController.swift */; };
 		18E28F971F52EC3200FB5734 /* ProgressImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E28F961F52EC3200FB5734 /* ProgressImageView.swift */; };
 		18E28F991F531ED200FB5734 /* PictureBrowserAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E28F981F531ED200FB5734 /* PictureBrowserAnimator.swift */; };
+		18E64FDD1F5EA06B007C06BE /* SQliteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E64FDC1F5EA06B007C06BE /* SQliteManager.swift */; };
+		18E64FE31F5EA3AD007C06BE /* db.sql in Resources */ = {isa = PBXBuildFile; fileRef = 18E64FE21F5EA3AD007C06BE /* db.sql */; };
 		18E9D8EA1EE52D9000595D44 /* NewfeatureCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E9D8E91EE52D9000595D44 /* NewfeatureCollectionViewController.swift */; };
 		18EA2A391EDC83B0005D4F83 /* NetworkTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EA2A381EDC83B0005D4F83 /* NetworkTool.swift */; };
 		18EFF5AB1ED2B7D00084F4CE /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFF5AA1ED2B7D00084F4CE /* UIButton+Extension.swift */; };
@@ -130,6 +132,8 @@
 		18D2DF251ED087B000B446CC /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		18E28F961F52EC3200FB5734 /* ProgressImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressImageView.swift; sourceTree = "<group>"; };
 		18E28F981F531ED200FB5734 /* PictureBrowserAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureBrowserAnimator.swift; sourceTree = "<group>"; };
+		18E64FDC1F5EA06B007C06BE /* SQliteManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQliteManager.swift; sourceTree = "<group>"; };
+		18E64FE21F5EA3AD007C06BE /* db.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = db.sql; sourceTree = "<group>"; };
 		18E9D8E91EE52D9000595D44 /* NewfeatureCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewfeatureCollectionViewController.swift; sourceTree = "<group>"; };
 		18EA2A381EDC83B0005D4F83 /* NetworkTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkTool.swift; sourceTree = "<group>"; };
 		18EFF5AA1ED2B7D00084F4CE /* UIButton+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
@@ -285,6 +289,7 @@
 				18D2DEE51ED07BB300B446CC /* AppDelegate.swift */,
 				18D2DEEC1ED07BB300B446CC /* Assets.xcassets */,
 				18D2DEF11ED07BB300B446CC /* Info.plist */,
+				18E64FE11F5EA3AD007C06BE /* Recourse */,
 				18D2DF131ED0837000B446CC /* Classes */,
 			);
 			path = "仿写新浪微博";
@@ -337,6 +342,7 @@
 				182BC1411F459C5E006F7ECB /* Emoticon */,
 				18EFF5A91ED2B6CE0084F4CE /* Extension */,
 				18EA2A381EDC83B0005D4F83 /* NetworkTool.swift */,
+				18E64FDC1F5EA06B007C06BE /* SQliteManager.swift */,
 				189EEE4B1EEBF3CA00F8CBA5 /* Common.swift */,
 			);
 			path = Tools;
@@ -408,6 +414,14 @@
 				18FBBF2F1EF2D8E3009A4266 /* StatusViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		18E64FE11F5EA3AD007C06BE /* Recourse */ = {
+			isa = PBXGroup;
+			children = (
+				18E64FE21F5EA3AD007C06BE /* db.sql */,
+			);
+			path = Recourse;
 			sourceTree = "<group>";
 		};
 		18E9D8E81EE52D3E00595D44 /* Newfeature */ = {
@@ -585,6 +599,7 @@
 			files = (
 				18D2DEED1ED07BB300B446CC /* Assets.xcassets in Resources */,
 				182BC14D1F459C5E006F7ECB /* Emoticons.bundle in Resources */,
+				18E64FE31F5EA3AD007C06BE /* db.sql in Resources */,
 				18F43AA71F33335700024079 /* WBRefreshView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -763,6 +778,7 @@
 				18C740101F31D6E60038B2D1 /* StatusNormalCell.swift in Sources */,
 				182BC1501F459C5E006F7ECB /* Package.swift in Sources */,
 				185768371EE2ED2C00629BF6 /* UserAccount.swift in Sources */,
+				18E64FDD1F5EA06B007C06BE /* SQliteManager.swift in Sources */,
 				182BC1511F459C5E006F7ECB /* String+Emoji.swift in Sources */,
 				182BC14C1F459C5E006F7ECB /* EmoticonManager.swift in Sources */,
 				189EEE4E1EEBF41500F8CBA5 /* WelcomeViewController.swift in Sources */,

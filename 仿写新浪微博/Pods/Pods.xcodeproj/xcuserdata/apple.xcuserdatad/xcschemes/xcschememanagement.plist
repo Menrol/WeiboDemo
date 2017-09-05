@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>FMDB.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-仿写新浪微博.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -52,7 +57,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>67692C7203D62FAFDADCFFCABFA3A1E2</key>
+		<key>0386D488C2C146C093AD4B55E288F158</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>251BAD17812F7EBF6532EACF66F941C3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>664E797C51B10495AB4DB4D90A55E6C2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -67,22 +82,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>979B581BF9FBBD2BB857CA4095B6E642</key>
+		<key>A1B4337CAB48FA579B89E7EC12CB7CFE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C4639A8C3BDAB16476E76442C18036B8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>CF671F7E57B92905F1CC91D036D6B4A7</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E13FECED41EC456D7096243DDBA27475</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E998D0F22CB2FFC8E54E7895DD187B55</key>
 		<dict>
 			<key>primary</key>
 			<true/>
