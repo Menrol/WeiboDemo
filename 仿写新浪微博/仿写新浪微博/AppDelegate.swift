@@ -30,9 +30,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.rootViewController = viewController
         }
         
-        SQliteManager.sharedManager
-        
         return true
+    }
+    
+    /// 进入后台
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        StatusDAL.cleanCache()
     }
     
     deinit {

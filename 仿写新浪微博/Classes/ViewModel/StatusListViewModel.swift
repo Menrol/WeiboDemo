@@ -21,17 +21,8 @@ extension StatusListViewModel {
         let since_id = ispullUp ? 0 : (statusList.first?.status.id ?? 0)
         let max_id = ispullUp ? (statusList.last?.status.id ?? 0) : 0
         
-        NetworkTool.sharedTool.loadStatuses(since_id: since_id,max_id: max_id) { (result, error) in
-            
-            if error != nil{
-                print("出错了")
-                finished(false)
-                
-                return
-            }
-            
-            guard let array = (result as AnyObject)["statuses"]  as? [[String: Any]] else{
-                print("数据格式错误")
+        StatusDAL.loadData(since_id: since_id, max_id: max_id) { (array) in
+            guard let array = array else {
                 finished(false)
                 
                 return

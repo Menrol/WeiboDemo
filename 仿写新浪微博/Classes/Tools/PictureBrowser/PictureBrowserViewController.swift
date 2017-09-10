@@ -57,6 +57,7 @@ class PictureBrowserViewController: UIViewController {
         var rect = UIScreen.main.bounds
         rect.size.width += 20
         view = UIView(frame: rect)
+        view.backgroundColor = UIColor.black
         
         setupUI()
     }
@@ -68,7 +69,7 @@ class PictureBrowserViewController: UIViewController {
     }
     
     // MARK: - 懒加载控件
-    fileprivate lazy var collectionView: UICollectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: PictureBrowserViewLayout())
+    lazy var collectionView: UICollectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: PictureBrowserViewLayout())
     fileprivate lazy var saveButton: UIButton = UIButton(title: "保存", imageName: nil, backColor: UIColor.darkGray, fontSize: 14, color: UIColor.white)
     fileprivate lazy var closeButton: UIButton = UIButton(title: "关闭", imageName: nil, backColor: UIColor.darkGray, fontSize: 14, color: UIColor.white)
     
@@ -107,8 +108,28 @@ extension PictureBrowserViewController: UICollectionViewDataSource {
 
 // MARK: - PictureBrowserCellDelegate
 extension PictureBrowserViewController: PictureBrowserCellDelegate {
-    func pictureBrowserViewCellDidTapImage() {
+    func pictureBrowserViewWillDismiss() {
         close()
+    }
+    
+    func pictureBrowserViewCellDidZoom(scale: CGFloat) {
+        let isHidden = scale < 1
+        hideViews(isHidden: isHidden)
+        
+        if scale < 1 {
+            view.alpha = scale
+            view.transform.scaledBy(x: scale, y: scale)
+        }else {
+            view.alpha = 1
+            view.transform = CGAffineTransform.identity
+        }
+    }
+    
+    private func hideViews(isHidden: Bool) {
+        saveButton.isHidden = isHidden
+        closeButton.isHidden = isHidden
+        
+        view.backgroundColor = isHidden ? UIColor.clear : UIColor.black
     }
 }
 
@@ -153,7 +174,7 @@ fileprivate extension PictureBrowserViewController {
         
         saveButton.snp.makeConstraints { (make) in
             make.bottom.equalTo(view.snp.bottom).offset(-margin)
-            make.right.equalTo(view.snp.right).offset(-margin)
+            make.right.equalTo(view.snp.right).offset(-margin - 20)
             make.size.equalTo(CGSize(width: 100, height: 36))
         }
         
@@ -166,8 +187,9 @@ fileprivate extension PictureBrowserViewController {
     }
     
     func prepareCollectionView() {
-        collectionView.register(PictureBrowserViewCell.self, forCellWithReuseIdentifier: PictureBrowserViewCellId)
+        collectionView.backgroundColor = UIColor.clear
         
+        collectionView.register(PictureBrowserViewCell.self, forCellWithReuseIdentifier: PictureBrowserViewCellId)
         collectionView.dataSource = self
     }
 }

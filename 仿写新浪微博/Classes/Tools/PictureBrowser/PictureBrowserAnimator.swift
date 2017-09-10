@@ -63,6 +63,10 @@ extension PictureBrowserAnimator: UIViewControllerAnimatedTransitioning {
             return
         }
         
+        context.containerView.addSubview(context.view(forKey: .to)!)
+        let toController = context.viewController(forKey: .to) as? PictureBrowserViewController
+        toController?.collectionView.isHidden = true
+        
         let imageView = presentDelegate.imageViewForAnimation(indexPath: indexPath)
         imageView.frame = presentDelegate.startPositionForAnimation(indexPath: indexPath)
         context.containerView.addSubview(imageView)
@@ -71,7 +75,7 @@ extension PictureBrowserAnimator: UIViewControllerAnimatedTransitioning {
             imageView.frame = presentDelegate.endPositionForAnimation(indexPath: indexPath)
         }) { (_) in
             imageView.removeFromSuperview()
-            context.containerView.addSubview(context.view(forKey: .to)!)
+            toController?.collectionView.isHidden = false
             context.completeTransition(true)
         }
     }

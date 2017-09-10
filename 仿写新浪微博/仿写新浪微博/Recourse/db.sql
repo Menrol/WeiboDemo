@@ -1,5 +1,7 @@
 CREATE TABLE IF NOT EXISTS "T_Status" (
-    "statusid" integer NOT NULL PRIMARY KEY,
+    "statusId" integer NOT NULL,
     "status" text,
-    "userid" integer
+    "userId" integer,
+    "createTime" text DEFAULT (datetime('now', 'localtime')),
+    PRIMARY KEY ("statusId")
 );

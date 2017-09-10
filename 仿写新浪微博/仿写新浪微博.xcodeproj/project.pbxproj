@@ -53,6 +53,7 @@
 		18E28F991F531ED200FB5734 /* PictureBrowserAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E28F981F531ED200FB5734 /* PictureBrowserAnimator.swift */; };
 		18E64FDD1F5EA06B007C06BE /* SQliteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E64FDC1F5EA06B007C06BE /* SQliteManager.swift */; };
 		18E64FE31F5EA3AD007C06BE /* db.sql in Resources */ = {isa = PBXBuildFile; fileRef = 18E64FE21F5EA3AD007C06BE /* db.sql */; };
+		18E64FE51F5EA678007C06BE /* StatusDAL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E64FE41F5EA678007C06BE /* StatusDAL.swift */; };
 		18E9D8EA1EE52D9000595D44 /* NewfeatureCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E9D8E91EE52D9000595D44 /* NewfeatureCollectionViewController.swift */; };
 		18EA2A391EDC83B0005D4F83 /* NetworkTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EA2A381EDC83B0005D4F83 /* NetworkTool.swift */; };
 		18EFF5AB1ED2B7D00084F4CE /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFF5AA1ED2B7D00084F4CE /* UIButton+Extension.swift */; };
@@ -134,6 +135,7 @@
 		18E28F981F531ED200FB5734 /* PictureBrowserAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureBrowserAnimator.swift; sourceTree = "<group>"; };
 		18E64FDC1F5EA06B007C06BE /* SQliteManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQliteManager.swift; sourceTree = "<group>"; };
 		18E64FE21F5EA3AD007C06BE /* db.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = db.sql; sourceTree = "<group>"; };
+		18E64FE41F5EA678007C06BE /* StatusDAL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusDAL.swift; sourceTree = "<group>"; };
 		18E9D8E91EE52D9000595D44 /* NewfeatureCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewfeatureCollectionViewController.swift; sourceTree = "<group>"; };
 		18EA2A381EDC83B0005D4F83 /* NetworkTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkTool.swift; sourceTree = "<group>"; };
 		18EFF5AA1ED2B7D00084F4CE /* UIButton+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
@@ -412,6 +414,7 @@
 				185768381EE2F22400629BF6 /* UserAccountViewModel.swift */,
 				181BCA181EF16698009A82CC /* StatusListViewModel.swift */,
 				18FBBF2F1EF2D8E3009A4266 /* StatusViewModel.swift */,
+				18E64FE41F5EA678007C06BE /* StatusDAL.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -786,6 +789,7 @@
 				180C328E1ED31D48009AE1D9 /* VisitorTableViewController.swift in Sources */,
 				18B2B7871F44573200E4DDD3 /* ComposeViewController.swift in Sources */,
 				18E28F971F52EC3200FB5734 /* ProgressImageView.swift in Sources */,
+				18E64FE51F5EA678007C06BE /* StatusDAL.swift in Sources */,
 				18AF320D1F5010460056D655 /* UIColor+Extension.swift in Sources */,
 				18D2DF241ED0879500B446CC /* DiscoverTableViewController.swift in Sources */,
 				189865FA1EDAC5F700E85860 /* UIImageView+Extension.swift in Sources */,

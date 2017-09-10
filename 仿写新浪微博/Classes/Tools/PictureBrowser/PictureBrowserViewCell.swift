@@ -10,14 +10,15 @@ import UIKit
 import SDWebImage
 
 protocol PictureBrowserCellDelegate: NSObjectProtocol {
-    func pictureBrowserViewCellDidTapImage()
+    func pictureBrowserViewWillDismiss()
+    func pictureBrowserViewCellDidZoom(scale: CGFloat)
 }
 
 class PictureBrowserViewCell: UICollectionViewCell {
     
     // MARK: - 监听方法
     @objc fileprivate func tapPicture() {
-        pictureDelegate?.pictureBrowserViewCellDidTapImage()
+        pictureDelegate?.pictureBrowserViewWillDismiss()
     }
     
     /// 代理
@@ -130,11 +131,21 @@ extension PictureBrowserViewCell: UIScrollViewDelegate {
     }
     
     func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
-        var x = (scrollView.bounds.width - view!.frame.width) * 0.5
+        if scale < 1 {
+            pictureDelegate?.pictureBrowserViewWillDismiss()
+        }
+    }
+    
+    func scrollViewDidZoom(_ scrollView: UIScrollView) {
+        // 改变位置
+        var x = (scrollView.bounds.width - imageView.frame.width) * 0.5
         x = x < 0 ? 0 : x
-        var y = (scrollView.bounds.height - view!.frame.height) * 0.5
+        var y = (scrollView.bounds.height - imageView.frame.height) * 0.5
         y = y < 0 ? 0 : y
         scrollView.contentInset = UIEdgeInsetsMake(y, x, 0, 0)
+        
+        // 通知代理
+        pictureDelegate?.pictureBrowserViewCellDidZoom(scale: imageView.transform.a)
     }
 }
 
