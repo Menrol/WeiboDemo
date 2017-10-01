@@ -11,10 +11,13 @@ import UIKit
 class StatusCellTopView: UIView {
     
     /// 微博视图模型
-    var viewModel: StatusViewModel?{
+    var viewModel: StatusViewModel? {
         didSet{
+            // 更新约束
+            layoutIfNeeded()
+            
             // 微博头像
-            iconImageView.sd_setImage(with: viewModel?.userIconURL, placeholderImage: viewModel?.userdefultImage)
+            iconImageView.rq_setImage(url: viewModel?.userIconURL, placeholderImage: viewModel?.userdefultImage, isAvatar: true)
             
             // 微博昵称
             nameLabel.text = viewModel?.status.user?.screen_name
@@ -56,7 +59,7 @@ class StatusCellTopView: UIView {
 
 // MARK: - 设置界面
 extension StatusCellTopView {
-    fileprivate func setupUI(){
+    fileprivate func setupUI() {
         
         // 添加控件
         addSubview(iconImageView)
@@ -75,8 +78,8 @@ extension StatusCellTopView {
         }
         
         vipIconView.snp.makeConstraints { (make) in
-            make.centerX.equalTo(iconImageView.snp.right)
-            make.centerY.equalTo(iconImageView.snp.bottom)
+            make.centerX.equalTo(iconImageView.snp.right).offset(-4)
+            make.centerY.equalTo(iconImageView.snp.bottom).offset(-4)
         }
         
         nameLabel.snp.makeConstraints { (make) in

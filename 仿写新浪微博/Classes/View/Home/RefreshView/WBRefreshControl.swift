@@ -108,7 +108,7 @@ class WBRefreshView: UIView {
     
     private func rotatePullImage() {
         var angle = CGFloat(Double.pi)
-        angle += rotateFlag ? -0.000001 : 0.00001
+        angle += rotateFlag ? -0.00001 : 0.00001
         
         UIView.animate(withDuration: 0.5) { 
             self.pullImageView.transform = self.pullImageView.transform.rotated(by: angle)

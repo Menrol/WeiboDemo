@@ -16,7 +16,7 @@ let StatusCellIconWidth: CGFloat = 35
 class StatusCell: UITableViewCell {
     
     /// 微博视图模型
-    var viewModel: StatusViewModel?{
+    var viewModel: StatusViewModel? {
         didSet{
             topView.viewModel = viewModel
             contentLabel.text = viewModel?.status.text
@@ -26,6 +26,8 @@ class StatusCell: UITableViewCell {
                 make.width.equalTo(pictureView.bounds.width)
                 make.height.equalTo(pictureView.bounds.height)
             }
+            
+            bottomView.viewModel = viewModel
         }
     }
     
@@ -41,7 +43,7 @@ class StatusCell: UITableViewCell {
     }
 
     // MARK: - 构造函数
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    @objc override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         selectionStyle = .none
@@ -64,8 +66,8 @@ class StatusCell: UITableViewCell {
 }
 
 // MARK: - 设置界面
-extension StatusCell{
-    func setupUI(){
+extension StatusCell {
+    @objc func setupUI() {
         
         /// 分割线视图
         let sepView = UIView()

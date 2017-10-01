@@ -21,6 +21,7 @@ class StatusNormalCell: StatusCell {
     }
 }
 
+@objc
 extension StatusNormalCell {
     override func setupUI() {
         super.setupUI()

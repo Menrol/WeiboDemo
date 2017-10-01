@@ -23,6 +23,9 @@
 		182BC1521F459C5E006F7ECB /* UITextView+Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182BC14A1F459C5E006F7ECB /* UITextView+Emoji.swift */; };
 		185768371EE2ED2C00629BF6 /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185768361EE2ED2C00629BF6 /* UserAccount.swift */; };
 		185768391EE2F22400629BF6 /* UserAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185768381EE2F22400629BF6 /* UserAccountViewModel.swift */; };
+		1892FE7B1F811D44004DE4DF /* RQRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1892FE7A1F811D44004DE4DF /* RQRefreshControl.swift */; };
+		1892FE7D1F811E62004DE4DF /* RQRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1892FE7C1F811E62004DE4DF /* RQRefreshView.swift */; };
+		1892FE7F1F811E8E004DE4DF /* RQRefreshView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1892FE7E1F811E8E004DE4DF /* RQRefreshView.xib */; };
 		189865F81EDAC1A100E85860 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189865F71EDAC1A100E85860 /* UILabel+Extension.swift */; };
 		189865FA1EDAC5F700E85860 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189865F91EDAC5F700E85860 /* UIImageView+Extension.swift */; };
 		189EEE4C1EEBF3CA00F8CBA5 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189EEE4B1EEBF3CA00F8CBA5 /* Common.swift */; };
@@ -30,6 +33,7 @@
 		18A5E2491F4EC8EB008E7671 /* PicturePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A5E2481F4EC8EB008E7671 /* PicturePickerController.swift */; };
 		18A5E24B1F4EC9E0008E7671 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A5E24A1F4EC9E0008E7671 /* UIImage+Extension.swift */; };
 		18A5E24E1F4EEEA6008E7671 /* PictureBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A5E24D1F4EEEA6008E7671 /* PictureBrowserViewController.swift */; };
+		18AEA67E1F7A463C00377E6C /* UIImageVIew+WebCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AEA67D1F7A463C00377E6C /* UIImageVIew+WebCache.swift */; };
 		18AF320D1F5010460056D655 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AF320C1F5010460056D655 /* UIColor+Extension.swift */; };
 		18AF320F1F5014A50056D655 /* PictureBrowserViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AF320E1F5014A50056D655 /* PictureBrowserViewCell.swift */; };
 		18B2B3A81EF29FDF00792F60 /* StatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B2B3A71EF29FDF00792F60 /* StatusCell.swift */; };
@@ -99,6 +103,9 @@
 		182BC14A1F459C5E006F7ECB /* UITextView+Emoji.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+Emoji.swift"; sourceTree = "<group>"; };
 		185768361EE2ED2C00629BF6 /* UserAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
 		185768381EE2F22400629BF6 /* UserAccountViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccountViewModel.swift; sourceTree = "<group>"; };
+		1892FE7A1F811D44004DE4DF /* RQRefreshControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RQRefreshControl.swift; sourceTree = "<group>"; };
+		1892FE7C1F811E62004DE4DF /* RQRefreshView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RQRefreshView.swift; sourceTree = "<group>"; };
+		1892FE7E1F811E8E004DE4DF /* RQRefreshView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RQRefreshView.xib; sourceTree = "<group>"; };
 		189865F71EDAC1A100E85860 /* UILabel+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		189865F91EDAC5F700E85860 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		189EEE4B1EEBF3CA00F8CBA5 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Common.swift; path = Extension/Common.swift; sourceTree = "<group>"; };
@@ -106,6 +113,7 @@
 		18A5E2481F4EC8EB008E7671 /* PicturePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PicturePickerController.swift; sourceTree = "<group>"; };
 		18A5E24A1F4EC9E0008E7671 /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		18A5E24D1F4EEEA6008E7671 /* PictureBrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureBrowserViewController.swift; sourceTree = "<group>"; };
+		18AEA67D1F7A463C00377E6C /* UIImageVIew+WebCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageVIew+WebCache.swift"; sourceTree = "<group>"; };
 		18AF320C1F5010460056D655 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		18AF320E1F5014A50056D655 /* PictureBrowserViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureBrowserViewCell.swift; sourceTree = "<group>"; };
 		18B2B3A71EF29FDF00792F60 /* StatusCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusCell.swift; sourceTree = "<group>"; };
@@ -121,10 +129,10 @@
 		18D2DEEC1ED07BB300B446CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18D2DEF11ED07BB300B446CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18D2DEF61ED07BB400B446CC /* 仿写新浪微博Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "仿写新浪微博Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		18D2DEFA1ED07BB400B446CC /* ______Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "______Tests.swift"; sourceTree = "<group>"; };
+		18D2DEFA1ED07BB400B446CC /* ______Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ______Tests.swift; sourceTree = "<group>"; };
 		18D2DEFC1ED07BB400B446CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18D2DF011ED07BB400B446CC /* 仿写新浪微博UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "仿写新浪微博UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		18D2DF051ED07BB400B446CC /* ______UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "______UITests.swift"; sourceTree = "<group>"; };
+		18D2DF051ED07BB400B446CC /* ______UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ______UITests.swift; sourceTree = "<group>"; };
 		18D2DF071ED07BB400B446CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18D2DF1D1ED0874D00B446CC /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		18D2DF1F1ED0876D00B446CC /* HomeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
@@ -143,13 +151,13 @@
 		18F43AA61F33335700024079 /* WBRefreshView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WBRefreshView.xib; sourceTree = "<group>"; };
 		18FBBF2F1EF2D8E3009A4266 /* StatusViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusViewModel.swift; sourceTree = "<group>"; };
 		234542B9F6771408281F702D /* Pods-仿写新浪微博UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-仿写新浪微博UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-仿写新浪微博UITests/Pods-仿写新浪微博UITests.debug.xcconfig"; sourceTree = "<group>"; };
-		2FA0EE078D81C0D3A60515B2 /* Pods_______UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_______UITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		830936210B502E3C3D41EEE2 /* Pods_______.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_______.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2FA0EE078D81C0D3A60515B2 /* Pods_______UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_______UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		830936210B502E3C3D41EEE2 /* Pods_______.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_______.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEA6D440CA775884A8BE81BF /* Pods-仿写新浪微博UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-仿写新浪微博UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-仿写新浪微博UITests/Pods-仿写新浪微博UITests.release.xcconfig"; sourceTree = "<group>"; };
 		CA944AD3CCD8370D72E32524 /* Pods-仿写新浪微博Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-仿写新浪微博Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-仿写新浪微博Tests/Pods-仿写新浪微博Tests.release.xcconfig"; sourceTree = "<group>"; };
 		CD4F5CBB4BA389E953D6DE0B /* Pods-仿写新浪微博.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-仿写新浪微博.release.xcconfig"; path = "Pods/Target Support Files/Pods-仿写新浪微博/Pods-仿写新浪微博.release.xcconfig"; sourceTree = "<group>"; };
 		F82DE2584C2AB7D396288ECD /* Pods-仿写新浪微博.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-仿写新浪微博.debug.xcconfig"; path = "Pods/Target Support Files/Pods-仿写新浪微博/Pods-仿写新浪微博.debug.xcconfig"; sourceTree = "<group>"; };
-		F8377F747ED05564CBC0A9E1 /* Pods_______Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_______Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8377F747ED05564CBC0A9E1 /* Pods_______Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_______Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFEA44D7EFFEE594715BBF1C /* Pods-仿写新浪微博Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-仿写新浪微博Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-仿写新浪微博Tests/Pods-仿写新浪微博Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -219,6 +227,16 @@
 				182BC1481F459C5E006F7ECB /* Package.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		1892FE791F811D1C004DE4DF /* RQRefreshView */ = {
+			isa = PBXGroup;
+			children = (
+				1892FE7A1F811D44004DE4DF /* RQRefreshControl.swift */,
+				1892FE7C1F811E62004DE4DF /* RQRefreshView.swift */,
+				1892FE7E1F811E8E004DE4DF /* RQRefreshView.xib */,
+			);
+			path = RQRefreshView;
 			sourceTree = "<group>";
 		};
 		18A5E2471F4EC8EB008E7671 /* PicturePicker */ = {
@@ -375,6 +393,7 @@
 		18D2DF181ED0837000B446CC /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				1892FE791F811D1C004DE4DF /* RQRefreshView */,
 				18F43AA31F33313300024079 /* RefreshView */,
 				18B2B3A61EF29FB400792F60 /* StatusCell */,
 				18D2DF1F1ED0876D00B446CC /* HomeTableViewController.swift */,
@@ -445,6 +464,7 @@
 				18B2B78A1F4478EF00E4DDD3 /* UIBarButtonItem+Extension.swift */,
 				18A5E24A1F4EC9E0008E7671 /* UIImage+Extension.swift */,
 				18AF320C1F5010460056D655 /* UIColor+Extension.swift */,
+				18AEA67D1F7A463C00377E6C /* UIImageVIew+WebCache.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -553,23 +573,26 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = WRQ;
 				TargetAttributes = {
 					18D2DEE11ED07BB300B446CC = {
 						CreatedOnToolsVersion = 8.3;
 						DevelopmentTeam = 69ZWLY9ZXM;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					18D2DEF51ED07BB400B446CC = {
 						CreatedOnToolsVersion = 8.3;
 						DevelopmentTeam = 69ZWLY9ZXM;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 18D2DEE11ED07BB300B446CC;
 					};
 					18D2DF001ED07BB400B446CC = {
 						CreatedOnToolsVersion = 8.3;
 						DevelopmentTeam = 69ZWLY9ZXM;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 18D2DEE11ED07BB300B446CC;
 					};
@@ -603,6 +626,7 @@
 				18D2DEED1ED07BB300B446CC /* Assets.xcassets in Resources */,
 				182BC14D1F459C5E006F7ECB /* Emoticons.bundle in Resources */,
 				18E64FE31F5EA3AD007C06BE /* db.sql in Resources */,
+				1892FE7F1F811E8E004DE4DF /* RQRefreshView.xib in Resources */,
 				18F43AA71F33335700024079 /* WBRefreshView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -645,9 +669,24 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-仿写新浪微博/Pods-仿写新浪微博-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/FLAnimatedImage/FLAnimatedImage.framework",
+				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/pop/pop.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLAnimatedImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/pop.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -720,13 +759,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-仿写新浪微博Tests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C79653A4E81A834D7C6B08D9 /* [CP] Check Pods Manifest.lock */ = {
@@ -735,13 +777,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-仿写新浪微博-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D10AB2C03F43E7B37BA1A14B /* [CP] Check Pods Manifest.lock */ = {
@@ -750,13 +795,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-仿写新浪微博UITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -793,12 +841,15 @@
 				18AF320D1F5010460056D655 /* UIColor+Extension.swift in Sources */,
 				18D2DF241ED0879500B446CC /* DiscoverTableViewController.swift in Sources */,
 				189865FA1EDAC5F700E85860 /* UIImageView+Extension.swift in Sources */,
+				1892FE7B1F811D44004DE4DF /* RQRefreshControl.swift in Sources */,
 				18A5E2491F4EC8EB008E7671 /* PicturePickerController.swift in Sources */,
 				18B2B78B1F4478EF00E4DDD3 /* UIBarButtonItem+Extension.swift in Sources */,
 				181BCA191EF16698009A82CC /* StatusListViewModel.swift in Sources */,
+				18AEA67E1F7A463C00377E6C /* UIImageVIew+WebCache.swift in Sources */,
 				18FBBF301EF2D8E3009A4266 /* StatusViewModel.swift in Sources */,
 				18A5E24B1F4EC9E0008E7671 /* UIImage+Extension.swift in Sources */,
 				185768391EE2F22400629BF6 /* UserAccountViewModel.swift in Sources */,
+				1892FE7D1F811E62004DE4DF /* RQRefreshView.swift in Sources */,
 				18B2B3A81EF29FDF00792F60 /* StatusCell.swift in Sources */,
 				180C32901ED3324A009AE1D9 /* VisitorView.swift in Sources */,
 				182913B51EDEB42F000AAF4D /* OAuthViewController.swift in Sources */,
@@ -858,7 +909,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -866,7 +919,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -895,6 +952,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -909,7 +967,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -917,7 +977,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -938,6 +1002,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -956,7 +1021,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.xyou3g.------";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -974,7 +1040,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.xyou3g.------";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -990,7 +1057,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.xyou3g.------Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/仿写新浪微博.app/仿写新浪微博";
 			};
 			name = Debug;
@@ -1006,7 +1074,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.xyou3g.------Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/仿写新浪微博.app/仿写新浪微博";
 			};
 			name = Release;
@@ -1021,7 +1090,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.xyou3g.------UITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = "仿写新浪微博";
 			};
 			name = Debug;
@@ -1036,7 +1106,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.xyou3g.------UITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = "仿写新浪微博";
 			};
 			name = Release;

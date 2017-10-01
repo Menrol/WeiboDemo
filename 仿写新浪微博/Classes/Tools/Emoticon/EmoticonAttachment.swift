@@ -24,7 +24,7 @@ class EmoticonAttachment: NSTextAttachment {
         attachment.bounds = CGRect(x: 0, y: -4, width: lineHeight, height: lineHeight)
         let imageText = NSMutableAttributedString(attributedString: NSAttributedString(attachment: attachment))
         // 添加字体
-        imageText.addAttribute(NSFontAttributeName, value: font, range: NSRange(location: 0, length: 1))
+        imageText.addAttribute(NSAttributedStringKey.font, value: font, range: NSRange(location: 0, length: 1))
         
         return imageText
     }

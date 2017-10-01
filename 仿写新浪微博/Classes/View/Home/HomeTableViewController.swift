@@ -17,6 +17,8 @@ let StatusRetweetCellId = "StatusRetweetCellId"
 class HomeTableViewController: VisitorTableViewController {
     
     fileprivate lazy var statusListViewModel: StatusListViewModel = StatusListViewModel()
+    private lazy var myRefreshControl = RQRefreshControl()
+    
 
     // MARK: - 控制器生命周期
     override func viewDidLoad() {
@@ -26,6 +28,12 @@ class HomeTableViewController: VisitorTableViewController {
             visitorView?.setvisitorView(imageName: nil, message: "登录后，你所关注的人的微博会显示在这里")
             
             return
+        }
+        
+        if #available(iOS 11.0, *) {
+            tableView.contentInsetAdjustmentBehavior = .never
+        } else {
+            automaticallyAdjustsScrollViewInsets = false
         }
         
         setupTableView()
@@ -62,19 +70,19 @@ class HomeTableViewController: VisitorTableViewController {
     }
     
     // MARK: - 设置tableview
-    private func setupTableView(){
+    private func setupTableView() {
         tableView.register(StatusRetweetCell.self, forCellReuseIdentifier: StatusRetweetCellId)
         tableView.register(StatusNormalCell.self, forCellReuseIdentifier: StatusNormalCellId)
         tableView.separatorStyle = .none
+        tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0)
         
         // 自动计算行高 - 需要一个自上而下的自动布局的控件，指定一个向下的约束
         tableView.estimatedRowHeight = 400
         
         // 设置下拉刷新控件
-        refreshControl = WBRefreshControl()
+        tableView.addSubview(myRefreshControl)
         // 添加事件
-        refreshControl?.addTarget(self, action: #selector(HomeTableViewController.loadData), for: .valueChanged)
-        
+        myRefreshControl.addTarget(self, action: #selector(HomeTableViewController.loadData), for: .valueChanged)
         // 设置上拉刷新控件
         tableView.tableFooterView = pullUpView
     }
@@ -83,22 +91,22 @@ class HomeTableViewController: VisitorTableViewController {
     @objc fileprivate func loadData(){
         
         // 开始下拉刷新
-        refreshControl?.beginRefreshing()
+        myRefreshControl.beginRefreshing()
         
         statusListViewModel.loadData(ispullUp: pullUpView.isAnimating) { (isSuccess) in
-            
+
             // 结束下拉刷新
-            self.refreshControl?.endRefreshing()
-            
+            self.myRefreshControl.endRefreshing()
+
             // 结束上拉刷新
             self.pullUpView.stopAnimating()
-            
+
             if !isSuccess {
                 SVProgressHUD.showInfo(withStatus: "网络不给力")
-                
-                return 
+
+                return
             }
-            
+
             self.tableView.reloadData()
         }
     }

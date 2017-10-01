@@ -10,11 +10,11 @@ import UIKit
 
 class Emoticon: NSObject {
     /// 发送给服务器字符串
-    var chs: String?
+    @objc var chs: String?
     /// 本地图片
-    var png: String?
+    @objc var png: String?
     /// 表情十六进制编码
-    var code: String? {
+    @objc var code: String? {
         didSet{
             emoji = code?.emoji
         }
