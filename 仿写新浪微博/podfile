@@ -6,11 +6,11 @@ target '仿写新浪微博' do
   use_frameworks!
 
   pod 'AFNetworking'
-  pod 'SnapKit'
-  pod 'SDWebImage'
+  pod 'SDWebImage' 
   pod 'SDWebImage/GIF'
   pod 'SVProgressHUD'
   pod 'FMDB'
+  pod 'SnapKit'
 
   target '仿写新浪微博Tests' do
     inherit! :search_paths

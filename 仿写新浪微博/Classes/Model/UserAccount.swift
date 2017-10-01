@@ -11,26 +11,26 @@ import UIKit
 class UserAccount: NSObject, NSCoding{
     
     /// 授权的唯一票据
-    var access_token: String?
+    @objc var access_token: String?
     
     /// 生命周期,单位秒
-    var expires_in: TimeInterval = 0{
+    @objc var expires_in: TimeInterval = 0{
         didSet{
             expires_date = NSDate(timeIntervalSinceNow: expires_in)
         }
     }
     
     /// 生命周期，时间
-    var expires_date: NSDate?
+    @objc var expires_date: NSDate?
     
     /// 授权用户的UID
-    var uid: String?
+    @objc var uid: String?
     
     /// 用户昵称
-    var screen_name: String?
+    @objc var screen_name: String?
     
     /// 用户头像地址（大图），180×180像素
-    var avatar_large:String?
+    @objc var avatar_large:String?
     
     init(dic: [String:Any]) {
         super.init()        
@@ -38,9 +38,7 @@ class UserAccount: NSObject, NSCoding{
         setValuesForKeys(dic)
     }
     
-    override func setValue(_ value: Any?, forUndefinedKey key: String) {
-        
-    }
+    override func setValue(_ value: Any?, forUndefinedKey key: String) {}
     
     override var description: String{
         let keys = ["access_token","expires_date","uid","screen_name","avatar_large"]

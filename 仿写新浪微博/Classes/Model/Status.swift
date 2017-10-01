@@ -10,19 +10,25 @@ import UIKit
 
 class Status: NSObject {
     /// 微博ID
-    var id: Int = 0
+    @objc var id: Int = 0
     /// 微博创建时间
-    var created_at: String?
+    @objc var created_at: String?
     /// 微博来源
-    var source: String?
+    @objc var source: String?
     /// 微博信息内容
-    var text: String?
+    @objc var text: String?
     /// 用户
-    var user: User?
+    @objc var user: User?
     /// 配图数组
-    var pic_urls: [[String: String]]?
+    @objc var pic_urls: [[String: String]]?
     /// 转发微博
-    var retweeted_status: Status?
+    @objc var retweeted_status: Status?
+    /// 转发数
+    @objc var reposts_count: Int = 0
+    /// 评论数
+    @objc var comments_count: Int = 0
+    /// 表态数
+    @objc var attitudes_count: Int = 0
     
     init(dic: [String: Any]) {
         super.init()

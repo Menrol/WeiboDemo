@@ -93,7 +93,9 @@ extension StatusCellPictureView: PictureBrowserPresentDelegate {
             return imageView
         }
         
-        imageView.sd_setImage(with: url)
+        imageView.image = SDWebImageManager.shared().imageCache?.imageFromDiskCache(forKey: url.absoluteString)
+        
+//        imageView.sd_setImage(with: url)
         
         return imageView
     }
