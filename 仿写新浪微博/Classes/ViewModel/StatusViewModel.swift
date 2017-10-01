@@ -67,25 +67,6 @@ class StatusViewModel: CustomStringConvertible{
         
         return "@" + (status.user?.screen_name ?? "") + ":" + (status.text ?? "")
     }
-    /// 转发数
-    var reposts_count: String?
-    /// 评论数
-    var comments_count: String?
-    /// 表态数
-    var attitudes_count: String?
-    
-    private func countDescription(count: Int, message: String) -> String {
-        if count == 0 {
-            return message
-        }
-        if count > 10000 {
-            let c = Double(count) / 10000
-            
-            return String(format: "%.1f万", c)
-        }
-        
-        return "\(count)"
-    }
     
     
     init(status: Status) {
@@ -99,11 +80,6 @@ class StatusViewModel: CustomStringConvertible{
                 thumbnailUrls?.append(url!)
             }
         }
-        
-        reposts_count = countDescription(count: status.reposts_count, message: "转发")
-        comments_count = countDescription(count: status.comments_count, message: "评论")
-        attitudes_count = countDescription(count: status.attitudes_count, message: "赞")
-        
     }
     
     var description: String{

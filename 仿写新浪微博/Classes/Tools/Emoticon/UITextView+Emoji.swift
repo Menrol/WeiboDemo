@@ -17,7 +17,7 @@ extension UITextView {
         
         attributedText.enumerateAttributes(in: NSRange(location: 0, length: attributedText.length), options: []) { (dic, range, _) in
             
-            if let attr = dic[NSAttributedStringKey.attachment] as? EmoticonAttachment {
+            if let attr = dic["NSAttachment"] as? EmoticonAttachment {
                 strM += attr.emoticon.chs ?? ""
             }else {
                 let str = (attributedText.string as NSString).substring(with: range)

@@ -61,10 +61,9 @@ extension OAuthViewController: UIWebViewDelegate{
             return false
         }
         
-        let start = query.index(after: query.index(of: "=")!)
-        let code = query[start...]
+        let code = query.substring(from: "code=".endIndex)
         
-        UserAccountViewModel.sharedUersAccount.loadAccessToken(code: String(code)) { (isSuccess) in
+        UserAccountViewModel.sharedUersAccount.loadAccessToken(code: code) { (isSuccess) in
             if !isSuccess{
                 print("失败了")
                 SVProgressHUD.showInfo(withStatus: "网络不给力")

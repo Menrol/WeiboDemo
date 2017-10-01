@@ -59,17 +59,6 @@ extension NetworkTool{
         }
         tokenRequest(method: .GET, urlString: urlString, parameters: parameters, finished: finished)
     }
-    
-    /// 获取未读微博条数
-    func unreadCount(finished: @escaping FinishedCallback) {
-        let urlString = "https://rm.api.weibo.com/2/remind/unread_count.json"
-        guard let uid = UserAccountViewModel.sharedUersAccount.userAccount?.uid else {
-            return
-        }
-        let parameters = ["uid": uid]
-        
-        tokenRequest(method: .GET, urlString: urlString, parameters: parameters, finished: finished)
-    }
 }
 
 // MARK: - 发布微博

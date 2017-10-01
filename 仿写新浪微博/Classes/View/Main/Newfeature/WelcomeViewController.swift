@@ -26,10 +26,6 @@ class WelcomeViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if #available(iOS 11.0, *) {
-            view.layoutIfNeeded()
-        }
-        
         iconImageView.snp.updateConstraints { (make) in
             make.bottom.equalTo(view.snp.bottom).offset(-view.bounds.height + 200)
         }

@@ -9,14 +9,6 @@
 import UIKit
 
 class StatusCellBottomView: UIView {
-    
-    var viewModel: StatusViewModel? {
-        didSet {
-            retweetButton.setTitle(viewModel?.reposts_count, for: .normal)
-            commentButton.setTitle(viewModel?.comments_count, for: .normal)
-            likeButton.setTitle(viewModel?.attitudes_count, for: .normal)
-        }
-    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -39,8 +31,8 @@ class StatusCellBottomView: UIView {
 }
 
 // MARK: - 设置界面
-extension StatusCellBottomView {
-    fileprivate func setupUI() {
+extension StatusCellBottomView{
+    fileprivate func setupUI(){
         
         // 添加控件
         addSubview(retweetButton)
@@ -71,7 +63,7 @@ extension StatusCellBottomView {
         }
         
         // 分割视图
-        let width = 0.6
+        let width = 0.5
         let scale = 0.4
         let seqView1 = sepView()
         let seqView2 = sepView()
@@ -94,7 +86,7 @@ extension StatusCellBottomView {
     }
     
     
-    private func sepView() -> UIView {
+    private func sepView() -> UIView{
         let sepView = UIView()
         sepView.backgroundColor = UIColor.darkGray
         

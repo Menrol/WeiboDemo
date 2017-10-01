@@ -37,7 +37,7 @@ class PictureBrowserViewCell: UICollectionViewCell {
             let placeholderImage = SDWebImageManager.shared().imageCache?.imageFromDiskCache(forKey: url.absoluteString)
             preparePlaceHolder(image: placeholderImage)
             
-            imageView.sd_setImage(with: bmiddleUrl(url: url), placeholderImage: placeholderImage, options: [], progress: { (current, total, _) in
+            imageView.sd_setImage(with: bmiddleUrl(url: url), placeholderImage: placeholderImage, options: [.refreshCached,.retryFailed], progress: { (current, total, _) in
                 DispatchQueue.main.async(execute: { 
                     self.placeholder.progress = CGFloat(current) / CGFloat(total)
                 })

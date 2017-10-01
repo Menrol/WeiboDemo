@@ -35,7 +35,7 @@ class SQliteManager {
         let sql = try! String(contentsOfFile: path)
         
         queue.inDatabase { (db) in
-            if db.executeStatements(sql) {
+            if db!.executeStatements(sql) {
                 print("创表成功")
             }else {
                 print("创表失败")
@@ -47,14 +47,14 @@ class SQliteManager {
         var result = [[String: Any]]()
         
         SQliteManager.sharedManager.queue.inDatabase { (db) in
-            guard let rs = db.executeQuery(sql, withParameterDictionary: nil) else {
+            guard let rs = db?.executeQuery(sql, withParameterDictionary: nil) else {
                 print("没有结果")
                 
                 return
             }
             
             while rs.next() {
-                let cols = rs.columnCount
+                let cols = rs.columnCount()
                 var dic = [String: Any]()
                 
                 for col in 0..<cols {

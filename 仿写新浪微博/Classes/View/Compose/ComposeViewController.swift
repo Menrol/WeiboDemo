@@ -205,13 +205,7 @@ private extension ComposeViewController {
         
         // 设置约束
         sendLabel.snp.makeConstraints { (make) in
-            var offSet: CGFloat
-            if #available(iOS 11.0, *) {
-                offSet = -12
-            }else {
-                offSet = 0
-            }
-            make.top.equalTo(titleView.snp.top).offset(offSet)
+            make.top.equalTo(titleView.snp.top)
             make.centerX.equalTo(titleView.snp.centerX)
         }
         

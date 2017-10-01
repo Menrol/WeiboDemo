@@ -10,9 +10,6 @@ import UIKit
 
 class MainViewController: UITabBarController {
     
-    /// 定时器
-    fileprivate var timer: Timer?
-    
     // MARK: - 监听方法
     @objc fileprivate func pressComposeButton() {
         var viewController: UIViewController
@@ -26,23 +23,12 @@ class MainViewController: UITabBarController {
         present(nav, animated: true, completion: nil)
     }
     
-    @objc fileprivate func checkUnreadCount() {
-        NetworkTool.sharedTool.unreadCount { (result, error) in
-            let dic = result as? [String: Any]
-            let conut = dic?["status"] as? Int ?? 0
-            print("未读数\(conut)")
-            self.tabBar.items?[0].badgeValue = conut > 0 ? "\(conut)" : nil
-            UIApplication.shared.applicationIconBadgeNumber = conut
-        }
-    }
-    
     // MARK: - 视图生命周期
     override func viewDidLoad() {
         super.viewDidLoad()
         
         addChildViewControllers()
         setComposeButton()
-        setupTimer()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,20 +39,9 @@ class MainViewController: UITabBarController {
         
     }
     
-    deinit {
-        timer?.invalidate()
-    }
-    
     // MARK: - 懒加载控件
     fileprivate lazy var composeButton: UIButton = UIButton(imageName: "tabbar_compose_icon_add", backgroundImageName: "tabbar_compose_button")
 
-}
-
-// MARK: - 时钟相关方法
-extension MainViewController {
-    fileprivate func setupTimer() {
-        timer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(checkUnreadCount), userInfo: nil, repeats: true)
-    }
 }
 
 // MARK: - 设置界面
@@ -99,7 +74,7 @@ extension MainViewController{
     fileprivate func addChildViewController(vc:UIViewController,title:String,imageName:String) {
         vc.title = title
         vc.tabBarItem.image = UIImage(named: "\(imageName)")
-        vc.tabBarItem.selectedImage = UIImage(named: "\(imageName)_selected")!.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
+        vc.tabBarItem.selectedImage = UIImage(named: "\(imageName)_highlighted")!.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
         let navi = UINavigationController(rootViewController: vc)
         addChildViewController(navi)
     }

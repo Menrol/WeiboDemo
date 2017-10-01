@@ -63,8 +63,8 @@ class StatusDAL {
         // 执行sql
         let sql = "DELETE FROM T_Status WHERE createTime < ?;"
         SQliteManager.sharedManager.queue.inDatabase { (db) in
-            if db.executeUpdate(sql, withArgumentsIn: [dateStr]) {
-                print("删除了\(db.changes)条数据")
+            if db!.executeUpdate(sql, withArgumentsIn: [dateStr]) {
+                print("删除了\(db!.changes())条数据")
             }
         }
     }
@@ -121,9 +121,9 @@ class StatusDAL {
                 // 微博
                 let status = try! JSONSerialization.data(withJSONObject: dic, options: [])
                 
-                if !db.executeUpdate(sql, withArgumentsIn: [statusId,status,userId]){
+                if !db!.executeUpdate(sql, withArgumentsIn: [statusId,status,userId]){
                     // 回滚
-                    rollback.pointee = true
+                    rollback?.pointee = true
                 }
             }
         })

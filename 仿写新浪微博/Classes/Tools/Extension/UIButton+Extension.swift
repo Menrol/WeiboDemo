@@ -47,7 +47,6 @@ extension UIButton {
         setTitleColor(color, for: UIControlState.normal)
         if let imageName = imageName {
             setImage((UIImage(named: imageName)), for: UIControlState.normal)
-            titleEdgeInsets = UIEdgeInsetsMake(0, 4, 0, 0)
         }
         backgroundColor = backColor
         

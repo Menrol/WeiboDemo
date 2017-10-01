@@ -15,10 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         setupApperence()
-    
-        // 取得用户授权显示通知
-        let notificationSettings = UIUserNotificationSettings(types: [.alert,.badge,.sound], categories: nil)
-        UIApplication.shared.registerUserNotificationSettings(notificationSettings)
         
         // 测试解档
         print(UserAccountViewModel.sharedUersAccount.userAccount as Any)
@@ -48,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: - 设置全局外观
     private func setupApperence(){
-        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.orange], for: UIControlState.selected)
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName : UIColor.orange], for: UIControlState.selected)
         UINavigationBar.appearance().tintColor = UIColor.orange
     }
 

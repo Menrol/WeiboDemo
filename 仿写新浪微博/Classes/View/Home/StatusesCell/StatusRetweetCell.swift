@@ -36,7 +36,7 @@ class StatusRetweetCell: StatusCell {
 }
 
 // MARK: - 设置界面
-extension StatusRetweetCell {
+extension StatusRetweetCell{
     override func setupUI() {
         super.setupUI()
         
