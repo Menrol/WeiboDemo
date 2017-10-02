@@ -15,13 +15,14 @@ enum RQRefreshState {
     case WilRefresh
 }
 
-/// 刷新状态临界点
-private let RQRefreshOffset: CGFloat = 60
-
 class RQRefreshControl: UIControl {
     
+    /// 刷新状态临界点
+    private let RQRefreshOffset: CGFloat = 60
     /// 滚动视图
     private weak var scrollView: UIScrollView?
+    /// 顶部间距
+    private var originalInset: UIEdgeInsets?
     
     /// 开始刷新
     func beginRefreshing() {
@@ -35,10 +36,8 @@ class RQRefreshControl: UIControl {
         
         refreshView.refreshState = .WilRefresh
         
-        var inset = sv.contentInset
-        inset.top += RQRefreshOffset
-        
-        sv.contentInset = inset
+        let topInset = (originalInset?.top ?? 0) + RQRefreshOffset
+        sv.contentInset = UIEdgeInsets(top: topInset, left: 0, bottom: 0, right: 0)
     }
     
     /// 结束刷新
@@ -53,10 +52,7 @@ class RQRefreshControl: UIControl {
         
         refreshView.refreshState = .Normal
         
-        var inset = sv.contentInset
-        inset.top -= RQRefreshOffset
-        
-        sv.contentInset = inset
+        sv.contentInset = UIEdgeInsets(top: originalInset?.top ?? 0, left: 0, bottom: 0, right: 0)
     }
     
     override func willMove(toSuperview newSuperview: UIView?) {
@@ -67,6 +63,8 @@ class RQRefreshControl: UIControl {
         }
         
         scrollView = superView
+        
+        originalInset = scrollView?.contentInset
         
         scrollView?.addObserver(self, forKeyPath: "contentOffset", options: [], context: nil)
     }
@@ -85,6 +83,9 @@ class RQRefreshControl: UIControl {
             return
         }
         
+        let topInset = originalInset?.top ?? 0
+        var lastHeight: CGFloat = 0
+        
         if sv.isDragging {
             if height <= RQRefreshOffset && refreshView.refreshState == .Pulling {
                 print("下拉刷新")
@@ -92,6 +93,14 @@ class RQRefreshControl: UIControl {
             }else if height > RQRefreshOffset && refreshView.refreshState == .Normal {
                 refreshView.refreshState = .Pulling
                 print("松开刷新")
+            }else if height < RQRefreshOffset && refreshView.refreshState == .WilRefresh {
+                if sv.contentOffset.y >= -(RQRefreshOffset + topInset) {
+                    var inset = sv.contentInset
+                    inset.top += height - lastHeight
+                    print(inset.top)
+                    sv.contentInset = inset
+                    lastHeight = height
+                }
             }
         }else {
             if refreshView.refreshState == .Pulling {

@@ -7,9 +7,9 @@
 //
 
 import XCTest
-//@testable import ______
+@testable import 仿写新浪微博
 
-class ______Tests: XCTestCase {
+class 仿写新浪微博Tests: XCTestCase {
     
     override func setUp() {
         super.setUp()
