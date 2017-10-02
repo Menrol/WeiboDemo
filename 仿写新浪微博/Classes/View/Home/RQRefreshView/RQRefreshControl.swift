@@ -97,7 +97,6 @@ class RQRefreshControl: UIControl {
                 if sv.contentOffset.y >= -(RQRefreshOffset + topInset) {
                     var inset = sv.contentInset
                     inset.top += height - lastHeight
-                    print(inset.top)
                     sv.contentInset = inset
                     lastHeight = height
                 }

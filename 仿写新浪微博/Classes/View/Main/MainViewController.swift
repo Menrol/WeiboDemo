@@ -15,15 +15,13 @@ class MainViewController: UITabBarController {
     
     // MARK: - 监听方法
     @objc fileprivate func pressComposeButton() {
-        var viewController: UIViewController
         if UserAccountViewModel.sharedUersAccount.isLogin {
-            viewController = ComposeViewController()
+            ComposeSwitchView.show()
         }else {
-            viewController = OAuthViewController()
+            let viewController = OAuthViewController()
+            let nav = UINavigationController(rootViewController: viewController)
+            present(nav, animated: true, completion: nil)
         }
-        let nav = UINavigationController(rootViewController: viewController)
-        
-        present(nav, animated: true, completion: nil)
     }
     
     @objc fileprivate func checkUnreadCount() {
