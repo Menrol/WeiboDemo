@@ -16,7 +16,7 @@ class MainViewController: UITabBarController {
     // MARK: - 监听方法
     @objc fileprivate func pressComposeButton() {
         if UserAccountViewModel.sharedUersAccount.isLogin {
-            ComposeSwitchView.show()
+            ComposeSwitchView.composeSwitchView().show()
         }else {
             let viewController = OAuthViewController()
             let nav = UINavigationController(rootViewController: viewController)
