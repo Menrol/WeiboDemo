@@ -88,7 +88,7 @@ class HomeTableViewController: VisitorTableViewController {
     }
     
     // MARK: - 加载数据
-    @objc fileprivate func loadData(){
+    @objc func loadData(){
         
         // 开始下拉刷新
         myRefreshControl.beginRefreshing()

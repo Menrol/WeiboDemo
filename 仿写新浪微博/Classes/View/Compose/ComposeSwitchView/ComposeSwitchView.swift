@@ -63,8 +63,17 @@ class ComposeSwitchView: UIView {
     @IBAction func close() {
         // 获取当前view
         let view = currentView()
-        // 显示关闭按钮动画
-        dismissCloseButtonAnimation()
+        // 判断是否是第二页
+        if view.subviews.count == 4 {
+            // 合并按钮
+            combineButtons(completion: {
+                // 显示关闭按钮动画
+                self.dismissCloseButtonAnimation()
+            })
+        }else {
+            // 显示关闭按钮动画
+            dismissCloseButtonAnimation()
+        }
         // 遍历view
         for (i,button) in view.subviews.enumerated().reversed() {
             let animation: POPSpringAnimation = POPSpringAnimation(propertyNamed: kPOPLayerPositionY)
@@ -86,17 +95,7 @@ class ComposeSwitchView: UIView {
         scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
         
         //添加动画
-        let offset = UIScreen.main.bounds.width / 6
-        returnButtonCons.constant += offset
-        closeButtonCons.constant -= offset
-        
-        UIView.animate(withDuration: 0.25, animations: {
-            self.layoutIfNeeded()
-            self.returnButton.alpha = 0
-        }) { (_) in
-            self.returnButton.isHidden = true
-            self.returnButton.alpha = 1
-        }
+        combineButtons(completion: nil)
     }
     
     @objc private func clickMore() {
@@ -111,12 +110,11 @@ class ComposeSwitchView: UIView {
         returnButtonCons.constant -= offset
         closeButtonCons.constant += offset
         returnButton.alpha = 0
-
-        UIView.animate(withDuration: 0.25) {
+        
+        UIView.animate(withDuration: 0.25, animations: {
             self.layoutIfNeeded()
             self.returnButton.alpha = 1
-        }
-        
+        })
     }
     
     // MARK: - 视图展示与关闭相关方法
@@ -140,6 +138,7 @@ class ComposeSwitchView: UIView {
         }
     }
     
+    /// 显示按钮动画
     private func showButtonsAnimation() {
         // 获取当前view
         let view = currentView()
@@ -155,6 +154,7 @@ class ComposeSwitchView: UIView {
         }
     }
     
+    /// 关闭视图动画
     func closeAnimation() {
         let animation: POPBasicAnimation = POPBasicAnimation(propertyNamed: kPOPViewAlpha)
         animation.toValue = 0
@@ -166,6 +166,7 @@ class ComposeSwitchView: UIView {
         }
     }
     
+    /// 显示关闭按钮动画
     private func showCloseButtonAnimation() {
         let animation: POPBasicAnimation = POPBasicAnimation(propertyNamed: kPOPLayerRotation)
         animation.toValue = Double.pi / 4
@@ -173,10 +174,27 @@ class ComposeSwitchView: UIView {
         closeButton.layer.pop_add(animation, forKey: nil)
     }
     
+    /// 关闭关闭按钮动画
     private func dismissCloseButtonAnimation() {
         let animation: POPBasicAnimation = POPBasicAnimation(propertyNamed: kPOPLayerRotation)
         animation.toValue = -Double.pi / 2
         closeButton.layer.pop_add(animation, forKey: nil)
+    }
+    
+    /// 合并按钮动画
+    private func combineButtons(completion: (() -> Void)?) {
+        let offset = UIScreen.main.bounds.width / 6
+        returnButtonCons.constant += offset
+        closeButtonCons.constant -= offset
+        
+        UIView.animate(withDuration: 0.25, animations: {
+            self.layoutIfNeeded()
+            self.returnButton.alpha = 0
+        }) { (_) in
+            self.returnButton.isHidden = true
+            self.returnButton.alpha = 1
+            completion?()
+        }
     }
     
     /// 获取当前view

@@ -56,6 +56,9 @@ class MainViewController: UITabBarController {
         addChildViewControllers()
         setComposeButton()
         setupTimer()
+        
+        // 设置代理
+        delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -82,10 +85,27 @@ extension MainViewController {
     }
 }
 
-// MARK: - UITabBarDelegate
-extension MainViewController {
-    override func tabBar(_ tabBar: UITabBar, willBeginCustomizing items: [UITabBarItem]) {
+// MARK: - UITabBarControllerDelegate
+extension MainViewController: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        // 获取将要切换控制器索引
+        let idx = childViewControllers.index(of: viewController)
         
+        // 判断是否是首页
+        if selectedIndex == 0 && idx == selectedIndex {
+            // 获取首页控制器
+            let nav = childViewControllers[0] as! UINavigationController
+            let vc = nav.childViewControllers[0] as! HomeTableViewController
+            // 滚动到顶部
+            vc.tableView.setContentOffset(CGPoint(x: 0, y: -124), animated: false)
+            // 刷新
+            vc.loadData()
+            // 设置未读个数
+            tabBar.items?[0].badgeValue = nil
+            UIApplication.shared.applicationIconBadgeNumber = 0
+        }
+        
+        return !viewController.isMember(of: UIViewController.self)
     }
 }
 
@@ -99,7 +119,7 @@ extension MainViewController{
         
         // 调整按钮
         let count = childViewControllers.count
-        let w = tabBar.bounds.width / CGFloat(count) - 1
+        let w = tabBar.bounds.width / CGFloat(count)
         let tabbarFrame = tabBar.bounds
         composeButton.frame = tabbarFrame.insetBy(dx: 2 * w, dy: 0)
         
