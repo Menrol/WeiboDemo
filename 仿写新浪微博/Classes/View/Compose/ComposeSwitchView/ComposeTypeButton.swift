@@ -12,6 +12,8 @@ class ComposeTypeButton: UIControl {
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
+    /// 控制器名称
+    var className: String?
     
     class func button(imageName: String, title: String) -> ComposeTypeButton {
         let nib = UINib(nibName: "ComposeTypeButton", bundle: nil)

@@ -16,7 +16,22 @@ class MainViewController: UITabBarController {
     // MARK: - 监听方法
     @objc fileprivate func pressComposeButton() {
         if UserAccountViewModel.sharedUersAccount.isLogin {
-            ComposeSwitchView.composeSwitchView().show()
+            let view = ComposeSwitchView.composeSwitchView()
+            view.show(completion: { [weak view] (className) in
+                guard let className = className,
+                    let cls = NSClassFromString(Bundle.main.namespace + "." + className) as? UIViewController.Type
+                    else {
+                        view?.closeAnimation()
+                        return
+                }
+                
+                let vc = cls.init()
+                let nav = UINavigationController(rootViewController: vc)
+                
+                self.present(nav, animated: true, completion: {
+                    view?.closeAnimation()
+                })
+            })
         }else {
             let viewController = OAuthViewController()
             let nav = UINavigationController(rootViewController: viewController)
@@ -64,6 +79,13 @@ class MainViewController: UITabBarController {
 extension MainViewController {
     fileprivate func setupTimer() {
         timer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(checkUnreadCount), userInfo: nil, repeats: true)
+    }
+}
+
+// MARK: - UITabBarDelegate
+extension MainViewController {
+    override func tabBar(_ tabBar: UITabBar, willBeginCustomizing items: [UITabBarItem]) {
+        
     }
 }
 

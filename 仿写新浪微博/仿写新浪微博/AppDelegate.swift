@@ -20,8 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let notificationSettings = UIUserNotificationSettings(types: [.alert,.badge,.sound], categories: nil)
         UIApplication.shared.registerUserNotificationSettings(notificationSettings)
         
-        // 测试解档
-        print(UserAccountViewModel.sharedUersAccount.userAccount as Any)
+//        // 测试
+//        print(UserAccountViewModel.sharedUersAccount.userAccount as Any)
+//        print(Bundle.main.infoDictionary)
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.backgroundColor = UIColor.white
