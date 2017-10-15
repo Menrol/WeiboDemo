@@ -8,34 +8,35 @@
 
 import Foundation
 
-class EmoticonManage {
+class EmoticonManager {
     
     /// 单例
-    static let sharedManager = EmoticonManage()
+    static let sharedManager = EmoticonManager()
     
     /// 表情包数组
     lazy var packages: [Package] = [Package]()
+    /// 素材包
+    lazy var bundle: Bundle = {
+        let path = Bundle.main.path(forResource: "Emoticons.bundle", ofType: nil)
+        
+        return Bundle(path: path!)!
+    }()
     
     /// 构造函数
     private init() {
         // 获取路径
-        let path = Bundle.main.path(forResource: "emoticons.plist", ofType: nil, inDirectory: "Emoticons.bundle")!
-        // 获取表情包字典
-        let dic = NSDictionary(contentsOfFile: path) as! [String: Any]
-        // 获取id数组
-        let array = (dic["packages"] as! NSArray).value(forKey: "id")
-        
-        packages.append(Package(dictionary: ["group_name_cn": "最近"]))
-        
-        for id in array as! [String] {
-            loadInfoPlist(id: id)
+        guard let path = Bundle.main.path(forResource: "Emoticons.bundle", ofType: nil),
+            let bundle = Bundle(path: path),
+            let plistPath = bundle.path(forResource: "emoticons.plist", ofType: nil),
+            let array = NSArray(contentsOfFile: plistPath) as? [[String: String]]
+            else {
+                return
         }
-    }
-    
-    /// 加载每个表情包的info.plist
-    private func loadInfoPlist(id: String) {
-        let path = Bundle.main.path(forResource: "info.plist", ofType: nil, inDirectory: "Emoticons.bundle/\(id)")!
-        let dic = NSDictionary(contentsOfFile: path) as! [String: Any]
-        packages.append(Package(dictionary: dic))
+        
+        for dic in array {
+            packages.append(Package(dictionary: dic))
+        }
+        
+        print(packages)
     }
 }

@@ -14,14 +14,21 @@ private let EmoticonViewCellId = "EmoticonViewCellId"
 class EmoticonView: UIView {
     
     /// 表情包数组
-    fileprivate lazy var packages = EmoticonManage.sharedManager.packages
-    
+    fileprivate lazy var packages = EmoticonManager.sharedManager.packages
     /// 点击回调
     fileprivate var selectedEmoticonCallBack: (_ emoticon: Emoticon) -> ()
     
-    /// 监听方法
-    @objc fileprivate func clickItem(item: UIBarButtonItem) {
-        let indexPath = IndexPath(item: 0, section: item.tag)
+    // MARK: - 监听方法
+    @objc fileprivate func clickItem(button: UIButton) {
+        // 取消所有选中状态
+        for button in toolBar.subviews as! [UIButton] {
+            button.isSelected = false
+        }
+        // 设置选中状态
+        button.isSelected = true
+        
+        // 滚动
+        let indexPath = IndexPath(item: 0, section: button.tag)
         collectionView.scrollToItem(at: indexPath, at: .left, animated: true)
     }
 
@@ -35,13 +42,7 @@ class EmoticonView: UIView {
         
         setupUI()
         
-        backgroundColor = UIColor.red
-        
-        DispatchQueue.main.async {
-            let indexPath = IndexPath(item: 0, section: 1)
-            self.collectionView.scrollToItem(at: indexPath, at: .left, animated: false)
-        }
-
+        backgroundColor = UIColor.white
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -50,7 +51,8 @@ class EmoticonView: UIView {
     
     // MARK: - 懒加载控件
     fileprivate lazy var collectionView: UICollectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: EmoticonLayout())
-    fileprivate lazy var toolBar: UIToolbar = UIToolbar()
+    fileprivate lazy var toolBar: UIView = UIView()
+    fileprivate lazy var pageControl: UIPageControl = UIPageControl()
     
     // MARK: - 自定义布局
     private class EmoticonLayout: UICollectionViewFlowLayout {
@@ -58,19 +60,17 @@ class EmoticonView: UIView {
         override func prepare() {
             super.prepare()
             
-            let col: CGFloat = 7
-            let row: CGFloat = 3
-            let width = collectionView!.bounds.width / col
-            let margin = (collectionView!.bounds.height - row * width) * 0.499
+            guard let collectionView = collectionView else {
+                return
+            }
             
-            itemSize = CGSize(width: width, height: width)
+            itemSize = collectionView.bounds.size
             minimumLineSpacing = 0
             minimumInteritemSpacing = 0
-            sectionInset = UIEdgeInsetsMake(margin, 0, margin, 0)
             scrollDirection = .horizontal
-            collectionView?.showsHorizontalScrollIndicator = false
-            collectionView?.isPagingEnabled = true
-            collectionView?.bounces = false
+            collectionView.showsHorizontalScrollIndicator = false
+            collectionView.isPagingEnabled = true
+            collectionView.bounces = false
         }
     }
 }
@@ -82,24 +82,22 @@ extension EmoticonView: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return packages[section].emoticons.count
+        return packages[section].numberOfPages
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EmoticonViewCellId, for: indexPath) as! EmoticonViewCell
-        cell.backgroundColor = indexPath.row % 2 == 0 ? UIColor.red : UIColor.green
         
-        cell.emoticon = packages[indexPath.section].emoticons[indexPath.row]
+        cell.emoticons = packages[indexPath.section].emoticons(page: indexPath.item)
+        cell.emoticonCellDelegate = self
         
         return cell
     }
 }
 
-// MARK: - UICollectionViewDelegate
-extension EmoticonView: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let emoticon = packages[indexPath.section].emoticons[indexPath.row]
-        
+// MARK: - EmoticonViewCellDelegate
+extension EmoticonView: EmoticonViewCellDelegate {
+    func didSelectEmoticon(emoticon: Emoticon) {
         selectedEmoticonCallBack(emoticon)
     }
 }
@@ -110,88 +108,158 @@ private extension EmoticonView {
         // 添加控件
         addSubview(collectionView)
         addSubview(toolBar)
+        addSubview(pageControl)
         
         // 设置位置
-        toolBar.snp.makeConstraints { (make) in
-            make.left.equalTo(self.snp.left)
-            make.right.equalTo(self.snp.right)
-            make.bottom.equalTo(self.snp.bottom)
-            make.height.equalTo(44)
-        }
+        toolBar.translatesAutoresizingMaskIntoConstraints = false
+        addConstraint(NSLayoutConstraint(item: toolBar,
+                                         attribute: .left,
+                                         relatedBy: .equal,
+                                         toItem: self,
+                                         attribute: .left,
+                                         multiplier: 1,
+                                         constant: 0))
+        addConstraint(NSLayoutConstraint(item: toolBar,
+                                         attribute: .right,
+                                         relatedBy: .equal,
+                                         toItem: self,
+                                         attribute: .right,
+                                         multiplier: 1,
+                                         constant: 0))
+        addConstraint(NSLayoutConstraint(item: toolBar,
+                                         attribute: .bottom,
+                                         relatedBy: .equal,
+                                         toItem: self,
+                                         attribute: .bottom,
+                                         multiplier: 1,
+                                         constant: 0))
+        addConstraint(NSLayoutConstraint(item: toolBar,
+                                         attribute: .height,
+                                         relatedBy: .equal,
+                                         toItem: nil,
+                                         attribute: .notAnAttribute,
+                                         multiplier: 1,
+                                         constant: 44))
         
-        collectionView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.snp.top)
-            make.left.equalTo(self.snp.left)
-            make.right.equalTo(self.snp.right)
-            make.bottom.equalTo(toolBar.snp.top)
-        }
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        addConstraint(NSLayoutConstraint(item: collectionView,
+                                         attribute: .top,
+                                         relatedBy: .equal,
+                                         toItem: self,
+                                         attribute: .top,
+                                         multiplier: 1,
+                                         constant: 0))
+        addConstraint(NSLayoutConstraint(item: collectionView,
+                                         attribute: .left,
+                                         relatedBy: .equal,
+                                         toItem: self,
+                                         attribute: .left,
+                                         multiplier: 1,
+                                         constant: 0))
+        addConstraint(NSLayoutConstraint(item: collectionView,
+                                         attribute: .right,
+                                         relatedBy: .equal,
+                                         toItem: self,
+                                         attribute: .right,
+                                         multiplier: 1,
+                                         constant: 0))
+        addConstraint(NSLayoutConstraint(item: collectionView,
+                                         attribute: .bottom,
+                                         relatedBy: .equal,
+                                         toItem: toolBar,
+                                         attribute: .top,
+                                         multiplier: 1,
+                                         constant: 0))
+        
+        pageControl.translatesAutoresizingMaskIntoConstraints = false
+        addConstraint(NSLayoutConstraint(item: pageControl,
+                                         attribute: .centerX,
+                                         relatedBy: .equal,
+                                         toItem: self,
+                                         attribute: .centerX,
+                                         multiplier: 1,
+                                         constant: 0))
+        addConstraint(NSLayoutConstraint(item: pageControl,
+                                         attribute: .bottom,
+                                         relatedBy: .equal,
+                                         toItem: toolBar,
+                                         attribute: .top,
+                                         multiplier: 1,
+                                         constant: 8))
+        
         
         // 准备toolbar
         prepareToolBar()
-        
         // 准备collectionview
         prepareCollectionView()
-        
+        // 准备分页控件
+        preparePageControl()
+    }
+    
+    func preparePageControl() {
+        pageControl.numberOfPages = 4
+        pageControl.currentPageIndicatorTintColor = UIColor.orange
+        pageControl.pageIndicatorTintColor = UIColor.lightGray
     }
     
     func prepareCollectionView() {
-        collectionView.backgroundColor = UIColor.lightGray
+        collectionView.backgroundColor = UIColor.white
         collectionView.dataSource = self
-        collectionView.delegate = self
         collectionView.register(EmoticonViewCell.self, forCellWithReuseIdentifier: EmoticonViewCellId)
     }
     
     func prepareToolBar() {
-        toolBar.tintColor = UIColor.darkGray
+        // 更新约束
+        layoutIfNeeded()
+        // 背景颜色
+        toolBar.backgroundColor = UIColor.white
         
-        var index = 0
-        var items = [UIBarButtonItem]()
-        
-        for p in packages {
-            items.append(UIBarButtonItem(title: p.group_name_cn, style: .plain, target: self, action: #selector(EmoticonView.clickItem)))
-            items.last?.tag = index
-            index += 1
+        // 添加所有按钮
+        let w = toolBar.bounds.width / CGFloat(packages.count)
+        let rect = CGRect(x: 0, y: 0, width: w, height: toolBar.bounds.height)
+        for (i,p) in packages.enumerated() {
+            let button = UIButton()
             
-            items.append(UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil))
-        }
-        items.removeLast()
-        
-        toolBar.items = items
-    }
-}
-
-// MARK: - 表情视图Cell
-class EmoticonViewCell: UICollectionViewCell {
-    
-    var emoticon: Emoticon? {
-        didSet{
-            emoticonButton.setImage(UIImage(contentsOfFile: emoticon!.path), for: .normal)
+            // 获取图像
+            let bundle = EmoticonManager.sharedManager.bundle
+            let imageName = "compose_emotion_table_\(p.bgImageName ?? "")_normal"
+            let imageNameHL = "compose_emotion_table_\(p.bgImageName ?? "")_selected"
+            var image = UIImage(named: imageName, in: bundle, compatibleWith: nil)
+            var imageHL = UIImage(named: imageNameHL, in: bundle, compatibleWith: nil)
             
-            emoticonButton.setTitle(emoticon?.emoji, for: .normal)
+            // 拉伸图像
+            let size = image?.size ?? CGSize()
+            let inset = UIEdgeInsetsMake(size.height * 0.5, size.width * 0.5, size.height * 0.5, size.width * 0.5)
+            image = image?.resizableImage(withCapInsets: inset)
+            imageHL = imageHL?.resizableImage(withCapInsets: inset)
             
-            if emoticon!.isDelete {
-                emoticonButton.setImage(UIImage(named: "compose_emotion_delete"), for: .normal)
+            // 设置标题
+            button.setTitle(p.groupName, for: .normal)
+            button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+            button.setTitleColor(UIColor.darkGray, for: .highlighted)
+            button.setTitleColor(UIColor.darkGray, for: .selected)
+            button.setTitleColor(UIColor.white, for: .normal)
+            
+            // 设置背景
+            button.setBackgroundImage(image, for: .normal)
+            button.setBackgroundImage(imageHL, for: .selected)
+            button.setBackgroundImage(imageHL, for: .highlighted)
+            
+            // 添加按钮
+            toolBar.addSubview(button)
+            
+            // 设置位置
+            button.frame = rect.offsetBy(dx: CGFloat(i) * w, dy: 0)
+            
+            button.tag = i
+            
+            // 添加监听方法
+            button.addTarget(self, action: #selector(clickItem(button:)), for: .touchUpInside)
+            
+            // 选中第一个按钮
+            if i == 0 {
+                button.isSelected = true
             }
         }
     }
-    
-    // MARK: - 构造函数
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        contentView.addSubview(emoticonButton)
-        
-        emoticonButton.frame = bounds.insetBy(dx: 4, dy: 4)
-        
-        emoticonButton.backgroundColor = UIColor.white
-        emoticonButton.titleLabel?.font = UIFont.systemFont(ofSize: 32)
-        emoticonButton.isUserInteractionEnabled = false
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    // MARK: - 懒加载控件
-    private lazy var emoticonButton: UIButton = UIButton()
 }

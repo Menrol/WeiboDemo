@@ -127,6 +127,7 @@ extension MainViewController{
         composeButton.addTarget(self, action: #selector(MainViewController.pressComposeButton), for: UIControlEvents.touchUpInside)
     }
     
+    /// 添加所有子控制器
     fileprivate func addChildViewControllers() {
         addChildViewController(vc: HomeTableViewController(), title: "首页", imageName: "tabbar_home")
         addChildViewController(vc: MessageTableViewController(), title: "信息", imageName: "tabbar_message_center")

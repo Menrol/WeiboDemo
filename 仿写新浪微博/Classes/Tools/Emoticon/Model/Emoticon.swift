@@ -25,7 +25,12 @@ class Emoticon: NSObject {
             return ""
         }
         
-        return Bundle.main.bundlePath + "/Emoticons.bundle/" + png!
+        return Bundle.main.bundlePath + "/Emoticons.bundle/Contents/Resources/" + png!
+    }
+    /// 删除图片
+    var deletePath: String {
+        
+        return Bundle.main.bundlePath + "/Emoticons.bundle/Contents/Resources/compose_emotion_delete"
     }
     /// 是否是删除按钮
     var isDelete: Bool = false
