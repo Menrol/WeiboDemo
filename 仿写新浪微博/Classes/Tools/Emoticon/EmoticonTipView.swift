@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import pop
 
 class EmoticonTipView: UIImageView {
     
@@ -28,7 +28,13 @@ class EmoticonTipView: UIImageView {
             button.setTitle(emoticon?.emoji, for: .normal)
             
             // 添加动画
-//            let animation =
+            let animation: POPSpringAnimation = POPSpringAnimation(propertyNamed: kPOPLayerPositionY)
+            animation.toValue = 8
+            animation.fromValue = 30
+            animation.springSpeed = 20
+            animation.springBounciness = 20
+            
+            button.layer.pop_add(animation, forKey: nil)
         }
     }
 

@@ -234,9 +234,9 @@
 		186D0AFF1F93A72E00F2C036 /* Emoticon */ = {
 			isa = PBXGroup;
 			children = (
+				186D0B021F93A72E00F2C036 /* Emoticons.bundle */,
 				186D0B001F93A72E00F2C036 /* EmoticonAttachment.swift */,
 				186D0B011F93A72E00F2C036 /* EmoticonManager.swift */,
-				186D0B021F93A72E00F2C036 /* Emoticons.bundle */,
 				186D0B031F93A72E00F2C036 /* EmoticonTipView.swift */,
 				186D0B041F93A72E00F2C036 /* EmoticonView.swift */,
 				186D0B051F93A72E00F2C036 /* EmoticonViewCell.swift */,
