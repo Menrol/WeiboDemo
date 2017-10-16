@@ -44,7 +44,11 @@ class MainViewController: UITabBarController {
             let dic = result as? [String: Any]
             let conut = dic?["status"] as? Int ?? 0
             print("未读数\(conut)")
-            self.tabBar.items?[0].badgeValue = conut > 0 ? "\(conut)" : nil
+            if conut > 99 {
+                self.tabBar.items?[0].badgeValue = "99+"
+            }else {
+                self.tabBar.items?[0].badgeValue = conut > 0 ? "\(conut)" : nil
+            }
             UIApplication.shared.applicationIconBadgeNumber = conut
         }
     }

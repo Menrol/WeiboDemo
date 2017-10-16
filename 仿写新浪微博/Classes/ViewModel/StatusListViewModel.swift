@@ -13,6 +13,8 @@ import SDWebImage
 class StatusListViewModel {
     /// 数据模型
     lazy var statusList: [StatusViewModel] = [StatusViewModel]()
+    /// 下拉刷新个数
+    var pullDownCount: Int?
 }
 
 // MARK: - 网络处理
@@ -34,14 +36,17 @@ extension StatusListViewModel {
                 dataList.append(StatusViewModel(status:Status(dic:dic)))
             }
             
+            // 设置下拉刷新个数
+            self.pullDownCount = since_id > 0 ? dataList.count : nil
+            
             // 拼接数组
             if max_id > 0 {
                 self.statusList += dataList
             }else {
                 self.statusList = dataList + self.statusList
             }
-                        
-            print("刷新了\(dataList.count)个微博")
+            
+//            print("刷新了\(dataList.count)个微博")
             
             // 缓存单张图片
             self.cacheSingleImage(dataList: dataList, finished: finished)

@@ -97,6 +97,9 @@ class HomeTableViewController: VisitorTableViewController {
 
             // 结束下拉刷新
             self.myRefreshControl.endRefreshing()
+            
+            // 展示下拉刷新提示
+            self.showPullUpMessage()
 
             // 结束上拉刷新
             self.pullUpView.stopAnimating()
@@ -111,6 +114,35 @@ class HomeTableViewController: VisitorTableViewController {
         }
     }
     
+    /// 显示下拉刷新提示
+    private func showPullUpMessage() {
+        // 判断是否是下拉刷新
+        guard let count = statusListViewModel.pullDownCount else {
+            return
+        }
+        
+        let message = count > 0 ? "更新了\(count)条微博" : "没有新微博"
+        let height: CGFloat = 44
+        pullDownTipView.text = message
+        let rect = CGRect(x: 0, y: 20, width: view.bounds.width, height: height)
+        pullDownTipView.frame = rect
+        pullDownTipView.isHidden = false
+        
+        // 设置动画
+        UIView.animate(withDuration: 1, animations: {
+            self.pullDownTipView.frame = rect.offsetBy(dx: 0, dy: height)
+        }) { (_) in
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1, execute: {
+                UIView.animate(withDuration: 1, animations: {
+                    self.pullDownTipView.frame = rect.offsetBy(dx: 0, dy: -height)
+                }, completion: { (_) in
+                    self.pullDownTipView.isHidden = true
+                })
+            })
+        }
+        
+    }
+    
     // MARK: - 懒加载控件
     fileprivate lazy var pullUpView: UIActivityIndicatorView = {
         let indicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.white)
@@ -119,6 +151,16 @@ class HomeTableViewController: VisitorTableViewController {
         return indicatorView
     }()
     private lazy var pictureBrowserAnimator: PictureBrowserAnimator = PictureBrowserAnimator()
+    private lazy var pullDownTipView: UILabel = {
+        let label = UILabel(text: "", font: 18, textColor: UIColor.white)
+        label.backgroundColor = UIColor.orange
+        label.alpha = 0.8
+        
+        // 添加到navigationbar下面
+        self.navigationController?.view.insertSubview(label, belowSubview: (self.navigationController?.navigationBar)!)
+        
+        return label
+    }()
 }
 
 
