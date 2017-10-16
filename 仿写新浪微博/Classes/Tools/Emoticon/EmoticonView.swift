@@ -20,16 +20,23 @@ class EmoticonView: UIView {
     
     // MARK: - 监听方法
     @objc fileprivate func clickItem(button: UIButton) {
+        // 设置按钮选中
+        selectedSection(section: button.tag)
+        
+        // 滚动
+        let indexPath = IndexPath(item: 0, section: button.tag)
+        collectionView.scrollToItem(at: indexPath, at: .left, animated: true)
+    }
+    
+    /// 设置按钮选中
+    private func selectedSection(section: Int) {
         // 取消所有选中状态
         for button in toolBar.subviews as! [UIButton] {
             button.isSelected = false
         }
         // 设置选中状态
-        button.isSelected = true
-        
-        // 滚动
-        let indexPath = IndexPath(item: 0, section: button.tag)
-        collectionView.scrollToItem(at: indexPath, at: .left, animated: true)
+        let button = toolBar.viewWithTag(section) as? UIButton
+        button?.isSelected = true
     }
 
     // MARK: - 构造函数
@@ -92,6 +99,38 @@ extension EmoticonView: UICollectionViewDataSource {
         cell.emoticonCellDelegate = self
         
         return cell
+    }
+}
+
+// MARK: - UICollectionViewDelegate
+extension EmoticonView: UICollectionViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // 获取中心点
+        var center = scrollView.center
+        center.x += scrollView.contentOffset.x
+        
+        // 遍历cell
+        var selectedCell: UICollectionViewCell?
+        let cells = collectionView.visibleCells
+        for cell in cells {
+            if cell.frame.contains(center) {
+                selectedCell = cell
+                
+                break
+            }
+        }
+        
+        guard let selected = selectedCell,
+            let indexPath = collectionView.indexPath(for: selected)
+            else {
+                return
+        }
+        
+        // 设置分页控件
+        pageControl.numberOfPages = collectionView.numberOfItems(inSection: indexPath.section)
+        pageControl.currentPage = indexPath.item
+        // 设置按钮选中
+        selectedSection(section: indexPath.section)
     }
 }
 
@@ -211,14 +250,15 @@ private extension EmoticonView {
     }
     
     func preparePageControl() {
-        pageControl.numberOfPages = 4
         pageControl.currentPageIndicatorTintColor = UIColor.orange
         pageControl.pageIndicatorTintColor = UIColor.lightGray
+        pageControl.hidesForSinglePage = true
     }
     
     func prepareCollectionView() {
         collectionView.backgroundColor = UIColor.white
         collectionView.dataSource = self
+        collectionView.delegate = self
         collectionView.register(EmoticonViewCell.self, forCellWithReuseIdentifier: EmoticonViewCellId)
     }
     

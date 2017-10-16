@@ -24,6 +24,11 @@ class EmoticonManager {
     
     // MARK: - 最近表情
     func addRecentEmoticon(emoticon: Emoticon) {
+        // 判断是否是删除按钮
+        if emoticon.isDelete {
+            return
+        }
+        
         // 添加表情使用次数
         emoticon.times += 1
         
