@@ -14,43 +14,6 @@ protocol EmoticonViewCellDelegate: NSObjectProtocol {
 }
 
 class EmoticonViewCell: UICollectionViewCell {
-    // MARK: - 监听方法
-    @objc private func selectEmoticon(button: UIButton) {
-        let emoticon = emoticons![button.tag]
-        emoticonCellDelegate?.didSelectEmoticon(emoticon: emoticon)
-    }
-    
-    @objc private func longPress(gesture: UILongPressGestureRecognizer) {
-        // 获取位置
-        let location = gesture.location(in: self)
-        // 获取按钮
-        guard let btn = button(WithLocation: location) else {
-            return
-        }
-        
-        // 设置表情
-        switch gesture.state {
-        case .began,.changed:
-            tipView.isHidden = false
-            
-            // 坐标系转换
-            let center = convert(btn.center, to: window)
-            tipView.center = center
-            // 设置锚点
-            tipView.layer.anchorPoint = CGPoint(x: 0.5, y: 1.2)
-            
-            // 设置表情
-            let emoticon = emoticons?[btn.tag]
-            tipView.emoticon = emoticon
-        case .ended:
-            break
-        case .cancelled:
-            break
-        default:
-            break
-        }
-    }
-    
     /// 表情数组
     var emoticons: [Emoticon]? {
         didSet{
@@ -81,6 +44,46 @@ class EmoticonViewCell: UICollectionViewCell {
     /// 代理
     weak var emoticonCellDelegate: EmoticonViewCellDelegate?
     
+    // MARK: - 监听方法
+    @objc private func selectEmoticon(button: UIButton) {
+        let emoticon = emoticons![button.tag]
+        emoticonCellDelegate?.didSelectEmoticon(emoticon: emoticon)
+    }
+    
+    @objc private func longPress(gesture: UILongPressGestureRecognizer) {
+        // 获取位置
+        let location = gesture.location(in: self)
+        // 获取按钮
+        guard let btn = button(WithLocation: location) else {
+            tipView.isHidden = true
+            return
+        }
+        
+        // 设置表情
+        switch gesture.state {
+        case .began,.changed:
+            tipView.isHidden = false
+            
+            // 坐标系转换
+            let center = convert(btn.center, to: window)
+            tipView.center = center
+            // 设置锚点
+            tipView.layer.anchorPoint = CGPoint(x: 0.5, y: 1.2)
+            
+            // 设置表情
+            let emoticon = emoticons?[btn.tag]
+            tipView.emoticon = emoticon
+        case .ended:
+            selectEmoticon(button: btn)
+            tipView.isHidden = true
+        case .cancelled,.failed:
+            tipView.isHidden = true
+        default:
+            break
+        }
+    }
+    
+    
     private func button(WithLocation location: CGPoint) -> UIButton? {
         // 遍历所有子视图
         for btn in contentView.subviews as! [UIButton] {
@@ -92,6 +95,7 @@ class EmoticonViewCell: UICollectionViewCell {
         return nil
     }
     
+    // MARK: - 视图生命周期
     override func willMove(toWindow newWindow: UIWindow?) {
         super.willMove(toWindow: newWindow)
         

@@ -99,6 +99,20 @@ extension EmoticonView: UICollectionViewDataSource {
 extension EmoticonView: EmoticonViewCellDelegate {
     func didSelectEmoticon(emoticon: Emoticon) {
         selectedEmoticonCallBack(emoticon)
+        
+        // 判断是否是第0分组
+        let indexPath = collectionView.indexPathsForVisibleItems[0]
+        if indexPath.section == 0 {
+            return
+        }
+        
+        // 添加最近使用表情
+        EmoticonManager.sharedManager.addRecentEmoticon(emoticon: emoticon)
+        
+        // 刷新数据
+        var indexSet = IndexSet()
+        indexSet.insert(0)
+        collectionView.reloadSections(indexSet)
     }
 }
 

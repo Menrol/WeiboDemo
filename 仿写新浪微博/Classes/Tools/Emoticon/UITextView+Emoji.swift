@@ -66,6 +66,9 @@ extension UITextView {
         attributedText = attributedString
         // 恢复光标
         selectedRange = NSRange(location: range.location + 1, length: 0)
+        
+        // 通知代理
+        delegate?.textViewDidChange?(self)
     }
 
 }

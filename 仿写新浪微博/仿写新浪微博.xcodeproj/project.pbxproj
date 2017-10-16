@@ -240,9 +240,9 @@
 				186D0B031F93A72E00F2C036 /* EmoticonTipView.swift */,
 				186D0B041F93A72E00F2C036 /* EmoticonView.swift */,
 				186D0B051F93A72E00F2C036 /* EmoticonViewCell.swift */,
-				186D0B061F93A72E00F2C036 /* Model */,
 				186D0B091F93A72E00F2C036 /* String+Emoji.swift */,
 				186D0B0A1F93A72E00F2C036 /* UITextView+Emoji.swift */,
+				186D0B061F93A72E00F2C036 /* Model */,
 			);
 			path = Emoticon;
 			sourceTree = "<group>";

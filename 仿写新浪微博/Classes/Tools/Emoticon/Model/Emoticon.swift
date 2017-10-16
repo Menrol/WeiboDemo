@@ -38,6 +38,8 @@ class Emoticon: NSObject {
     var isEmpty: Bool = false
     /// emoji字符串
     var emoji: String?
+    /// 使用次数
+    var times: Int = 0
     
     init(isDelete: Bool) {
         self.isDelete = isDelete

@@ -22,7 +22,24 @@ class EmoticonManager {
         return Bundle(path: path!)!
     }()
     
-    /// 构造函数
+    // MARK: - 最近表情
+    func addRecentEmoticon(emoticon: Emoticon) {
+        // 添加表情使用次数
+        emoticon.times += 1
+        
+        // 判断表情是否被添加
+        if !packages[0].emoticons.contains(emoticon) {
+            // 添加最近表情
+            packages[0].emoticons.insert(emoticon, at: 0)
+            // 移除倒数第二个
+            packages[0].emoticons.remove(at: packages[0].emoticons.count - 2)
+        }
+        
+        // 排序
+        packages[0].emoticons.sort { $0.times > $1.times}
+    }
+    
+    // MARK: - 构造函数
     private init() {
         // 获取路径
         guard let path = Bundle.main.path(forResource: "Emoticons.bundle", ofType: nil),
