@@ -7,15 +7,10 @@
 //
 
 import UIKit
-import AFNetworking
-
-enum HTTPMethod: String{
-    case GET = "GET"
-    case POST = "POST"
-}
+import Alamofire
 
 // MARK: - 网络工具
-class NetworkTool: AFHTTPSessionManager {
+class NetworkTool {
     
     // MARK: - 应用程序信息
     fileprivate let appKey = "4061584314"
@@ -35,12 +30,7 @@ class NetworkTool: AFHTTPSessionManager {
 //    }
     
     // 单例
-    static let sharedTool:NetworkTool = {
-        let tool = NetworkTool(baseURL: nil)
-        tool.responseSerializer.acceptableContentTypes?.insert("text/plain")
-        
-        return tool
-    }()
+    static let sharedTool:NetworkTool = NetworkTool()
 }
 
 // MARK: - 微博数据
@@ -57,7 +47,7 @@ extension NetworkTool{
         }else if max_id > 0 {
             parameters["max_id"] = max_id - 1
         }
-        tokenRequest(method: .GET, urlString: urlString, parameters: parameters, finished: finished)
+        tokenRequest(method: .get, urlString: urlString, parameters: parameters, finished: finished)
     }
     
     /// 获取未读微博条数
@@ -68,7 +58,7 @@ extension NetworkTool{
         }
         let parameters = ["uid": uid]
         
-        tokenRequest(method: .GET, urlString: urlString, parameters: parameters, finished: finished)
+        tokenRequest(method: .get, urlString: urlString, parameters: parameters, finished: finished)
     }
 }
 
@@ -81,7 +71,7 @@ extension NetworkTool {
         
         if image == nil {
             let urlString = "https://api.weibo.com/2/statuses/update.json"
-            tokenRequest(method: .POST, urlString: urlString, parameters: parameters, finished: finished)
+            tokenRequest(method: .post, urlString: urlString, parameters: parameters, finished: finished)
         }else {
             let urlString = "https://api.weibo.com/2/statuses/upload.json"
             let data = UIImagePNGRepresentation(image!)
@@ -99,7 +89,7 @@ extension NetworkTool{
         var parameters = [String: Any]()
         let urlString = "https://api.weibo.com/2/users/show.json"
         parameters["uid"] = uid
-        tokenRequest(method: .GET, urlString: urlString, parameters: parameters, finished: finished)
+        tokenRequest(method: .get, urlString: urlString, parameters: parameters, finished: finished)
     }
 }
 
@@ -121,7 +111,7 @@ extension NetworkTool{
                           "grant_type":"authorization_code",
                           "code":code,
                           "redirect_uri":redirect]
-        self.request(method: .POST, urlString: urlString, parameters: parameters, finished: finished)
+        self.request(method: .post, urlString: urlString, parameters: parameters, finished: finished)
         
 //        // 测试返回数据格式
 //        responseSerializer = AFHTTPResponseSerializer()
@@ -147,20 +137,13 @@ extension NetworkTool{
     }
     
     fileprivate func request(method: HTTPMethod, urlString: String, parameters: [String: Any]?, finished:@escaping FinishedCallback){
-        let success = { (task: URLSessionDataTask?, result: Any?) -> Void in
-            finished(result,nil)
-        }
         
-        let failure = { (task: URLSessionDataTask?, error: Error) -> Void in
-            print(error)
-            finished(nil,error)
-        }
-        
-        if method == HTTPMethod.GET{
-            get(urlString, parameters: parameters, progress: nil, success: success, failure: failure)
-        }
-        else{
-            post(urlString, parameters: parameters, progress: nil, success: success, failure: failure)
+        Alamofire.request(urlString, method: method, parameters: parameters).responseJSON { (response) in
+            if response.result.isFailure {
+                print(response.result.error as Any)
+            }
+            
+            finished(response.result.value, response.result.error)
         }
     }
     
@@ -173,13 +156,28 @@ extension NetworkTool{
             return
         }
         
-        post(urlString, parameters: parameters, constructingBodyWith: { (formData) in
-            formData.appendPart(withFileData: data, name: name, fileName: "xxx", mimeType: "application/octet-stream")
-        }, progress: nil, success: { (result, error) in
-            finished(result,nil)
-        }) { (_, error) in
-            print(error)
-            finished(nil,error)
+        Alamofire.upload(multipartFormData: { (formData) in
+            formData.append(data, withName: name, fileName: "xxx", mimeType: "application/octet-stream")
+           
+            // 传入字典参数
+            if let parameters = parameters {
+                for (k, v) in parameters {
+                    let string = v as! String
+                    let strData = string.data(using: String.Encoding.utf8)!
+                    
+                    formData.append(strData, withName: k)
+                }
+            }
+        }, to: urlString) { (result) in
+            switch result {
+            case .success(let upload, _, _):
+                upload.responseJSON(completionHandler: { (response) in
+                    finished(response.result.value, nil)
+                })
+            case .failure(let error):
+                print(error)
+                finished(nil, error)
+            }
         }
     }
     
