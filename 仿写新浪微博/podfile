@@ -12,6 +12,7 @@ target '仿写新浪微博' do
   pod 'FMDB'
   pod 'SnapKit'
   pod 'pop'
+  pod 'Alamofire'
 
   target '仿写新浪微博Tests' do
     inherit! :search_paths

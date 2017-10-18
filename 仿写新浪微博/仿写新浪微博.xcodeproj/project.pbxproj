@@ -142,10 +142,10 @@
 		18D2DEEC1ED07BB300B446CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18D2DEF11ED07BB300B446CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18D2DEF61ED07BB400B446CC /* 仿写新浪微博Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "仿写新浪微博Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		18D2DEFA1ED07BB400B446CC /* ______Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "______Tests.swift"; sourceTree = "<group>"; };
+		18D2DEFA1ED07BB400B446CC /* ______Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ______Tests.swift; sourceTree = "<group>"; };
 		18D2DEFC1ED07BB400B446CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18D2DF011ED07BB400B446CC /* 仿写新浪微博UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "仿写新浪微博UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		18D2DF051ED07BB400B446CC /* ______UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "______UITests.swift"; sourceTree = "<group>"; };
+		18D2DF051ED07BB400B446CC /* ______UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ______UITests.swift; sourceTree = "<group>"; };
 		18D2DF071ED07BB400B446CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18D2DF1D1ED0874D00B446CC /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		18D2DF1F1ED0876D00B446CC /* HomeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
@@ -165,13 +165,13 @@
 		18FBBF2F1EF2D8E3009A4266 /* StatusViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusViewModel.swift; sourceTree = "<group>"; };
 		18FFF6921F84E1E60081F0AD /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Bundle+Extension.swift"; path = "Classes/Tools/Bundle+Extension.swift"; sourceTree = SOURCE_ROOT; };
 		234542B9F6771408281F702D /* Pods-仿写新浪微博UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-仿写新浪微博UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-仿写新浪微博UITests/Pods-仿写新浪微博UITests.debug.xcconfig"; sourceTree = "<group>"; };
-		2FA0EE078D81C0D3A60515B2 /* Pods_______UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_______UITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		830936210B502E3C3D41EEE2 /* Pods_______.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_______.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2FA0EE078D81C0D3A60515B2 /* Pods_______UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_______UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		830936210B502E3C3D41EEE2 /* Pods_______.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_______.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEA6D440CA775884A8BE81BF /* Pods-仿写新浪微博UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-仿写新浪微博UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-仿写新浪微博UITests/Pods-仿写新浪微博UITests.release.xcconfig"; sourceTree = "<group>"; };
 		CA944AD3CCD8370D72E32524 /* Pods-仿写新浪微博Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-仿写新浪微博Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-仿写新浪微博Tests/Pods-仿写新浪微博Tests.release.xcconfig"; sourceTree = "<group>"; };
 		CD4F5CBB4BA389E953D6DE0B /* Pods-仿写新浪微博.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-仿写新浪微博.release.xcconfig"; path = "Pods/Target Support Files/Pods-仿写新浪微博/Pods-仿写新浪微博.release.xcconfig"; sourceTree = "<group>"; };
 		F82DE2584C2AB7D396288ECD /* Pods-仿写新浪微博.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-仿写新浪微博.debug.xcconfig"; path = "Pods/Target Support Files/Pods-仿写新浪微博/Pods-仿写新浪微博.debug.xcconfig"; sourceTree = "<group>"; };
-		F8377F747ED05564CBC0A9E1 /* Pods_______Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_______Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8377F747ED05564CBC0A9E1 /* Pods_______Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_______Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFEA44D7EFFEE594715BBF1C /* Pods-仿写新浪微博Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-仿写新浪微博Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-仿写新浪微博Tests/Pods-仿写新浪微博Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -702,6 +702,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-仿写新浪微博/Pods-仿写新浪微博-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/FLAnimatedImage/FLAnimatedImage.framework",
 				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
@@ -712,6 +713,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLAnimatedImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
