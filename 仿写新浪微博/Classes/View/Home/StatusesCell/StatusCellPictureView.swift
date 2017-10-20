@@ -208,7 +208,11 @@ class PictureViewCell: UICollectionViewCell {
     
     var imageURL:URL?{
         didSet{
-            iconImageView .sd_setImage(with: imageURL, placeholderImage: nil, options: [.refreshCached,.retryFailed])
+            iconImageView.sd_setImage(with: imageURL, placeholderImage: nil, options: [.refreshCached,.retryFailed])
+            
+            // 是否是gif
+            let ex = ((imageURL?.absoluteString ?? "") as NSString).pathExtension
+            gifTipView.isHidden = ex != "gif"
         }
     }
     
@@ -231,16 +235,23 @@ class PictureViewCell: UICollectionViewCell {
         
         return imageView
     }()
+    private lazy var gifTipView: UIImageView = UIImageView(imageName: "timeline_image_gif")
     
     // MARK: - 设置界面
     private func setupUI(){
         
         // 添加控件
         contentView.addSubview(iconImageView)
+        iconImageView.addSubview(gifTipView)
         
         // 设置位置
         iconImageView.snp.makeConstraints { (make) in
             make.edges.equalTo(contentView.snp.edges)
+        }
+        
+        gifTipView.snp.makeConstraints { (make) in
+            make.right.equalTo(iconImageView.snp.right)
+            make.bottom.equalTo(iconImageView.snp.bottom)
         }
     }
 }

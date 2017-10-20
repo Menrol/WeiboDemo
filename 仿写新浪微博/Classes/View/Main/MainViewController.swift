@@ -103,7 +103,7 @@ extension MainViewController: UITabBarControllerDelegate {
             // 滚动到顶部
             vc.tableView.setContentOffset(CGPoint(x: 0, y: -124), animated: false)
             // 刷新
-            vc.loadData()
+            vc.loadData(isPulldown: true)
             // 设置未读个数
             tabBar.items?[0].badgeValue = nil
             UIApplication.shared.applicationIconBadgeNumber = 0

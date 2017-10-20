@@ -36,8 +36,9 @@ class RQRefreshControl: UIControl {
         
         refreshView.refreshState = .WilRefresh
         
-        let topInset = (originalInset?.top ?? 0) + RQRefreshOffset
-        sv.contentInset = UIEdgeInsets(top: topInset, left: 0, bottom: 0, right: 0)
+        var inset = originalInset
+        inset?.top += RQRefreshOffset
+        sv.contentInset = inset ?? UIEdgeInsets()
     }
     
     /// 结束刷新
@@ -52,7 +53,7 @@ class RQRefreshControl: UIControl {
         
         refreshView.refreshState = .Normal
         
-        sv.contentInset = UIEdgeInsets(top: originalInset?.top ?? 0, left: 0, bottom: 0, right: 0)
+        sv.contentInset = originalInset ?? UIEdgeInsets()
     }
     
     override func willMove(toSuperview newSuperview: UIView?) {

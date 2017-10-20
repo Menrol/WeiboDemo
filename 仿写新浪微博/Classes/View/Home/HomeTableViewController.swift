@@ -17,8 +17,6 @@ let StatusRetweetCellId = "StatusRetweetCellId"
 class HomeTableViewController: VisitorTableViewController {
     
     fileprivate lazy var statusListViewModel: StatusListViewModel = StatusListViewModel()
-    private lazy var myRefreshControl = RQRefreshControl()
-    
 
     // MARK: - 控制器生命周期
     override func viewDidLoad() {
@@ -38,7 +36,7 @@ class HomeTableViewController: VisitorTableViewController {
         
         setupTableView()
         
-        loadData()
+        loadData(isPulldown: true)
         
         // 注册通知
         NotificationCenter.default.addObserver(forName: NSNotification.Name.init(rawValue: WBStatusSelectedPcitureNotification), object: nil, queue: nil) { [weak self] (n) in
@@ -74,7 +72,8 @@ class HomeTableViewController: VisitorTableViewController {
         tableView.register(StatusRetweetCell.self, forCellReuseIdentifier: StatusRetweetCellId)
         tableView.register(StatusNormalCell.self, forCellReuseIdentifier: StatusNormalCellId)
         tableView.separatorStyle = .none
-        tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0)
+        tableView.contentInset = UIEdgeInsetsMake(64, 0, 49, 0)
+        tableView.scrollIndicatorInsets = tableView.contentInset
         
         // 自动计算行高 - 需要一个自上而下的自动布局的控件，指定一个向下的约束
         tableView.estimatedRowHeight = 400
@@ -88,21 +87,25 @@ class HomeTableViewController: VisitorTableViewController {
     }
     
     // MARK: - 加载数据
-    @objc func loadData(){
+    @objc func loadData(isPulldown: Bool){
         
-        // 开始下拉刷新
-        myRefreshControl.beginRefreshing()
+        if isPulldown {
+            // 开始下拉刷新
+            myRefreshControl.beginRefreshing()
+        }
         
         statusListViewModel.loadData(ispullUp: pullUpView.isAnimating) { (isSuccess) in
 
             // 结束下拉刷新
             self.myRefreshControl.endRefreshing()
-            
+
             // 展示下拉刷新提示
             self.showPullUpMessage()
 
-            // 结束上拉刷新
-            self.pullUpView.stopAnimating()
+            if !isPulldown {
+                // 结束上拉刷新
+                self.pullUpView.stopAnimating()
+            }
 
             if !isSuccess {
                 SVProgressHUD.showInfo(withStatus: "网络不给力")
@@ -161,6 +164,7 @@ class HomeTableViewController: VisitorTableViewController {
         
         return label
     }()
+    private lazy var myRefreshControl = RQRefreshControl()
 }
 
 
@@ -182,7 +186,7 @@ extension HomeTableViewController {
             pullUpView.startAnimating()
             
             // 刷新数据
-            loadData()
+            loadData(isPulldown: false)
         }
         
         return cell
