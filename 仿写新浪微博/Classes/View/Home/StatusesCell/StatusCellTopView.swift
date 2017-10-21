@@ -18,15 +18,14 @@ class StatusCellTopView: UIView {
             
             // 微博头像
             iconImageView.rq_setImage(url: viewModel?.userIconURL, placeholderImage: viewModel?.userdefultImage, isAvatar: true)
-            
             // 微博昵称
             nameLabel.text = viewModel?.status.user?.screen_name
-            
             // 认证图标
             vipIconView.image = viewModel?.uservipImage
-            
             // 会员图标
             memberIconView.image = viewModel?.userMemberImage
+            // 发布时间
+            timeLabel.text = viewModel?.createTime
         }
     }
 

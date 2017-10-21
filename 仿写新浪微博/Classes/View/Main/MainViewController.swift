@@ -46,10 +46,12 @@ class MainViewController: UITabBarController {
             print("未读数\(conut)")
             if conut > 99 {
                 self.tabBar.items?[0].badgeValue = "99+"
+                UIApplication.shared.applicationIconBadgeNumber = 99
             }else {
                 self.tabBar.items?[0].badgeValue = conut > 0 ? "\(conut)" : nil
+                UIApplication.shared.applicationIconBadgeNumber = conut
             }
-            UIApplication.shared.applicationIconBadgeNumber = conut
+            
         }
     }
     

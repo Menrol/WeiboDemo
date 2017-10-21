@@ -73,6 +73,10 @@ class StatusViewModel: CustomStringConvertible{
     var comments_count: String?
     /// 表态数
     var attitudes_count: String?
+    /// 发布时间
+    var createTime: String? {
+        return Date.sinaDate(string: status.created_at ?? "")?.dateDescirption
+    }
     
     private func countDescription(count: Int, message: String) -> String {
         if count == 0 {
