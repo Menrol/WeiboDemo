@@ -26,6 +26,8 @@ class StatusCellTopView: UIView {
             memberIconView.image = viewModel?.userMemberImage
             // 发布时间
             timeLabel.text = viewModel?.createTime
+            // 来源
+            sourceLabel.text = viewModel?.status.source
         }
     }
 

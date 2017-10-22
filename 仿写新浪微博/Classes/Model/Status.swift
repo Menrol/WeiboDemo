@@ -14,7 +14,11 @@ class Status: NSObject {
     /// 微博创建时间
     @objc var created_at: String?
     /// 微博来源
-    @objc var source: String?
+    @objc var source: String? {
+        didSet {
+            source = source?.getSource()?.text
+        }
+    }
     /// 微博信息内容
     @objc var text: String?
     /// 用户

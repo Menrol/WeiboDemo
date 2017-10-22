@@ -17,6 +17,7 @@
 		1834B3F11F8265A90091A29C /* ComposeSwitchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1834B3F01F8265A90091A29C /* ComposeSwitchView.xib */; };
 		1834B3F31F827D700091A29C /* ComposeTypeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1834B3F21F827D700091A29C /* ComposeTypeButton.swift */; };
 		1834B3F51F827D7B0091A29C /* ComposeTypeButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1834B3F41F827D7B0091A29C /* ComposeTypeButton.xib */; };
+		184479971F9CD96A007E8986 /* String+Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184479961F9CD96A007E8986 /* String+Regex.swift */; };
 		185768371EE2ED2C00629BF6 /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185768361EE2ED2C00629BF6 /* UserAccount.swift */; };
 		185768391EE2F22400629BF6 /* UserAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185768381EE2F22400629BF6 /* UserAccountViewModel.swift */; };
 		186D0B0B1F93A7CE00F2C036 /* Emoticons.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 186D0B021F93A72E00F2C036 /* Emoticons.bundle */; };
@@ -105,6 +106,7 @@
 		1834B3F01F8265A90091A29C /* ComposeSwitchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComposeSwitchView.xib; sourceTree = "<group>"; };
 		1834B3F21F827D700091A29C /* ComposeTypeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeTypeButton.swift; sourceTree = "<group>"; };
 		1834B3F41F827D7B0091A29C /* ComposeTypeButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComposeTypeButton.xib; sourceTree = "<group>"; };
+		184479961F9CD96A007E8986 /* String+Regex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Regex.swift"; sourceTree = "<group>"; };
 		185768361EE2ED2C00629BF6 /* UserAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
 		185768381EE2F22400629BF6 /* UserAccountViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccountViewModel.swift; sourceTree = "<group>"; };
 		186D0B001F93A72E00F2C036 /* EmoticonAttachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonAttachment.swift; sourceTree = "<group>"; };
@@ -497,6 +499,7 @@
 				18AEA67D1F7A463C00377E6C /* UIImageVIew+WebCache.swift */,
 				18FFF6921F84E1E60081F0AD /* Bundle+Extension.swift */,
 				1874D15B1F9BA30C00BC8787 /* NSDate+Extension.swift */,
+				184479961F9CD96A007E8986 /* String+Regex.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -892,6 +895,7 @@
 				185768391EE2F22400629BF6 /* UserAccountViewModel.swift in Sources */,
 				1892FE7D1F811E62004DE4DF /* RQRefreshView.swift in Sources */,
 				18B2B3A81EF29FDF00792F60 /* StatusCell.swift in Sources */,
+				184479971F9CD96A007E8986 /* String+Regex.swift in Sources */,
 				180C32901ED3324A009AE1D9 /* VisitorView.swift in Sources */,
 				182913B51EDEB42F000AAF4D /* OAuthViewController.swift in Sources */,
 				18D2DF1E1ED0874D00B446CC /* MainViewController.swift in Sources */,
