@@ -112,6 +112,10 @@ class HomeTableViewController: VisitorTableViewController {
 
                 return
             }
+            
+            // 设置未读个数
+            self.tabBarController?.tabBar.items?[0].badgeValue = nil
+            UIApplication.shared.applicationIconBadgeNumber = 0
 
             self.tableView.reloadData()
         }

@@ -106,9 +106,6 @@ extension MainViewController: UITabBarControllerDelegate {
             vc.tableView.setContentOffset(CGPoint(x: 0, y: -124), animated: false)
             // 刷新
             vc.loadData(isPulldown: true)
-            // 设置未读个数
-            tabBar.items?[0].badgeValue = nil
-            UIApplication.shared.applicationIconBadgeNumber = 0
         }
         
         return !viewController.isMember(of: UIViewController.self)

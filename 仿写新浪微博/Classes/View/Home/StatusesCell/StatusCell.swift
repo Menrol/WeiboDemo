@@ -51,6 +51,13 @@ class StatusCell: UITableViewCell {
         
         selectionStyle = .none
         setupUI()
+        
+        // 离屏渲染 - 异步绘制
+        self.layer.drawsAsynchronously = true
+        // 栅格化
+        self.layer.shouldRasterize = true
+        // 设定分辨率
+        self.layer.rasterizationScale = UIScreen.main.scale
     }
     
     required init?(coder aDecoder: NSCoder) {
