@@ -19,7 +19,10 @@ class StatusCell: UITableViewCell {
     var viewModel: StatusViewModel? {
         didSet{
             topView.viewModel = viewModel
-            contentLabel.text = viewModel?.status.text
+            
+            let text = viewModel?.status.text ?? ""
+            contentLabel.attributedText = EmoticonManager.sharedManager.emoticonText(text: text, font: contentLabel.font)
+            
             pictureView.viewModel = viewModel
             
             pictureView.snp.updateConstraints { (make) in

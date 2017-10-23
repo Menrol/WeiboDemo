@@ -12,7 +12,8 @@ class StatusRetweetCell: StatusCell {
     
     override var viewModel: StatusViewModel?{
         didSet{
-            retweetLabel.text = viewModel?.retweetText
+            let text = viewModel?.retweetText ?? ""
+            retweetLabel.attributedText = EmoticonManager.sharedManager.emoticonText(text: text, font: retweetLabel.font)
             
             pictureView.snp.updateConstraints { (make) in
                 // 判断间距

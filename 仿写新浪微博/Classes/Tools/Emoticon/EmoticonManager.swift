@@ -6,7 +6,7 @@
 //  Copyright © 2017年 WRQ. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class EmoticonManager {
     
@@ -42,6 +42,51 @@ class EmoticonManager {
         
         // 排序
         packages[0].emoticons.sort { $0.times > $1.times}
+    }
+    
+    // MARK: - 生成属性字符串
+    /// 将字符串转成带表情的属性字符串
+    func emoticonText(text: String, font: UIFont) -> NSAttributedString? {
+        // 生成属性字符串
+        let atr = NSMutableAttributedString(string: text)
+        
+        // 匹配字符串
+        let pattern = "\\[.*?\\]"
+        let regularEx = try! NSRegularExpression(pattern: pattern, options: [])
+        let result = regularEx.matches(in: text, options: [], range: NSRange(location: 0, length: text.characters.count))
+        
+        // 遍历
+        var count = result.count - 1
+        while count >= 0 {
+            // 获取range
+            let range = result[count].range(at: 0)
+            count = count - 1
+            
+            // 获取表情
+            let emString = (text as NSString).substring(with: range)
+            guard let emoticon = emoticonWithString(string: emString) else {
+                continue
+            }
+            
+            // 获取表情属性文本
+            let imageText = EmoticonAttachment(emoticon: emoticon).imageText(font: font)
+            atr.replaceCharacters(in: range, with: imageText)
+        }
+        
+        return atr
+    }
+    
+    /// 根据表情字符串获取表情模型
+    private func emoticonWithString(string: String) -> Emoticon? {
+        // 遍历表情包
+        for package in EmoticonManager.sharedManager.packages {
+            
+            if let emoticon = package.emoticons.filter({ $0.chs == string }).last {
+                return emoticon
+            }
+        }
+        
+        return nil
     }
     
     // MARK: - 构造函数
