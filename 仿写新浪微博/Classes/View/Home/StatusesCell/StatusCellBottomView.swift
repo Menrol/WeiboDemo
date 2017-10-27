@@ -41,6 +41,8 @@ class StatusCellBottomView: UIView {
 // MARK: - 设置界面
 extension StatusCellBottomView {
     fileprivate func setupUI() {
+        // 背景颜色
+        backgroundColor = UIColor.white
         
         // 添加控件
         addSubview(retweetButton)

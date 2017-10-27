@@ -75,6 +75,9 @@ extension StatusListViewModel {
                 
                 if let img = image,let data = UIImagePNGRepresentation(img) {
                     dataLength += data.count
+                    
+                    // 更新配图视图大小
+                    viewModel.updateSinglePictureSize(image: img)
                 }
                 
                 // 出组

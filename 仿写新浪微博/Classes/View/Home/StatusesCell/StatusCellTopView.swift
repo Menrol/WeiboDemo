@@ -13,9 +13,6 @@ class StatusCellTopView: UIView {
     /// 微博视图模型
     var viewModel: StatusViewModel? {
         didSet{
-            // 更新约束
-            layoutIfNeeded()
-            
             // 微博头像
             iconImageView.rq_setImage(url: viewModel?.userIconURL, placeholderImage: viewModel?.userdefultImage, isAvatar: true)
             // 微博昵称
@@ -61,6 +58,8 @@ class StatusCellTopView: UIView {
 // MARK: - 设置界面
 extension StatusCellTopView {
     fileprivate func setupUI() {
+        // 背景颜色
+        backgroundColor = UIColor.white
         
         // 添加控件
         addSubview(iconImageView)
@@ -102,6 +101,18 @@ extension StatusCellTopView {
             make.top.equalTo(timeLabel.snp.top)
             make.left.equalTo(timeLabel.snp.right).offset(StatusCellMargin)
         }
+        
+        // 设置昵称文本
+        nameLabel.layer.masksToBounds = true
+        nameLabel.backgroundColor = UIColor.white
+        
+        // 设置时间文本
+        timeLabel.layer.masksToBounds = true
+        timeLabel.backgroundColor = UIColor.white
+        
+        // 设置来源文本
+        sourceLabel.layer.masksToBounds = true
+        sourceLabel.backgroundColor = UIColor.white
     }
 }
 

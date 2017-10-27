@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1806C1821F9F419400D83054 /* StatusCellPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1806C1811F9F419400D83054 /* StatusCellPictureView.swift */; };
 		180C328E1ED31D48009AE1D9 /* VisitorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180C328D1ED31D48009AE1D9 /* VisitorTableViewController.swift */; };
 		180C32901ED3324A009AE1D9 /* VisitorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180C328F1ED3324A009AE1D9 /* VisitorView.swift */; };
 		181BCA151EF165E9009A82CC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181BCA141EF165E9009A82CC /* User.swift */; };
@@ -49,7 +50,6 @@
 		18B2B3AC1EF2A04200792F60 /* StatusCellBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B2B3AB1EF2A04200792F60 /* StatusCellBottomView.swift */; };
 		18B2B7871F44573200E4DDD3 /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B2B7861F44573200E4DDD3 /* ComposeViewController.swift */; };
 		18B2B78B1F4478EF00E4DDD3 /* UIBarButtonItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B2B78A1F4478EF00E4DDD3 /* UIBarButtonItem+Extension.swift */; };
-		18BCA3C31F2CAFD700EF57FC /* StatusCellPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BCA3C21F2CAFD700EF57FC /* StatusCellPictureView.swift */; };
 		18C7400E1F31D6510038B2D1 /* StatusRetweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7400D1F31D6510038B2D1 /* StatusRetweetCell.swift */; };
 		18C740101F31D6E60038B2D1 /* StatusNormalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7400F1F31D6E60038B2D1 /* StatusNormalCell.swift */; };
 		18D2DEE61ED07BB300B446CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D2DEE51ED07BB300B446CC /* AppDelegate.swift */; };
@@ -96,6 +96,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1806C1811F9F419400D83054 /* StatusCellPictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusCellPictureView.swift; sourceTree = "<group>"; };
 		180C328D1ED31D48009AE1D9 /* VisitorTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisitorTableViewController.swift; sourceTree = "<group>"; };
 		180C328F1ED3324A009AE1D9 /* VisitorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisitorView.swift; sourceTree = "<group>"; };
 		181BCA141EF165E9009A82CC /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -138,7 +139,6 @@
 		18B2B3AB1EF2A04200792F60 /* StatusCellBottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusCellBottomView.swift; sourceTree = "<group>"; };
 		18B2B7861F44573200E4DDD3 /* ComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
 		18B2B78A1F4478EF00E4DDD3 /* UIBarButtonItem+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Extension.swift"; sourceTree = "<group>"; };
-		18BCA3C21F2CAFD700EF57FC /* StatusCellPictureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusCellPictureView.swift; sourceTree = "<group>"; };
 		18C7400D1F31D6510038B2D1 /* StatusRetweetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusRetweetCell.swift; sourceTree = "<group>"; };
 		18C7400F1F31D6E60038B2D1 /* StatusNormalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusNormalCell.swift; sourceTree = "<group>"; };
 		18D2DEE21ED07BB300B446CC /* 仿写新浪微博.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "仿写新浪微博.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -146,10 +146,10 @@
 		18D2DEEC1ED07BB300B446CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18D2DEF11ED07BB300B446CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18D2DEF61ED07BB400B446CC /* 仿写新浪微博Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "仿写新浪微博Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		18D2DEFA1ED07BB400B446CC /* ______Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "______Tests.swift"; sourceTree = "<group>"; };
+		18D2DEFA1ED07BB400B446CC /* ______Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ______Tests.swift; sourceTree = "<group>"; };
 		18D2DEFC1ED07BB400B446CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18D2DF011ED07BB400B446CC /* 仿写新浪微博UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "仿写新浪微博UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		18D2DF051ED07BB400B446CC /* ______UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "______UITests.swift"; sourceTree = "<group>"; };
+		18D2DF051ED07BB400B446CC /* ______UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ______UITests.swift; sourceTree = "<group>"; };
 		18D2DF071ED07BB400B446CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18D2DF1D1ED0874D00B446CC /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		18D2DF1F1ED0876D00B446CC /* HomeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
@@ -169,13 +169,13 @@
 		18FBBF2F1EF2D8E3009A4266 /* StatusViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusViewModel.swift; sourceTree = "<group>"; };
 		18FFF6921F84E1E60081F0AD /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Bundle+Extension.swift"; path = "Classes/Tools/Bundle+Extension.swift"; sourceTree = SOURCE_ROOT; };
 		234542B9F6771408281F702D /* Pods-仿写新浪微博UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-仿写新浪微博UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-仿写新浪微博UITests/Pods-仿写新浪微博UITests.debug.xcconfig"; sourceTree = "<group>"; };
-		2FA0EE078D81C0D3A60515B2 /* Pods_______UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_______UITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		830936210B502E3C3D41EEE2 /* Pods_______.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_______.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2FA0EE078D81C0D3A60515B2 /* Pods_______UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_______UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		830936210B502E3C3D41EEE2 /* Pods_______.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_______.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEA6D440CA775884A8BE81BF /* Pods-仿写新浪微博UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-仿写新浪微博UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-仿写新浪微博UITests/Pods-仿写新浪微博UITests.release.xcconfig"; sourceTree = "<group>"; };
 		CA944AD3CCD8370D72E32524 /* Pods-仿写新浪微博Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-仿写新浪微博Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-仿写新浪微博Tests/Pods-仿写新浪微博Tests.release.xcconfig"; sourceTree = "<group>"; };
 		CD4F5CBB4BA389E953D6DE0B /* Pods-仿写新浪微博.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-仿写新浪微博.release.xcconfig"; path = "Pods/Target Support Files/Pods-仿写新浪微博/Pods-仿写新浪微博.release.xcconfig"; sourceTree = "<group>"; };
 		F82DE2584C2AB7D396288ECD /* Pods-仿写新浪微博.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-仿写新浪微博.debug.xcconfig"; path = "Pods/Target Support Files/Pods-仿写新浪微博/Pods-仿写新浪微博.debug.xcconfig"; sourceTree = "<group>"; };
-		F8377F747ED05564CBC0A9E1 /* Pods_______Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_______Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8377F747ED05564CBC0A9E1 /* Pods_______Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_______Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFEA44D7EFFEE594715BBF1C /* Pods-仿写新浪微博Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-仿写新浪微博Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-仿写新浪微博Tests/Pods-仿写新浪微博Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -297,8 +297,8 @@
 				18C7400F1F31D6E60038B2D1 /* StatusNormalCell.swift */,
 				18C7400D1F31D6510038B2D1 /* StatusRetweetCell.swift */,
 				18B2B3A91EF2A00100792F60 /* StatusCellTopView.swift */,
+				1806C1811F9F419400D83054 /* StatusCellPictureView.swift */,
 				18B2B3AB1EF2A04200792F60 /* StatusCellBottomView.swift */,
-				18BCA3C21F2CAFD700EF57FC /* StatusCellPictureView.swift */,
 			);
 			name = StatusCell;
 			path = StatusesCell;
@@ -863,13 +863,13 @@
 				189EEE4C1EEBF3CA00F8CBA5 /* Common.swift in Sources */,
 				18D2DF261ED087B000B446CC /* ProfileTableViewController.swift in Sources */,
 				18D2DF201ED0876D00B446CC /* HomeTableViewController.swift in Sources */,
+				1806C1821F9F419400D83054 /* StatusCellPictureView.swift in Sources */,
 				18B2B3AC1EF2A04200792F60 /* StatusCellBottomView.swift in Sources */,
 				189865F81EDAC1A100E85860 /* UILabel+Extension.swift in Sources */,
 				18D2DEE61ED07BB300B446CC /* AppDelegate.swift in Sources */,
 				18E9D8EA1EE52D9000595D44 /* NewfeatureCollectionViewController.swift in Sources */,
 				18EA2A391EDC83B0005D4F83 /* NetworkTool.swift in Sources */,
 				18D2DF221ED0878300B446CC /* MessageTableViewController.swift in Sources */,
-				18BCA3C31F2CAFD700EF57FC /* StatusCellPictureView.swift in Sources */,
 				18C740101F31D6E60038B2D1 /* StatusNormalCell.swift in Sources */,
 				1834B3F31F827D700091A29C /* ComposeTypeButton.swift in Sources */,
 				185768371EE2ED2C00629BF6 /* UserAccount.swift in Sources */,

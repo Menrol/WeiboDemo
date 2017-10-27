@@ -10,6 +10,10 @@ import UIKit
 
 /// 微博Cell中控件的间距
 let StatusCellMargin: CGFloat = 12
+/// 微博Cell配图视图间距
+let StatusCellPictureViewMargin: CGFloat = 3
+/// 微博Cell配图视图宽度
+let StatusCellPictureViewItemWidth = (UIScreen.main.bounds.width - 2 * StatusCellMargin - 2 * StatusCellPictureViewMargin) / 3
 /// 微博头像的宽度
 let StatusCellIconWidth: CGFloat = 35
 
@@ -26,23 +30,11 @@ class StatusCell: UITableViewCell {
             pictureView.viewModel = viewModel
             
             pictureView.snp.updateConstraints { (make) in
-                make.width.equalTo(pictureView.bounds.width)
-                make.height.equalTo(pictureView.bounds.height)
+                make.height.equalTo(viewModel?.pictureViewSize ?? CGSize())
             }
             
             bottomView.viewModel = viewModel
         }
-    }
-    
-    func rowHeight(viewModel: StatusViewModel) -> CGFloat{
-        // 设置模型
-        self.viewModel = viewModel
-        
-        // 更新约束
-        contentView.layoutIfNeeded()
-        
-        return CGRect(origin: bottomView.frame.origin, size: bottomView.frame.size).maxY
-        
     }
 
     // MARK: - 构造函数
@@ -78,6 +70,8 @@ class StatusCell: UITableViewCell {
 // MARK: - 设置界面
 extension StatusCell {
     @objc func setupUI() {
+        // 背景颜色
+        backgroundColor = UIColor.white
         
         /// 分割线视图
         let sepView = UIView()
@@ -115,7 +109,10 @@ extension StatusCell {
             make.left.equalTo(contentView.snp.left)
             make.right.equalTo(contentView.snp.right)
             make.height.equalTo(44)
-            
         }
+        
+        // 设置微博文本
+        contentLabel.layer.masksToBounds = true
+        contentLabel.backgroundColor = UIColor.white
     }
 }

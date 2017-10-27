@@ -25,11 +25,11 @@ class StatusNormalCell: StatusCell {
 extension StatusNormalCell {
     override func setupUI() {
         super.setupUI()
-        
+                
         pictureView.snp.makeConstraints { (make) in
             make.top.equalTo(contentLabel.snp.bottom).offset(StatusCellMargin)
             make.left.equalTo(contentView.snp.left).offset(StatusCellMargin)
-            make.width.equalTo(300)
+            make.right.equalTo(contentView.snp.right).offset(-StatusCellMargin)
             make.height.equalTo(400)
         }
     }

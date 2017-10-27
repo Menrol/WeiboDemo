@@ -27,7 +27,7 @@ class StatusRetweetCell: StatusCell {
     /// 背景视图
     fileprivate lazy var backButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = UIColor.init(white: 0.95, alpha: 1)
+        button.backgroundColor = UIColor(white: 0.95, alpha: 1)
         
         return button
     }()
@@ -40,7 +40,7 @@ class StatusRetweetCell: StatusCell {
 extension StatusRetweetCell {
     override func setupUI() {
         super.setupUI()
-        
+                
         // 添加控件
         contentView.insertSubview(backButton, belowSubview: pictureView)
         contentView.insertSubview(retweetLabel, aboveSubview: backButton)
@@ -61,9 +61,13 @@ extension StatusRetweetCell {
         pictureView.snp.makeConstraints { (make) in
             make.top.equalTo(retweetLabel.snp.bottom).offset(StatusCellMargin)
             make.left.equalTo(contentView.snp.left).offset(StatusCellMargin)
-            make.width.equalTo(300)
+            make.right.equalTo(contentView.snp.right).offset(-StatusCellMargin)
             make.height.equalTo(400)
         }
+        
+        // 设置转发微博文本
+        retweetLabel.layer.masksToBounds = true
+        retweetLabel.backgroundColor = UIColor(white: 0.95, alpha: 1)
 
     }
 }
