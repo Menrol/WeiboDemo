@@ -23,15 +23,21 @@ class StatusCellPictureView: UIView {
                 iv.isHidden = false
                 iv.rq_setImage(url: url, placeholderImage: nil)
                 
+                // 判断是否是动图
+                iv.subviews[0].isHidden = (url.absoluteString as NSString).pathExtension != "gif"
+                
                 // 处理四张图片
                 if index == 1 && viewModel?.thumbnailUrls?.count == 4 {
                     index += 2
                 }else {
                     index += 1
                 }
+                
             }
             
+            // 调整视图大小
             calViewSize()
+            
         }
     }
     
@@ -90,6 +96,22 @@ private extension StatusCellPictureView {
             
             imageView.frame = imageView.frame.offsetBy(dx: offsetX, dy: offsetY)
             
+            // 添加gif提示
+            addGIFTipView(imageView: imageView)
+        }
+    }
+    
+    /// 添加gif提示视图
+    func addGIFTipView(imageView: UIImageView) {
+        // 添加控件
+        let iv = UIImageView()
+        iv.image = UIImage(named: "timeline_image_gif")
+        imageView.addSubview(iv)
+        
+        // 设置布局
+        iv.snp.makeConstraints { (make) in
+            make.right.equalTo(imageView.snp.right)
+            make.bottom.equalTo(imageView.snp.bottom)
         }
     }
 }

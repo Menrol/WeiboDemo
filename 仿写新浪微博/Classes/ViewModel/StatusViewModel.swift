@@ -86,7 +86,7 @@ class StatusViewModel: CustomStringConvertible{
         
         // 微博文本高度
         if let text = status.text {
-            height += (text as NSString).boundingRect(with: labelSize, options: [.usesLineFragmentOrigin,.usesFontLeading], attributes: [NSAttributedStringKey.font: normalFont], context: nil).height
+            height += text.boundingRect(with: labelSize, options: [.usesLineFragmentOrigin], attributes: [NSAttributedStringKey.font: normalFont], context: nil).height
         }
         
         // 转发微博高度
@@ -95,7 +95,7 @@ class StatusViewModel: CustomStringConvertible{
             
             // 转发文本高度
             if let text = retweetText {
-                height += (text as NSString).boundingRect(with: labelSize, options: [.usesLineFragmentOrigin], attributes: [NSAttributedStringKey.font: retweetFont], context: nil).height
+                height += text.boundingRect(with: labelSize, options: [.usesLineFragmentOrigin, .usesFontLeading], attributes: [NSAttributedStringKey.font: retweetFont], context: nil).height
             }
         }
         
