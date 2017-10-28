@@ -113,7 +113,24 @@ class StatusViewModel: CustomStringConvertible{
     }
     
     func updateSinglePictureSize(image: UIImage) {
-        pictureViewSize = image.size
+        var size = image.size
+        
+        let maxWidth: CGFloat = 300
+        let minWidth: CGFloat = 40
+        
+        // 过宽图像处理
+        if size.width > maxWidth {
+            size.width = maxWidth
+            size.height = image.size.height * size.width / image.size.width
+        }
+        
+        // 过窄图像处理
+        if size.width < minWidth {
+            size.width = minWidth
+            size.height = image.size.height * size.width / image.size.width / 4
+        }
+        
+        pictureViewSize = size
         
         // 更新行高
         calRowHeight()
