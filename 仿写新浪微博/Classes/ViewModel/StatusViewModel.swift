@@ -85,8 +85,9 @@ class StatusViewModel: CustomStringConvertible{
         height = 2 * margin + iconWidth + margin
         
         // 微博文本高度
-        if let text = status.text {
-            height += text.boundingRect(with: labelSize, options: [.usesLineFragmentOrigin], attributes: [NSAttributedStringKey.font: normalFont], context: nil).height
+        if let text = status.text,
+            let atr = EmoticonManager.sharedManager.emoticonText(text: text, font: normalFont) {
+            height += atr.boundingRect(with: labelSize, options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil).height
         }
         
         // 转发微博高度
@@ -94,8 +95,9 @@ class StatusViewModel: CustomStringConvertible{
             height += 2 * margin
             
             // 转发文本高度
-            if let text = retweetText {
-                height += text.boundingRect(with: labelSize, options: [.usesLineFragmentOrigin, .usesFontLeading], attributes: [NSAttributedStringKey.font: retweetFont], context: nil).height
+            if let text = retweetText,
+                let atr = EmoticonManager.sharedManager.emoticonText(text: text, font: retweetFont) {
+                height += atr.boundingRect(with: labelSize, options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil).height
             }
         }
         
@@ -110,6 +112,15 @@ class StatusViewModel: CustomStringConvertible{
         height += toolbarHeight
         
         rowHeight = height
+    }
+    
+    func getSpaceLabelHeight(text: String, lineSpace: CGFloat, font: UIFont, size: CGSize) -> CGFloat {
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = lineSpace
+        
+        let size = (text as NSString).boundingRect(with: size, options: [.usesLineFragmentOrigin], attributes: [NSAttributedStringKey.paragraphStyle: paragraphStyle, NSAttributedStringKey.font: font, NSAttributedStringKey.kern: NSNumber(value: 0)], context: nil)
+        
+        return size.height
     }
     
     func updateSinglePictureSize(image: UIImage) {

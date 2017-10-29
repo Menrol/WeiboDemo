@@ -73,6 +73,8 @@ class EmoticonManager {
             atr.replaceCharacters(in: range, with: imageText)
         }
         
+         atr.addAttributes([NSAttributedStringKey.font: font], range: NSRange(location: 0, length: atr.length))
+        
         return atr
     }
     
@@ -103,7 +105,5 @@ class EmoticonManager {
         for dic in array {
             packages.append(Package(dictionary: dic))
         }
-        
-        print(packages)
     }
 }
