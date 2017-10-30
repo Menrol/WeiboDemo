@@ -114,15 +114,6 @@ class StatusViewModel: CustomStringConvertible{
         rowHeight = height
     }
     
-    func getSpaceLabelHeight(text: String, lineSpace: CGFloat, font: UIFont, size: CGSize) -> CGFloat {
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = lineSpace
-        
-        let size = (text as NSString).boundingRect(with: size, options: [.usesLineFragmentOrigin], attributes: [NSAttributedStringKey.paragraphStyle: paragraphStyle, NSAttributedStringKey.font: font, NSAttributedStringKey.kern: NSNumber(value: 0)], context: nil)
-        
-        return size.height
-    }
-    
     func updateSinglePictureSize(image: UIImage) {
         var size = image.size
         

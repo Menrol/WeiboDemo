@@ -56,6 +56,26 @@ class StatusCellPictureView: UIView {
                                   height: StatusCellPictureViewItemWidth)
         }
     }
+    
+    // MARK: - 监听方法
+    @objc private func tapImageView(gesture: UITapGestureRecognizer) {
+        let iv = gesture.view
+        
+        guard let selectedIndex = iv?.tag,
+            let urls = viewModel?.thumbnailUrls else {
+                return
+        }
+        
+        var parentImageViews = [UIImageView]()
+        for iv in subviews as! [UIImageView] {
+            if !iv.isHidden {
+                parentImageViews.append(iv)
+            }
+        }
+        
+        // 发送通知
+        NotificationCenter.default.post(name: Notification.Name.init(rawValue: WBStatusCellSelectedPcitureNotification), object: self, userInfo: [WBStatusCellPhotoBrowserSelectedIndexKey: selectedIndex, WBStatusCellPhotoBrowserUrlsKey: urls, WBStatusCellPhotoBrowserParentViewsKey: parentImageViews])
+    }
 
     // MARK: - 构造函数
     init() {
@@ -96,8 +116,16 @@ private extension StatusCellPictureView {
             
             imageView.frame = imageView.frame.offsetBy(dx: offsetX, dy: offsetY)
             
+            // 设置tag
+            imageView.tag = i
+            
             // 添加gif提示
             addGIFTipView(imageView: imageView)
+            
+            // 添加手势
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapImageView(gesture:)))
+            imageView.isUserInteractionEnabled = true
+            imageView.addGestureRecognizer(tapGesture)
         }
     }
     

@@ -39,27 +39,19 @@ class HomeTableViewController: VisitorTableViewController {
         loadData(isPulldown: true)
         
         // 注册通知
-//        NotificationCenter.default.addObserver(forName: NSNotification.Name.init(rawValue: WBStatusSelectedPcitureNotification), object: nil, queue: nil) { [weak self] (n) in
-//            guard let urls = n.userInfo?[WBStatusSelectedPictureUrlsKey] as? [URL] else {
-//                return
-//            }
-//            guard let indexPath = n.userInfo?[WBStatusSelectedPictureIndexPathKey] as? IndexPath else {
-//                return
-//            }
-//            guard let cell = n.object as? PictureBrowserPresentDelegate else {
-//                return
-//            }
-//
-//            let vc = PictureBrowserViewController(indexPath: indexPath, thumbnailUrls: urls)
-//            // 设置转场动画模式
-//            vc.modalPresentationStyle = .custom
-//            // 设置转场动画代理
-//            vc.transitioningDelegate = self?.pictureBrowserAnimator
-//            // 设置代理参数
-//            self?.pictureBrowserAnimator.setParameters(indexPath: indexPath, presentDelegate: cell, dismissDelegate: vc)
-//
-//            self?.present(vc, animated: true, completion: nil)
-//        }
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.init(rawValue: WBStatusCellSelectedPcitureNotification), object: nil, queue: nil) { [weak self] (n) in
+            
+            guard let selectedIndex = n.userInfo?[WBStatusCellPhotoBrowserSelectedIndexKey] as? Int,
+                let urls = n.userInfo?[WBStatusCellPhotoBrowserUrlsKey] as? [URL],
+                let parentViews = n.userInfo?[WBStatusCellPhotoBrowserParentViewsKey] as? [UIImageView] else {
+                return
+            }
+            
+            let vc = PictureBrowserViewController.photoBroswer(withSelectedIndex: selectedIndex, urls: urls, parentImageViews: parentViews)
+            
+            self?.present(vc!, animated: true, completion: nil)
+            
+        }
     }
     
     deinit {
@@ -157,7 +149,6 @@ class HomeTableViewController: VisitorTableViewController {
         
         return indicatorView
     }()
-    private lazy var pictureBrowserAnimator: PictureBrowserAnimator = PictureBrowserAnimator()
     private lazy var pullDownTipView: UILabel = {
         let label = UILabel(text: "", font: 18, textColor: UIColor.white)
         label.backgroundColor = UIColor.orange

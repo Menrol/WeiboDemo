@@ -10,6 +10,10 @@ import UIKit
 
 /// 通知名称
 let WBSwitchRootViewControllerNotification = "WBSwitchRootViewControllerNotification"
+let WBStatusCellSelectedPcitureNotification = "WBStatusSelectedPcitureNotification"
+let WBStatusCellPhotoBrowserSelectedIndexKey = "WBStatusCellPhotoBrowserSelectedIndex"
+let WBStatusCellPhotoBrowserUrlsKey = "WBStatusCellPhotoBrowserUrlsKey"
+let WBStatusCellPhotoBrowserParentViewsKey = "WBStatusCellPhotoBrowserParentViewsKey"
 
 /// 延时函数
 func delay(time: Double,execute:@escaping () -> Void){

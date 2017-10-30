@@ -103,9 +103,12 @@ extension MainViewController: UITabBarControllerDelegate {
             let nav = childViewControllers[0] as! UINavigationController
             let vc = nav.childViewControllers[0] as! HomeTableViewController
             // 滚动到顶部
-            vc.tableView.setContentOffset(CGPoint(x: 0, y: -124), animated: false)
+            vc.tableView.setContentOffset(CGPoint(x: 0, y: -64), animated: false)
             // 刷新
-            vc.loadData(isPulldown: true)
+            delay(time: 0.5, execute: {
+                //vc.loadData(isPulldown: true)
+                print("下拉刷新 \(vc.tableView.contentOffset) \(vc.tableView.contentInset)")
+            })
         }
         
         return !viewController.isMember(of: UIViewController.self)
