@@ -24,7 +24,7 @@ class EmoticonView: UIView {
         selectedSection(section: button.tag)
         
         // 滚动
-        let indexPath = IndexPath(item: 0, section: button.tag)
+        let indexPath = IndexPath(item: 0, section: button.tag - 100)
         collectionView.scrollToItem(at: indexPath, at: .left, animated: true)
     }
     
@@ -34,8 +34,9 @@ class EmoticonView: UIView {
         for button in toolBar.subviews as! [UIButton] {
             button.isSelected = false
         }
+        
         // 设置选中状态
-        let button = toolBar.viewWithTag(section) as? UIButton
+        let button = toolBar.viewWithTag(100 + section) as? UIButton
         button?.isSelected = true
     }
 
@@ -305,7 +306,7 @@ private extension EmoticonView {
             // 设置位置
             button.frame = rect.offsetBy(dx: CGFloat(i) * w, dy: 0)
             
-            button.tag = i
+            button.tag = i + 100
             
             // 添加监听方法
             button.addTarget(self, action: #selector(clickItem(button:)), for: .touchUpInside)
