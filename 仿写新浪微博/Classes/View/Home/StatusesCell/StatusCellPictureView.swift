@@ -61,9 +61,14 @@ class StatusCellPictureView: UIView {
     @objc private func tapImageView(gesture: UITapGestureRecognizer) {
         let iv = gesture.view
         
-        guard let selectedIndex = iv?.tag,
+        guard var selectedIndex = iv?.tag,
             let urls = viewModel?.thumbnailUrls else {
                 return
+        }
+        
+        // 处理四张图片
+        if urls.count == 4 && selectedIndex > 1 {
+            selectedIndex = selectedIndex - 1
         }
         
         var parentImageViews = [UIImageView]()
