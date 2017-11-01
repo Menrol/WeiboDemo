@@ -53,8 +53,8 @@
     
     [self addConstraint:[NSLayoutConstraint constraintWithItem:_progressView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:_progressView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:_progressView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:32]];
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:_progressView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:32]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:_progressView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:50]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:_progressView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:50]];
 }
 
 @end
@@ -73,6 +73,20 @@
     CGFloat radius = rect.size.width * 0.5;
     CGFloat start = -M_PI_2;
     CGFloat end = start + 2 * _progress * M_PI;
+    
+    // 绘制外圆
+    [[UIColor whiteColor] setStroke];
+    
+    CGFloat lineWidth = 0.5;
+    UIBezierPath *borderPath = [UIBezierPath bezierPathWithArcCenter:center radius:radius - lineWidth startAngle:0 endAngle:2 * M_PI clockwise:YES];
+    borderPath.lineWidth = lineWidth;
+    [borderPath stroke];
+    
+    // 绘制内圆
+    [[UIColor colorWithWhite:0.0 alpha:0.5] setFill];
+    radius -= 4 * lineWidth;
+    UIBezierPath *trackPath = [UIBezierPath bezierPathWithArcCenter:center radius:radius startAngle:0 endAngle:2 * M_PI clockwise:true];
+    [trackPath fill];
     
     UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:center radius:radius startAngle:start endAngle:end clockwise:YES];
     

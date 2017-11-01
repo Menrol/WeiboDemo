@@ -28,6 +28,7 @@
     
     UIImage *placeHolderImage = [[[SDWebImageManager sharedManager] imageCache] imageFromDiskCacheForKey:imageUrl.absoluteString];
     [self preparePlaceHolderWithImage:placeHolderImage];
+    _placeHolder.progress = 0.5;
     
     [_imageView sd_setImageWithURL:[self bmiddleUrlWithUrl:imageUrl] placeholderImage:placeHolderImage options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -41,6 +42,20 @@
 
 - (void)tapPicture {
     [_pictureDelegate pictureBrowserCellWillDismiss];
+}
+
+- (void)longPressWithGesture:(UILongPressGestureRecognizer *)longGesture {
+    if (longGesture.state != UIGestureRecognizerStateBegan) {
+        return;
+    }
+    
+    UIImage *image = self.imageView.image;
+    
+    if (image == nil) {
+        return;
+    }
+    
+    [_pictureDelegate pictureDidLongPressWithImage:image];
 }
 
 /* bmiddleUrl */
@@ -176,6 +191,7 @@
     // 设置手势
     _imageView.userInteractionEnabled = YES;
     [_imageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapPicture)]];
+    [_imageView addGestureRecognizer:[[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressWithGesture:)]];
 }
 
 @end

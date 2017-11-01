@@ -10,7 +10,6 @@
 #import "PictureBrowserViewCell.h"
 #import "PictureBrowserAnimator.h"
 #import "PictureBrowserPhotos.h"
-#import "SVProgressHUD.h"
 
 // 可重用cellId
 static NSString *const PictureBrowserViewCellId = @"PictureBrowserViewCellId";
@@ -22,6 +21,9 @@ static NSString *const PictureBrowserViewCellId = @"PictureBrowserViewCellId";
 
 /** 页数显示按钮 */
 @property(nonatomic, strong) UIButton *pageConutButton;
+/** 提示文字 */
+@property(nonatomic, strong) UILabel *messageLabel;
+
 
 @end
 
@@ -35,18 +37,24 @@ static NSString *const PictureBrowserViewCellId = @"PictureBrowserViewCellId";
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)savePicture {
-    PictureBrowserViewCell *cell = [_collectionView visibleCells][0];
-    
-    UIImageWriteToSavedPhotosAlbum(cell.imageView.image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+- (void)savePictureWithImage:(UIImage *)image {
+    UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
 }
 
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
-    if (error == nil) {
-        [SVProgressHUD showSuccessWithStatus:@"保存成功"];
-    }else {
-        [SVProgressHUD showErrorWithStatus:@"保存失败"];
-    }
+    NSString *message = (error == nil) ? @"保存成功" : @"保存失败";
+    
+    _messageLabel.text = message;
+    
+    [UIView animateWithDuration:0.7 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:10 options:0 animations:^{
+        _messageLabel.transform = CGAffineTransformIdentity;
+    } completion:^(BOOL finished) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [UIView animateWithDuration:0.5 animations:^{
+                _messageLabel.transform = CGAffineTransformMakeScale(0, 0);
+            }];
+        });
+    }];
 }
 
 #pragma mark - 构造函数
@@ -72,13 +80,6 @@ static NSString *const PictureBrowserViewCellId = @"PictureBrowserViewCellId";
 }
 
 #pragma mark - 视图生命周期
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    // 滚动到选中图片
-    [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:_photos.selectedIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
-}
-
 - (void)loadView {
     CGRect rect = [UIScreen mainScreen].bounds;
     rect.size.width += 20;
@@ -86,6 +87,27 @@ static NSString *const PictureBrowserViewCellId = @"PictureBrowserViewCellId";
     self.view.backgroundColor = [UIColor blackColor];
     
     [self setupUI];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+  
+    [UIView animateWithDuration:0.25 animations:^{
+        [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    }];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    // 滚动到选中图片
+    [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:_photos.selectedIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
 }
 
 #pragma mark - 懒加载控件
@@ -103,6 +125,14 @@ static NSString *const PictureBrowserViewCellId = @"PictureBrowserViewCellId";
     }
     
     return _pageConutButton;
+}
+
+- (UILabel *)messageLabel {
+    if(!_messageLabel) {
+        _messageLabel = [[UILabel alloc] init];
+    }
+    
+    return _messageLabel;
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -127,6 +157,8 @@ static NSString *const PictureBrowserViewCellId = @"PictureBrowserViewCellId";
 }
 
 - (void)setPageCountWithIndex:(NSInteger)index {
+    _pageConutButton.hidden = _photos.urls.count == 1;
+    
     [_pageConutButton setTitle:[NSString stringWithFormat:@"%ld/%lu",(long)index,(unsigned long)_photos.urls.count] forState:UIControlStateNormal];
 }
 
@@ -149,11 +181,23 @@ static NSString *const PictureBrowserViewCellId = @"PictureBrowserViewCellId";
     }
 }
 
+- (void)pictureDidLongPressWithImage:(UIImage *)image {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"保存至相册" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self savePictureWithImage:image];
+    }]];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+    
+    [self presentViewController:alertController animated:true completion:nil];
+}
+
 #pragma mark - 设置界面
 - (void)setupUI {
     // 添加控件
     [self.view addSubview:self.collectionView];
     [self.view addSubview:self.pageConutButton];
+    [self.view addSubview:self.messageLabel];
     
     // 设置位置
     _collectionView.frame = self.view.bounds;
@@ -163,11 +207,24 @@ static NSString *const PictureBrowserViewCellId = @"PictureBrowserViewCellId";
     center.y = _pageConutButton.frame.size.height;
     _pageConutButton.center = center;
     
-    // 准备页数显示按钮
-    [self preparePageCountButton];
+    _messageLabel.frame = CGRectMake(0, 0, 120, 60);
+    _messageLabel.center = self.view.center;
     
     // 准备collectionview
     [self prepareCollectionView];
+    // 准备页数显示按钮
+    [self preparePageCountButton];
+    // 准备提示文本
+    [self prepareMessageLabel];
+}
+
+- (void)prepareMessageLabel {
+    _messageLabel.backgroundColor = [UIColor colorWithWhite:0 alpha:0.6];
+    _messageLabel.textColor = [UIColor whiteColor];
+    _messageLabel.textAlignment = NSTextAlignmentCenter;
+    _messageLabel.layer.cornerRadius = 6;
+    _messageLabel.layer.masksToBounds = YES;
+    _messageLabel.transform = CGAffineTransformMakeScale(0, 0);
 }
 
 - (void)preparePageCountButton {

@@ -50,7 +50,6 @@ class HomeTableViewController: VisitorTableViewController {
             let vc = PictureBrowserViewController.photoBroswer(withSelectedIndex: selectedIndex, urls: urls, parentImageViews: parentViews)
             
             self?.present(vc!, animated: true, completion: nil)
-            
         }
     }
     

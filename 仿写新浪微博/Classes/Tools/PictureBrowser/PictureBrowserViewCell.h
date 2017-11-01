@@ -12,6 +12,7 @@
 
 - (void)pictureBrowserCellWillDismiss;
 - (void)pictureDidScrollToScaleWihScale:(CGFloat)scale;
+- (void)pictureDidLongPressWithImage:(UIImage *)image;
 
 @end
 
