@@ -15,14 +15,13 @@
 // 可重用cellId
 static NSString *const PictureBrowserViewCellId = @"PictureBrowserViewCellId";
 
-@interface PictureBrowserViewController () <UICollectionViewDataSource,PictureBrowserCellDelegate> {
+@interface PictureBrowserViewController () <UICollectionViewDataSource,PictureBrowserCellDelegate,UICollectionViewDelegate> {
     PictureBrowserPhotos *_photos;
     PictureBrowserAnimator *_animator;
 }
-/** 保存按钮 */
-@property(nonatomic, strong) UIButton *saveButton;
-/** 删除按钮 */
-@property(nonatomic, strong) UIButton *closeButton;
+
+/** 页数显示按钮 */
+@property(nonatomic, strong) UIButton *pageConutButton;
 
 @end
 
@@ -98,20 +97,13 @@ static NSString *const PictureBrowserViewCellId = @"PictureBrowserViewCellId";
     return _collectionView;
 }
 
-//- (UIButton *)closeButton {
-//    if (!_closeButton) {
-//        _closeButton = [[UIButton alloc] initWithTitle:@"关闭" fontSize:14 color:[UIColor whiteColor] imageName:nil backColor:[UIColor darkGrayColor]];
-//    }
-//    return _closeButton;
-//}
-//
-//- (UIButton *)saveButton {
-//    if (!_saveButton) {
-//        _saveButton = [[UIButton alloc] initWithTitle:@"保存" fontSize:14 color:[UIColor whiteColor] imageName:nil backColor:[UIColor darkGrayColor]];
-//    }
-//
-//    return _saveButton;
-//}
+- (UIButton *)pageConutButton {
+    if(!_pageConutButton) {
+        _pageConutButton = [[UIButton alloc] init];
+    }
+    
+    return _pageConutButton;
+}
 
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -127,6 +119,17 @@ static NSString *const PictureBrowserViewCellId = @"PictureBrowserViewCellId";
     return cell;
 }
 
+#pragma mark - UICollectionViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    NSInteger page = scrollView.contentOffset.x / self.view.bounds.size.width;
+    
+    [self setPageCountWithIndex:page + 1];
+}
+
+- (void)setPageCountWithIndex:(NSInteger)index {
+    [_pageConutButton setTitle:[NSString stringWithFormat:@"%ld/%lu",(long)index,(unsigned long)_photos.urls.count] forState:UIControlStateNormal];
+}
+
 #pragma mark - PictureBrowserCellDelegate
 - (void)pictureBrowserCellWillDismiss {
     [self close];
@@ -134,8 +137,7 @@ static NSString *const PictureBrowserViewCellId = @"PictureBrowserViewCellId";
 
 - (void)pictureDidScrollToScaleWihScale:(CGFloat)scale {
     BOOL isHidden = scale < 1;
-    _saveButton.hidden = isHidden;
-    _closeButton.hidden = isHidden;
+    _pageConutButton.hidden = isHidden;
     self.view.backgroundColor = isHidden ? [UIColor clearColor] : [UIColor blackColor];
     
     if (scale < 1) {
@@ -151,32 +153,30 @@ static NSString *const PictureBrowserViewCellId = @"PictureBrowserViewCellId";
 - (void)setupUI {
     // 添加控件
     [self.view addSubview:self.collectionView];
-//    [self.view addSubview:self.closeButton];
-//    [self.view addSubview:self.saveButton];
+    [self.view addSubview:self.pageConutButton];
     
-    // 设置约束
+    // 设置位置
     _collectionView.frame = self.view.bounds;
     
-    CGFloat margin = [UIScreen mainScreen].scale * 4;
+    CGPoint center = self.view.center;
+    _pageConutButton.frame = CGRectMake(0, 0, 80, 40);
+    center.y = _pageConutButton.frame.size.height;
+    _pageConutButton.center = center;
     
-//    [_closeButton mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.equalTo(self.view.mas_left).with.offset(margin);
-//        make.bottom.equalTo(self.view.mas_bottom).with.offset(-margin);
-//        make.size.mas_equalTo(CGSizeMake(100, 36));
-//    }];
-//    
-//    [_saveButton mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.right.equalTo(self.view.mas_right).with.offset(-margin - 20);
-//        make.bottom.equalTo(self.view.mas_bottom).with.offset(-margin);
-//        make.size.mas_equalTo(CGSizeMake(100, 36));
-//    }];
-    
-    // 添加监听方法
-    [_closeButton addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
-    [_saveButton addTarget:self action:@selector(savePicture) forControlEvents:UIControlEventTouchUpInside];
+    // 准备页数显示按钮
+    [self preparePageCountButton];
     
     // 准备collectionview
     [self prepareCollectionView];
+}
+
+- (void)preparePageCountButton {
+    _pageConutButton.titleLabel.font = [UIFont boldSystemFontOfSize:20];
+    [_pageConutButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    _pageConutButton.layer.cornerRadius = 6;
+    _pageConutButton.backgroundColor = [UIColor colorWithWhite:0.01 alpha:0.5];
+    
+    [self setPageCountWithIndex:_photos.selectedIndex + 1];
 }
 
 - (void)prepareCollectionView {
@@ -185,6 +185,7 @@ static NSString *const PictureBrowserViewCellId = @"PictureBrowserViewCellId";
     [_collectionView registerClass:[PictureBrowserViewCell class] forCellWithReuseIdentifier:PictureBrowserViewCellId];
     
     _collectionView.dataSource = self;
+    _collectionView.delegate = self;
 }
 
 @end
