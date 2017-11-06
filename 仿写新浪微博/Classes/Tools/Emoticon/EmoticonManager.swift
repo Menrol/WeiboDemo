@@ -21,6 +21,12 @@ class EmoticonManager {
         
         return Bundle(path: path!)!
     }()
+    /// 最近表情路径
+    var emoticonPath: String {
+        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last!
+        
+        return (path as NSString).appendingPathComponent("recentEmoticons.plist")
+    }
     
     // MARK: - 最近表情
     func addRecentEmoticon(emoticon: Emoticon) {
@@ -32,8 +38,18 @@ class EmoticonManager {
         // 添加表情使用次数
         emoticon.times += 1
         
+        var contain: Bool = false
         // 判断表情是否被添加
-        if !packages[0].emoticons.contains(emoticon) {
+        for em in packages[0].emoticons {
+            if em.chs == emoticon.chs && em.chs != nil{
+                em.times += 1
+                contain = true
+            }else if em.code == emoticon.code && em.code != nil {
+                em.times += 1
+                contain = true
+            }
+        }
+        if !contain {
             // 添加最近表情
             packages[0].emoticons.insert(emoticon, at: 0)
             // 移除倒数第二个
@@ -41,7 +57,10 @@ class EmoticonManager {
         }
         
         // 排序
-        packages[0].emoticons.sort { $0.times > $1.times}
+        packages[0].emoticons.sort {$0.times > $1.times}
+        
+        // 保存在本地
+        NSKeyedArchiver.archiveRootObject(packages[0].emoticons, toFile: emoticonPath)
     }
     
     // MARK: - 生成属性字符串
@@ -105,5 +124,13 @@ class EmoticonManager {
         for dic in array {
             packages.append(Package(dictionary: dic))
         }
+        
+        print(packages[0].emoticons[20].isDelete)
+        
+        // 获取最近表情
+        if let recentEmoticons = NSKeyedUnarchiver.unarchiveObject(withFile: emoticonPath) as? [Emoticon] {
+            packages[0].emoticons = recentEmoticons
+        }
+        
     }
 }

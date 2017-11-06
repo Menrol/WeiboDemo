@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Emoticon: NSObject {
+class Emoticon: NSObject,NSCoding {
     /// 发送给服务器字符串
     @objc var chs: String?
     /// 本地图片
@@ -33,13 +33,33 @@ class Emoticon: NSObject {
         return Bundle.main.bundlePath + "/Emoticons.bundle/Contents/Resources/compose_emotion_delete"
     }
     /// 是否是删除按钮
-    var isDelete: Bool = false
+    @objc var isDelete: Bool = false
     /// 是否是空白
-    var isEmpty: Bool = false
+    @objc var isEmpty: Bool = false
     /// emoji字符串
-    var emoji: String?
+    @objc var emoji: String?
     /// 使用次数
-    var times: Int = 0
+    @objc var times: Int = 0
+    
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(chs, forKey: "chs")
+        aCoder.encode(png, forKey: "png")
+        aCoder.encode(code, forKey: "code")
+        aCoder.encode(isDelete, forKey: "isDelete")
+        aCoder.encode(isEmpty, forKey: "isEmpty")
+        aCoder.encode(emoji, forKey: "emoji")
+        aCoder.encode(times, forKey: "times")
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        chs = aDecoder.decodeObject(forKey: "chs") as? String
+        png = aDecoder.decodeObject(forKey: "png") as? String
+        code = aDecoder.decodeObject(forKey: "code") as? String
+        isDelete = aDecoder.decodeBool(forKey: "isDelete")
+        isEmpty = aDecoder.decodeBool(forKey: "isEmpty")
+        emoji = aDecoder.decodeObject(forKey: "emoji") as? String 
+        times = Int(aDecoder.decodeInt64(forKey: "times"))
+    }
     
     init(isDelete: Bool) {
         self.isDelete = isDelete

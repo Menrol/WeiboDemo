@@ -20,15 +20,6 @@ class NetworkTool {
     /// 网络请求回调
     typealias FinishedCallback = (_ result:Any?, _ error: Error?) -> Void
     
-//    /// token字典
-//    fileprivate var tokenDic: [String: Any]?{
-//        if let token = UserAccountViewModel.sharedUersAccount.access_token{
-//            
-//            return ["access_token": token]
-//        }
-//        return nil
-//    }
-    
     // 单例
     static let sharedTool:NetworkTool = NetworkTool()
 }

@@ -21,7 +21,7 @@ class EmoticonView: UIView {
     // MARK: - 监听方法
     @objc fileprivate func clickItem(button: UIButton) {
         // 设置按钮选中
-        selectedSection(section: button.tag)
+        selectedSection(section: button.tag - 100)
         
         // 滚动
         let indexPath = IndexPath(item: 0, section: button.tag - 100)
