@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PlaceHolderImageView.h"
 
 @protocol PictureBrowserCellDelegate <NSObject>
 
@@ -23,6 +24,8 @@
 @property(nonatomic, strong) UIScrollView *scrollView;
 /** 图片 */
 @property(nonatomic, strong) UIImageView *imageView;
+/** 占位图 */
+@property(nonatomic, strong) PlaceHolderImageView *placeHolder;
 /** 代理 */
 @property(nonatomic, weak) id<PictureBrowserCellDelegate> pictureDelegate;
 

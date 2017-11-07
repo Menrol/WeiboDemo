@@ -32,7 +32,7 @@ static NSString *const PictureBrowserViewCellId = @"PictureBrowserViewCellId";
 #pragma mark - 监听方法
 - (void)close {
     PictureBrowserViewCell *cell = [_collectionView visibleCells][0];
-    _animator.fromImageView = cell.imageView;
+    _animator.fromImageView = cell.imageView.frame.size.width > 0 ? cell.imageView : cell.placeHolder;
     _photos.selectedIndex = [_collectionView indexPathForCell:cell].row;
     [self dismissViewControllerAnimated:YES completion:nil];
 }

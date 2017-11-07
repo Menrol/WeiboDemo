@@ -7,15 +7,12 @@
 //
 
 #import "PictureBrowserViewCell.h"
-#import "PlaceHolderImageView.h"
 #import "PictureBrowserAnimator.h"
 #import "SDWebImageManager.h"
 #import "UIImageView+WebCache.h"
 #import "FLAnimatedImageView+WebCache.h"
 
 @interface PictureBrowserViewCell () <UIScrollViewDelegate>
-/** 占位图 */
-@property(nonatomic, strong) PlaceHolderImageView *placeHolder;
 
 @end
 
@@ -27,16 +24,19 @@
     [self resetScrollView];
     
     UIImage *placeHolderImage = [[[SDWebImageManager sharedManager] imageCache] imageFromDiskCacheForKey:imageUrl.absoluteString];
-    [self preparePlaceHolderWithImage:placeHolderImage];
-    _placeHolder.progress = 0.5;
+    if (placeHolderImage != nil) {
+        [self preparePlaceHolderWithImage:placeHolderImage];
+    }
     
     [_imageView sd_setImageWithURL:[self bmiddleUrlWithUrl:imageUrl] placeholderImage:placeHolderImage options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
         dispatch_async(dispatch_get_main_queue(), ^{
             _placeHolder.progress = (CGFloat)receivedSize / (CGFloat)expectedSize;
         });
     } completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-        _placeHolder.hidden = YES;
-        [self setPositionWithImage:image];
+        if (image != nil) {
+            _placeHolder.hidden = YES;
+            [self setPositionWithImage:image];
+        }
     }];
 }
 
@@ -104,12 +104,21 @@
 
 /* 准备占位视图 */
 - (void)preparePlaceHolderWithImage: (UIImage *)image {
-    CGFloat w = [UIScreen mainScreen].bounds.size.width;
-    CGFloat h = image.size.height * w / image.size.width;
+    CGFloat width = _scrollView.bounds.size.width;
+    CGFloat height = _scrollView.bounds.size.height;
+    CGFloat h = image.size.height * width / image.size.width;
     
     _placeHolder.image = image;
-    _placeHolder.bounds = CGRectMake(0, 0, w, h);
-    _placeHolder.center = _scrollView.center;
+    _placeHolder.frame = CGRectMake(0, 0, width, h);
+    
+    CGFloat y = 0;
+    if (h > height) {
+        _placeHolder.frame = CGRectMake(0, 0, width, height);
+        return;
+    }
+    
+    y = (height - h) / 2;
+    _scrollView.contentInset = UIEdgeInsetsMake(y, 0, 0, 0);
 }
 
 
@@ -192,6 +201,9 @@
     _imageView.userInteractionEnabled = YES;
     [_imageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapPicture)]];
     [_imageView addGestureRecognizer:[[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressWithGesture:)]];
+    
+    _placeHolder.userInteractionEnabled = YES;
+    [_placeHolder addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapPicture)]];
 }
 
 @end

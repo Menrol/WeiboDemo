@@ -25,7 +25,10 @@ class EmoticonView: UIView {
         
         // 滚动
         let indexPath = IndexPath(item: 0, section: button.tag - 100)
-        collectionView.scrollToItem(at: indexPath, at: .left, animated: true)
+        collectionView.scrollToItem(at: indexPath, at: .left, animated: false)
+        
+        // 设置分页控件
+        setPageControl(indexPath: indexPath)
     }
     
     /// 设置按钮选中
@@ -38,6 +41,12 @@ class EmoticonView: UIView {
         // 设置选中状态
         let button = toolBar.viewWithTag(100 + section) as? UIButton
         button?.isSelected = true
+    }
+    
+    /// 设置分页控件
+    private func setPageControl(indexPath: IndexPath) {
+        pageControl.numberOfPages = collectionView.numberOfItems(inSection: indexPath.section)
+        pageControl.currentPage = indexPath.item
     }
 
     // MARK: - 构造函数
@@ -128,8 +137,7 @@ extension EmoticonView: UICollectionViewDelegate {
         }
         
         // 设置分页控件
-        pageControl.numberOfPages = collectionView.numberOfItems(inSection: indexPath.section)
-        pageControl.currentPage = indexPath.item
+        setPageControl(indexPath: indexPath)
         // 设置按钮选中
         selectedSection(section: indexPath.section)
     }

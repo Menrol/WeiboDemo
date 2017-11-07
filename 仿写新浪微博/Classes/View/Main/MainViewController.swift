@@ -103,7 +103,7 @@ extension MainViewController: UITabBarControllerDelegate {
             let nav = childViewControllers[0] as! UINavigationController
             let vc = nav.childViewControllers[0] as! HomeTableViewController
             // 滚动到顶部
-            vc.tableView.contentOffset = CGPoint(x: 0, y: -124)
+            vc.tableView.contentOffset = CGPoint(x: 0, y: -64)
             // 刷新
             delay(time: 0.1, execute: {
                 vc.loadData(isPulldown: true)

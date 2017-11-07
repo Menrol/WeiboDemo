@@ -39,6 +39,7 @@ class RQRefreshControl: UIControl {
         var inset = originalInset
         inset?.top += RQRefreshOffset
         sv.contentInset = inset ?? UIEdgeInsets()
+        sv.contentOffset = CGPoint(x: 0, y: -sv.contentInset.top)
     }
     
     /// 结束刷新
