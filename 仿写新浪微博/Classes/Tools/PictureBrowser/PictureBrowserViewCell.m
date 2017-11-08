@@ -24,9 +24,7 @@
     [self resetScrollView];
     
     UIImage *placeHolderImage = [[[SDWebImageManager sharedManager] imageCache] imageFromDiskCacheForKey:imageUrl.absoluteString];
-    if (placeHolderImage != nil) {
-        [self preparePlaceHolderWithImage:placeHolderImage];
-    }
+    [self preparePlaceHolderWithImage:placeHolderImage];
     
     [_imageView sd_setImageWithURL:[self bmiddleUrlWithUrl:imageUrl] placeholderImage:placeHolderImage options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -104,6 +102,11 @@
 
 /* 准备占位视图 */
 - (void)preparePlaceHolderWithImage: (UIImage *)image {
+    if (image == nil) {
+        _placeHolder.center = _scrollView.center;
+        return;
+    }
+    
     CGFloat width = _scrollView.bounds.size.width;
     CGFloat height = _scrollView.bounds.size.height;
     CGFloat h = image.size.height * width / image.size.width;
