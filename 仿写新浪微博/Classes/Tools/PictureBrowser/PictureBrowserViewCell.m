@@ -103,7 +103,7 @@
 /* 准备占位视图 */
 - (void)preparePlaceHolderWithImage: (UIImage *)image {
     if (image == nil) {
-        _placeHolder.center = _scrollView.center;
+        _placeHolder.frame = _scrollView.frame;
         return;
     }
     

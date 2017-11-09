@@ -16,10 +16,6 @@ extension UIImageView {
             if isAvatar {
                 self.image = image?.rq_avatarImage(size: self.bounds.size, backColor: UIColor.white)
             }
-            
-            if image == nil {
-                self.isHidden = true
-            }
         }
     }
 }
