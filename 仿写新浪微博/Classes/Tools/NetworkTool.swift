@@ -128,8 +128,11 @@ extension NetworkTool{
     }
     
     fileprivate func request(method: HTTPMethod, urlString: String, parameters: [String: Any]?, finished:@escaping FinishedCallback){
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
         Alamofire.request(urlString, method: method, parameters: parameters).responseJSON { (response) in
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            
             if response.result.isFailure {
                 print(response.result.error as Any)
             }
@@ -140,6 +143,8 @@ extension NetworkTool{
     
     /// 上传文件
     fileprivate func upLoad(urlString: String, data:Data, name: String, parameters: [String: Any]?, finished:@escaping FinishedCallback) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        
         var parameters = parameters
         if !addtoken(parameters: &parameters) {
             finished(nil, NSError(domain: "com.xyou3g.error", code: -1001, userInfo: ["message":"token为空"]))
@@ -160,6 +165,8 @@ extension NetworkTool{
                 }
             }
         }, to: urlString) { (result) in
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            
             switch result {
             case .success(let upload, _, _):
                 upload.responseJSON(completionHandler: { (response) in
