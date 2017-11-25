@@ -1,20 +1,20 @@
 //
 //  PlaceHolderImageView.m
-//  仿写新浪微博OC
+//  照片浏览器
 //
 //  Created by Apple on 2017/8/29.
 //  Copyright © 2017年 WRQ. All rights reserved.
 //
 
-#import "PlaceHolderImageView.h"
+#import "RQPlaceHolderImageView.h"
 
-@interface PlaceHolderImageView ()
+@interface RQPlaceHolderImageView ()
 /** 进度视图 */
-@property(nonatomic, strong) ProgressView *progressView;
+@property(nonatomic, strong) RQProgressView *progressView;
 
 @end
 
-@implementation PlaceHolderImageView
+@implementation RQPlaceHolderImageView
 
 - (void)setProgress:(CGFloat)progress {
     _progress = progress;
@@ -34,9 +34,9 @@
 }
 
 #pragma mark - 懒加载控件
-- (ProgressView *)progressView {
+- (RQProgressView *)progressView {
     if (!_progressView) {
-        _progressView = [[ProgressView alloc] init];
+        _progressView = [[RQProgressView alloc] init];
         _progressView.backgroundColor = [UIColor clearColor];
     }
     
@@ -59,7 +59,7 @@
 
 @end
 
-@implementation ProgressView
+@implementation RQProgressView
 
 - (void)setProgress:(CGFloat)progress {
     _progress = progress;

@@ -1,26 +1,26 @@
 //
-//  PictureBrowserAnimator.m
-//  仿写新浪微博OC
+//  RQPictureBrowserAnimator.m
+//  照片浏览器
 //
 //  Created by Apple on 2017/8/29.
 //  Copyright © 2017年 WRQ. All rights reserved.
 //
 
-#import "PictureBrowserAnimator.h"
-#import "PictureBrowserViewController.h"
+#import "RQPictureBrowserAnimator.h"
+#import "RQPictureBrowserViewController.h"
 #import "SDWebImageManager.h"
 
-@interface PictureBrowserAnimator () <UIViewControllerAnimatedTransitioning> {
+@interface RQPictureBrowserAnimator () <UIViewControllerAnimatedTransitioning> {
     BOOL _isPresent;
-    PictureBrowserPhotos *_photos;
+    RQPictureBrowserPhotos *_photos;
 }
 
 @end
 
-@implementation PictureBrowserAnimator
+@implementation RQPictureBrowserAnimator
 
 #pragma mark - 构造函数
-- (instancetype)initWithPhotos:(PictureBrowserPhotos *)photos {
+- (instancetype)initWithPhotos:(RQPictureBrowserPhotos *)photos {
     self = [super init];
     if (self) {
         _photos = photos;
@@ -53,7 +53,7 @@
 - (void)presentAnimationWithContext: (id<UIViewControllerContextTransitioning>)context {
     UIView *toView = [context viewForKey:UITransitionContextToViewKey];
     [context.containerView addSubview:toView];
-    PictureBrowserViewController *vc = [context viewControllerForKey:UITransitionContextToViewControllerKey];
+    RQPictureBrowserViewController *vc = [context viewControllerForKey:UITransitionContextToViewControllerKey];
     vc.collectionView.hidden = YES;
     
     UIImageView *imageView = [self dummyImageView];

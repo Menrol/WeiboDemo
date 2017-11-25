@@ -1,13 +1,13 @@
 //
 //  PictureBrowserPhotos.m
-//  仿写新浪微博OC
+//  照片浏览器
 //
 //  Created by Apple on 2017/10/30.
 //  Copyright © 2017年 WRQ. All rights reserved.
 //
 
-#import "PictureBrowserPhotos.h"
+#import "RQPictureBrowserPhotos.h"
 
-@implementation PictureBrowserPhotos
+@implementation RQPictureBrowserPhotos
 
 @end

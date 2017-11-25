@@ -1,22 +1,22 @@
 //
 //  PictureBrowserViewController.m
-//  仿写新浪微博OC
+//  照片浏览器
 //
 //  Created by Apple on 2017/8/25.
 //  Copyright © 2017年 WRQ. All rights reserved.
 //
 
-#import "PictureBrowserViewController.h"
-#import "PictureBrowserViewCell.h"
-#import "PictureBrowserAnimator.h"
-#import "PictureBrowserPhotos.h"
+#import "RQPictureBrowserViewController.h"
+#import "RQPictureBrowserViewCell.h"
+#import "RQPictureBrowserAnimator.h"
+#import "RQPictureBrowserPhotos.h"
 
 // 可重用cellId
 static NSString *const PictureBrowserViewCellId = @"PictureBrowserViewCellId";
 
-@interface PictureBrowserViewController () <UICollectionViewDataSource,PictureBrowserCellDelegate,UICollectionViewDelegate> {
-    PictureBrowserPhotos *_photos;
-    PictureBrowserAnimator *_animator;
+@interface RQPictureBrowserViewController () <UICollectionViewDataSource,RQPictureBrowserCellDelegate,UICollectionViewDelegate> {
+    RQPictureBrowserPhotos *_photos;
+    RQPictureBrowserAnimator *_animator;
 }
 
 /** 页数显示按钮 */
@@ -27,11 +27,11 @@ static NSString *const PictureBrowserViewCellId = @"PictureBrowserViewCellId";
 
 @end
 
-@implementation PictureBrowserViewController
+@implementation RQPictureBrowserViewController
 
 #pragma mark - 监听方法
 - (void)close {
-    PictureBrowserViewCell *cell = [_collectionView visibleCells][0];
+    RQPictureBrowserViewCell *cell = [_collectionView visibleCells][0];
     _animator.fromImageView = cell.imageView.frame.size.width > 0 ? cell.imageView : cell.placeHolder;
     _photos.selectedIndex = [_collectionView indexPathForCell:cell].row;
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -66,13 +66,13 @@ static NSString *const PictureBrowserViewCellId = @"PictureBrowserViewCellId";
     
     self = [super initWithNibName:nil bundle:nil];
     if (self) {
-        _photos = [[PictureBrowserPhotos alloc] init];
+        _photos = [[RQPictureBrowserPhotos alloc] init];
         _photos.selectedIndex = selectedIndex;
         _photos.urls = urls;
         _photos.parentImageViews = parentImageViews;
         
         self.modalPresentationStyle = UIModalPresentationCustom;
-        _animator = [[PictureBrowserAnimator alloc] initWithPhotos:_photos];
+        _animator = [[RQPictureBrowserAnimator alloc] initWithPhotos:_photos];
         self.transitioningDelegate = _animator;
     }
     
@@ -113,7 +113,7 @@ static NSString *const PictureBrowserViewCellId = @"PictureBrowserViewCellId";
 #pragma mark - 懒加载控件
 - (UICollectionView *)collectionView {
     if (!_collectionView) {
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:[[PictureBrowserViewLayout alloc] init]];
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:[[RQPictureBrowserViewLayout alloc] init]];
     }
     
     return _collectionView;
@@ -141,7 +141,7 @@ static NSString *const PictureBrowserViewCellId = @"PictureBrowserViewCellId";
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    PictureBrowserViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:PictureBrowserViewCellId forIndexPath:indexPath];
+    RQPictureBrowserViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:PictureBrowserViewCellId forIndexPath:indexPath];
     
     cell.imageUrl = _photos.urls[indexPath.row];
     cell.pictureDelegate = self;
@@ -239,7 +239,7 @@ static NSString *const PictureBrowserViewCellId = @"PictureBrowserViewCellId";
 - (void)prepareCollectionView {
     _collectionView.backgroundColor = [UIColor clearColor];
 
-    [_collectionView registerClass:[PictureBrowserViewCell class] forCellWithReuseIdentifier:PictureBrowserViewCellId];
+    [_collectionView registerClass:[RQPictureBrowserViewCell class] forCellWithReuseIdentifier:PictureBrowserViewCellId];
     
     _collectionView.dataSource = self;
     _collectionView.delegate = self;
@@ -247,7 +247,7 @@ static NSString *const PictureBrowserViewCellId = @"PictureBrowserViewCellId";
 
 @end
 
-@implementation PictureBrowserViewLayout
+@implementation RQPictureBrowserViewLayout
 
 - (void)prepareLayout {
     [super prepareLayout];

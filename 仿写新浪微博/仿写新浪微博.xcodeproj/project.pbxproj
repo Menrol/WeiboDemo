@@ -65,16 +65,16 @@
 		18E9D8EA1EE52D9000595D44 /* NewfeatureCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E9D8E91EE52D9000595D44 /* NewfeatureCollectionViewController.swift */; };
 		18EA2A391EDC83B0005D4F83 /* NetworkTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EA2A381EDC83B0005D4F83 /* NetworkTool.swift */; };
 		18EFF5AB1ED2B7D00084F4CE /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFF5AA1ED2B7D00084F4CE /* UIButton+Extension.swift */; };
-		18F1D6591FA76F81002423C9 /* PictureBrowserAnimator.h in Sources */ = {isa = PBXBuildFile; fileRef = 18F1D64F1FA76F01002423C9 /* PictureBrowserAnimator.h */; };
-		18F1D65A1FA76F81002423C9 /* PictureBrowserAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F1D6501FA76F01002423C9 /* PictureBrowserAnimator.m */; };
-		18F1D65B1FA76F81002423C9 /* PictureBrowserPhotos.h in Sources */ = {isa = PBXBuildFile; fileRef = 18F1D6511FA76F01002423C9 /* PictureBrowserPhotos.h */; };
-		18F1D65C1FA76F81002423C9 /* PictureBrowserPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F1D6521FA76F01002423C9 /* PictureBrowserPhotos.m */; };
-		18F1D65D1FA76F81002423C9 /* PictureBrowserViewCell.h in Sources */ = {isa = PBXBuildFile; fileRef = 18F1D6531FA76F01002423C9 /* PictureBrowserViewCell.h */; };
-		18F1D65E1FA76F81002423C9 /* PictureBrowserViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F1D6541FA76F01002423C9 /* PictureBrowserViewCell.m */; };
-		18F1D65F1FA76F81002423C9 /* PictureBrowserViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 18F1D6551FA76F01002423C9 /* PictureBrowserViewController.h */; };
-		18F1D6601FA76F81002423C9 /* PictureBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F1D6561FA76F01002423C9 /* PictureBrowserViewController.m */; };
-		18F1D6611FA76F81002423C9 /* PlaceHolderImageView.h in Sources */ = {isa = PBXBuildFile; fileRef = 18F1D6571FA76F01002423C9 /* PlaceHolderImageView.h */; };
-		18F1D6621FA76F81002423C9 /* PlaceHolderImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F1D6581FA76F01002423C9 /* PlaceHolderImageView.m */; };
+		18F1D6591FA76F81002423C9 /* RQPictureBrowserAnimator.h in Sources */ = {isa = PBXBuildFile; fileRef = 18F1D64F1FA76F01002423C9 /* RQPictureBrowserAnimator.h */; };
+		18F1D65A1FA76F81002423C9 /* RQPictureBrowserAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F1D6501FA76F01002423C9 /* RQPictureBrowserAnimator.m */; };
+		18F1D65B1FA76F81002423C9 /* RQPictureBrowserPhotos.h in Sources */ = {isa = PBXBuildFile; fileRef = 18F1D6511FA76F01002423C9 /* RQPictureBrowserPhotos.h */; };
+		18F1D65C1FA76F81002423C9 /* RQPictureBrowserPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F1D6521FA76F01002423C9 /* RQPictureBrowserPhotos.m */; };
+		18F1D65D1FA76F81002423C9 /* RQPictureBrowserViewCell.h in Sources */ = {isa = PBXBuildFile; fileRef = 18F1D6531FA76F01002423C9 /* RQPictureBrowserViewCell.h */; };
+		18F1D65E1FA76F81002423C9 /* RQPictureBrowserViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F1D6541FA76F01002423C9 /* RQPictureBrowserViewCell.m */; };
+		18F1D65F1FA76F81002423C9 /* RQPictureBrowserViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 18F1D6551FA76F01002423C9 /* RQPictureBrowserViewController.h */; };
+		18F1D6601FA76F81002423C9 /* RQPictureBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F1D6561FA76F01002423C9 /* RQPictureBrowserViewController.m */; };
+		18F1D6611FA76F81002423C9 /* RQPlaceHolderImageView.h in Sources */ = {isa = PBXBuildFile; fileRef = 18F1D6571FA76F01002423C9 /* RQPlaceHolderImageView.h */; };
+		18F1D6621FA76F81002423C9 /* RQPlaceHolderImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F1D6581FA76F01002423C9 /* RQPlaceHolderImageView.m */; };
 		18F43AA51F33319D00024079 /* WBRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F43AA41F33319D00024079 /* WBRefreshControl.swift */; };
 		18F43AA71F33335700024079 /* WBRefreshView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F43AA61F33335700024079 /* WBRefreshView.xib */; };
 		18FBBF301EF2D8E3009A4266 /* StatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FBBF2F1EF2D8E3009A4266 /* StatusViewModel.swift */; };
@@ -167,16 +167,16 @@
 		18E9D8E91EE52D9000595D44 /* NewfeatureCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewfeatureCollectionViewController.swift; sourceTree = "<group>"; };
 		18EA2A381EDC83B0005D4F83 /* NetworkTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkTool.swift; sourceTree = "<group>"; };
 		18EFF5AA1ED2B7D00084F4CE /* UIButton+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
-		18F1D64F1FA76F01002423C9 /* PictureBrowserAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PictureBrowserAnimator.h; sourceTree = "<group>"; };
-		18F1D6501FA76F01002423C9 /* PictureBrowserAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PictureBrowserAnimator.m; sourceTree = "<group>"; };
-		18F1D6511FA76F01002423C9 /* PictureBrowserPhotos.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PictureBrowserPhotos.h; sourceTree = "<group>"; };
-		18F1D6521FA76F01002423C9 /* PictureBrowserPhotos.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PictureBrowserPhotos.m; sourceTree = "<group>"; };
-		18F1D6531FA76F01002423C9 /* PictureBrowserViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PictureBrowserViewCell.h; sourceTree = "<group>"; };
-		18F1D6541FA76F01002423C9 /* PictureBrowserViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PictureBrowserViewCell.m; sourceTree = "<group>"; };
-		18F1D6551FA76F01002423C9 /* PictureBrowserViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PictureBrowserViewController.h; sourceTree = "<group>"; };
-		18F1D6561FA76F01002423C9 /* PictureBrowserViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PictureBrowserViewController.m; sourceTree = "<group>"; };
-		18F1D6571FA76F01002423C9 /* PlaceHolderImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaceHolderImageView.h; sourceTree = "<group>"; };
-		18F1D6581FA76F01002423C9 /* PlaceHolderImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlaceHolderImageView.m; sourceTree = "<group>"; };
+		18F1D64F1FA76F01002423C9 /* RQPictureBrowserAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RQPictureBrowserAnimator.h; sourceTree = "<group>"; };
+		18F1D6501FA76F01002423C9 /* RQPictureBrowserAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RQPictureBrowserAnimator.m; sourceTree = "<group>"; };
+		18F1D6511FA76F01002423C9 /* RQPictureBrowserPhotos.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RQPictureBrowserPhotos.h; sourceTree = "<group>"; };
+		18F1D6521FA76F01002423C9 /* RQPictureBrowserPhotos.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RQPictureBrowserPhotos.m; sourceTree = "<group>"; };
+		18F1D6531FA76F01002423C9 /* RQPictureBrowserViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RQPictureBrowserViewCell.h; sourceTree = "<group>"; };
+		18F1D6541FA76F01002423C9 /* RQPictureBrowserViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RQPictureBrowserViewCell.m; sourceTree = "<group>"; };
+		18F1D6551FA76F01002423C9 /* RQPictureBrowserViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RQPictureBrowserViewController.h; sourceTree = "<group>"; };
+		18F1D6561FA76F01002423C9 /* RQPictureBrowserViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RQPictureBrowserViewController.m; sourceTree = "<group>"; };
+		18F1D6571FA76F01002423C9 /* RQPlaceHolderImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RQPlaceHolderImageView.h; sourceTree = "<group>"; };
+		18F1D6581FA76F01002423C9 /* RQPlaceHolderImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RQPlaceHolderImageView.m; sourceTree = "<group>"; };
 		18F43AA41F33319D00024079 /* WBRefreshControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBRefreshControl.swift; sourceTree = "<group>"; };
 		18F43AA61F33335700024079 /* WBRefreshView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WBRefreshView.xib; sourceTree = "<group>"; };
 		18FBBF2F1EF2D8E3009A4266 /* StatusViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusViewModel.swift; sourceTree = "<group>"; };
@@ -392,7 +392,7 @@
 		18D2DF151ED0837000B446CC /* Tools */ = {
 			isa = PBXGroup;
 			children = (
-				18F1D64E1FA76F01002423C9 /* PictureBrowser */,
+				18F1D64E1FA76F01002423C9 /* RQPictureBrowser */,
 				18A5E2471F4EC8EB008E7671 /* PicturePicker */,
 				186D0AFF1F93A72E00F2C036 /* Emoticon */,
 				18EFF5A91ED2B6CE0084F4CE /* Extension */,
@@ -507,21 +507,21 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		18F1D64E1FA76F01002423C9 /* PictureBrowser */ = {
+		18F1D64E1FA76F01002423C9 /* RQPictureBrowser */ = {
 			isa = PBXGroup;
 			children = (
-				18F1D64F1FA76F01002423C9 /* PictureBrowserAnimator.h */,
-				18F1D6501FA76F01002423C9 /* PictureBrowserAnimator.m */,
-				18F1D6511FA76F01002423C9 /* PictureBrowserPhotos.h */,
-				18F1D6521FA76F01002423C9 /* PictureBrowserPhotos.m */,
-				18F1D6531FA76F01002423C9 /* PictureBrowserViewCell.h */,
-				18F1D6541FA76F01002423C9 /* PictureBrowserViewCell.m */,
-				18F1D6551FA76F01002423C9 /* PictureBrowserViewController.h */,
-				18F1D6561FA76F01002423C9 /* PictureBrowserViewController.m */,
-				18F1D6571FA76F01002423C9 /* PlaceHolderImageView.h */,
-				18F1D6581FA76F01002423C9 /* PlaceHolderImageView.m */,
+				18F1D64F1FA76F01002423C9 /* RQPictureBrowserAnimator.h */,
+				18F1D6501FA76F01002423C9 /* RQPictureBrowserAnimator.m */,
+				18F1D6511FA76F01002423C9 /* RQPictureBrowserPhotos.h */,
+				18F1D6521FA76F01002423C9 /* RQPictureBrowserPhotos.m */,
+				18F1D6531FA76F01002423C9 /* RQPictureBrowserViewCell.h */,
+				18F1D6541FA76F01002423C9 /* RQPictureBrowserViewCell.m */,
+				18F1D6551FA76F01002423C9 /* RQPictureBrowserViewController.h */,
+				18F1D6561FA76F01002423C9 /* RQPictureBrowserViewController.m */,
+				18F1D6571FA76F01002423C9 /* RQPlaceHolderImageView.h */,
+				18F1D6581FA76F01002423C9 /* RQPlaceHolderImageView.m */,
 			);
-			path = PictureBrowser;
+			path = RQPictureBrowser;
 			sourceTree = "<group>";
 		};
 		18F43AA31F33313300024079 /* RefreshView */ = {
@@ -871,16 +871,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18F1D6591FA76F81002423C9 /* PictureBrowserAnimator.h in Sources */,
-				18F1D65A1FA76F81002423C9 /* PictureBrowserAnimator.m in Sources */,
-				18F1D65B1FA76F81002423C9 /* PictureBrowserPhotos.h in Sources */,
-				18F1D65C1FA76F81002423C9 /* PictureBrowserPhotos.m in Sources */,
-				18F1D65D1FA76F81002423C9 /* PictureBrowserViewCell.h in Sources */,
-				18F1D65E1FA76F81002423C9 /* PictureBrowserViewCell.m in Sources */,
-				18F1D65F1FA76F81002423C9 /* PictureBrowserViewController.h in Sources */,
-				18F1D6601FA76F81002423C9 /* PictureBrowserViewController.m in Sources */,
-				18F1D6611FA76F81002423C9 /* PlaceHolderImageView.h in Sources */,
-				18F1D6621FA76F81002423C9 /* PlaceHolderImageView.m in Sources */,
+				18F1D6591FA76F81002423C9 /* RQPictureBrowserAnimator.h in Sources */,
+				18F1D65A1FA76F81002423C9 /* RQPictureBrowserAnimator.m in Sources */,
+				18F1D65B1FA76F81002423C9 /* RQPictureBrowserPhotos.h in Sources */,
+				18F1D65C1FA76F81002423C9 /* RQPictureBrowserPhotos.m in Sources */,
+				18F1D65D1FA76F81002423C9 /* RQPictureBrowserViewCell.h in Sources */,
+				18F1D65E1FA76F81002423C9 /* RQPictureBrowserViewCell.m in Sources */,
+				18F1D65F1FA76F81002423C9 /* RQPictureBrowserViewController.h in Sources */,
+				18F1D6601FA76F81002423C9 /* RQPictureBrowserViewController.m in Sources */,
+				18F1D6611FA76F81002423C9 /* RQPlaceHolderImageView.h in Sources */,
+				18F1D6621FA76F81002423C9 /* RQPlaceHolderImageView.m in Sources */,
 				186D0B131F93A80100F2C036 /* EmoticonAttachment.swift in Sources */,
 				186D0B141F93A80100F2C036 /* EmoticonManager.swift in Sources */,
 				186D0B0E1F93A7F800F2C036 /* EmoticonTipView.swift in Sources */,

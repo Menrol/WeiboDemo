@@ -1,22 +1,22 @@
 //
-//  PictureBrowserViewCell.m
-//  仿写新浪微博OC
+//  RQPictureBrowserViewCell.m
+//  照片浏览器
 //
 //  Created by Apple on 2017/8/26.
 //  Copyright © 2017年 WRQ. All rights reserved.
 //
 
-#import "PictureBrowserViewCell.h"
-#import "PictureBrowserAnimator.h"
+#import "RQPictureBrowserViewCell.h"
+#import "RQPictureBrowserAnimator.h"
 #import "SDWebImageManager.h"
 #import "UIImageView+WebCache.h"
 #import "FLAnimatedImageView+WebCache.h"
 
-@interface PictureBrowserViewCell () <UIScrollViewDelegate>
+@interface RQPictureBrowserViewCell () <UIScrollViewDelegate>
 
 @end
 
-@implementation PictureBrowserViewCell
+@implementation RQPictureBrowserViewCell
 
 - (void)setImageUrl:(NSURL *)imageUrl {
     _imageUrl = imageUrl;
@@ -153,9 +153,9 @@
     return _imageView;
 }
 
-- (PlaceHolderImageView *)placeHolder {
+- (RQPlaceHolderImageView *)placeHolder {
     if (!_placeHolder) {
-        _placeHolder = [[PlaceHolderImageView alloc] init];
+        _placeHolder = [[RQPlaceHolderImageView alloc] init];
     }
     
     return _placeHolder;

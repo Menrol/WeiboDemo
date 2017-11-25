@@ -1,6 +1,6 @@
 //
-//  PictureBrowserViewController.h
-//  仿写新浪微博OC
+//  RQPictureBrowserViewController.h
+//  照片浏览器
 //
 //  Created by Apple on 2017/8/25.
 //  Copyright © 2017年 WRQ. All rights reserved.
@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PictureBrowserViewController : UIViewController
+@interface RQPictureBrowserViewController : UIViewController
 /** collectionView */
 @property(nonatomic, strong) UICollectionView *collectionView;
+
 
 + (instancetype)photoBroswerWithSelectedIndex:(NSInteger)selectedIndex
                              urls:(NSArray <NSURL *> *)urls
@@ -18,5 +19,5 @@
 
 @end
 
-@interface PictureBrowserViewLayout : UICollectionViewFlowLayout
+@interface RQPictureBrowserViewLayout : UICollectionViewFlowLayout
 @end

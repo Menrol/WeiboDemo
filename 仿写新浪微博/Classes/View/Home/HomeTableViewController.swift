@@ -47,7 +47,7 @@ class HomeTableViewController: VisitorTableViewController {
                 return
             }
             
-            let vc = PictureBrowserViewController.photoBroswer(withSelectedIndex: selectedIndex, urls: urls, parentImageViews: parentViews)
+            let vc = RQPictureBrowserViewController.photoBroswer(withSelectedIndex: selectedIndex, urls: urls, parentImageViews: parentViews)
             
             self?.present(vc!, animated: true, completion: nil)
         }

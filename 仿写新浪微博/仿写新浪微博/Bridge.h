@@ -6,4 +6,4 @@
 //  Copyright © 2017年 WRQ. All rights reserved.
 //
 
-#import "PictureBrowserViewController.h"
+#import "RQPictureBrowserViewController.h"
